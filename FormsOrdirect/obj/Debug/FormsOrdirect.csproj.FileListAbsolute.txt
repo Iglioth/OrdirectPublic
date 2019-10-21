@@ -20,3 +20,14 @@ D:\Fontys Semester 2\Indiviueel\Git Bestanden\Ordirect\Ordirect\FormsOrdirect\Fo
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\Ordirect\Ordirect\FormsOrdirect\FormsOrdirect\obj\Debug\FormsOrdirect.csproj.CoreCompileInputs.cache
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\Ordirect\Ordirect\FormsOrdirect\FormsOrdirect\obj\Debug\FormsOrdirect.exe
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\Ordirect\Ordirect\FormsOrdirect\FormsOrdirect\obj\Debug\FormsOrdirect.pdb
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\bin\Debug\FormsOrdirect.exe.config
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\bin\Debug\FormsOrdirect.exe
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\bin\Debug\FormsOrdirect.pdb
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.csprojAssemblyReference.cache
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.FOrdirect.resources
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.LogInScreen.resources
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.Properties.Resources.resources
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.csproj.GenerateResource.cache
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.csproj.CoreCompileInputs.cache
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.exe
+D:\School\Semester2Take2Individueel\OrdirectS2\FormsOrdirect\obj\Debug\FormsOrdirect.pdb
