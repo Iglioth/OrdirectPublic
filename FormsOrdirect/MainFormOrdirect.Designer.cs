@@ -48,6 +48,7 @@
             this.TPRestaurants = new System.Windows.Forms.TabPage();
             this.TPReserveringen = new System.Windows.Forms.TabPage();
             this.GBRestaurantDetailsReserveringen = new System.Windows.Forms.GroupBox();
+            this.BNaarOrder = new System.Windows.Forms.Button();
             this.LTelefoonNummerOutputReserveringen = new System.Windows.Forms.Label();
             this.LAdresOutputReserveringen = new System.Windows.Forms.Label();
             this.LNaamOutputReserveringen = new System.Windows.Forms.Label();
@@ -56,28 +57,27 @@
             this.LNaamReserveringen = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LBReserveringen = new System.Windows.Forms.ListBox();
+            this.TPOrder = new System.Windows.Forms.TabPage();
+            this.LGerechtenRestaurantOutputNaam = new System.Windows.Forms.Label();
+            this.LOrderRestaurantNaam = new System.Windows.Forms.Label();
+            this.GBBestellingen = new System.Windows.Forms.GroupBox();
+            this.LBestellingGerechten = new System.Windows.Forms.Label();
+            this.LBBestellingGerechten = new System.Windows.Forms.ListBox();
+            this.BBestellingToevoegen = new System.Windows.Forms.Button();
+            this.LBHuidigeBestelling = new System.Windows.Forms.ListBox();
+            this.LBBestellingen = new System.Windows.Forms.ListBox();
+            this.GBGerechten = new System.Windows.Forms.GroupBox();
+            this.GBGerechtDetails = new System.Windows.Forms.GroupBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.GBDescription = new System.Windows.Forms.GroupBox();
+            this.RTBGerechtDetails = new System.Windows.Forms.RichTextBox();
+            this.LGerechtNaam = new System.Windows.Forms.Label();
+            this.BToevoegen = new System.Windows.Forms.Button();
+            this.LBGerechten = new System.Windows.Forms.CheckedListBox();
             this.LRol = new System.Windows.Forms.Label();
             this.LNaamOutput = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.LVerificatieLogInSuccesvol = new System.Windows.Forms.Label();
-            this.TPOrder = new System.Windows.Forms.TabPage();
-            this.GBGerechten = new System.Windows.Forms.GroupBox();
-            this.GBBestellingen = new System.Windows.Forms.GroupBox();
-            this.LBBestellingen = new System.Windows.Forms.ListBox();
-            this.LBGerechten = new System.Windows.Forms.CheckedListBox();
-            this.BToevoegen = new System.Windows.Forms.Button();
-            this.GBGerechtDetails = new System.Windows.Forms.GroupBox();
-            this.LGerechtNaam = new System.Windows.Forms.Label();
-            this.GBDescription = new System.Windows.Forms.GroupBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.LBHuidigeBestelling = new System.Windows.Forms.ListBox();
-            this.BBestellingToevoegen = new System.Windows.Forms.Button();
-            this.LBBestellingGerechten = new System.Windows.Forms.ListBox();
-            this.LBestellingGerechten = new System.Windows.Forms.Label();
-            this.RTBGerechtDetails = new System.Windows.Forms.RichTextBox();
-            this.BNaarOrder = new System.Windows.Forms.Button();
-            this.LOrderRestaurantNaam = new System.Windows.Forms.Label();
-            this.LGerechtenRestaurantOutputNaam = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -87,11 +87,11 @@
             this.GBRestaurantDetailsReserveringen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.TPOrder.SuspendLayout();
-            this.GBGerechten.SuspendLayout();
             this.GBBestellingen.SuspendLayout();
+            this.GBGerechten.SuspendLayout();
             this.GBGerechtDetails.SuspendLayout();
-            this.GBDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.GBDescription.SuspendLayout();
             this.SuspendLayout();
             // 
             // LBRestaurants
@@ -315,6 +315,16 @@
             this.GBRestaurantDetailsReserveringen.Text = "Restaurant Details:";
             this.GBRestaurantDetailsReserveringen.Visible = false;
             // 
+            // BNaarOrder
+            // 
+            this.BNaarOrder.Location = new System.Drawing.Point(242, 159);
+            this.BNaarOrder.Name = "BNaarOrder";
+            this.BNaarOrder.Size = new System.Drawing.Size(75, 23);
+            this.BNaarOrder.TabIndex = 8;
+            this.BNaarOrder.Text = "Order";
+            this.BNaarOrder.UseVisualStyleBackColor = true;
+            this.BNaarOrder.Click += new System.EventHandler(this.BNaarOrder_Click);
+            // 
             // LTelefoonNummerOutputReserveringen
             // 
             this.LTelefoonNummerOutputReserveringen.AutoSize = true;
@@ -389,6 +399,171 @@
             this.LBReserveringen.TabIndex = 1;
             this.LBReserveringen.SelectedIndexChanged += new System.EventHandler(this.LBReserveringen_SelectedIndexChanged);
             // 
+            // TPOrder
+            // 
+            this.TPOrder.BackColor = System.Drawing.Color.Pink;
+            this.TPOrder.Controls.Add(this.LGerechtenRestaurantOutputNaam);
+            this.TPOrder.Controls.Add(this.LOrderRestaurantNaam);
+            this.TPOrder.Controls.Add(this.GBBestellingen);
+            this.TPOrder.Controls.Add(this.GBGerechten);
+            this.TPOrder.Location = new System.Drawing.Point(4, 22);
+            this.TPOrder.Name = "TPOrder";
+            this.TPOrder.Size = new System.Drawing.Size(793, 448);
+            this.TPOrder.TabIndex = 2;
+            this.TPOrder.Text = "Order";
+            // 
+            // LGerechtenRestaurantOutputNaam
+            // 
+            this.LGerechtenRestaurantOutputNaam.AutoSize = true;
+            this.LGerechtenRestaurantOutputNaam.Location = new System.Drawing.Point(78, 6);
+            this.LGerechtenRestaurantOutputNaam.Name = "LGerechtenRestaurantOutputNaam";
+            this.LGerechtenRestaurantOutputNaam.Size = new System.Drawing.Size(111, 13);
+            this.LGerechtenRestaurantOutputNaam.TabIndex = 3;
+            this.LGerechtenRestaurantOutputNaam.Text = "<<RestaurantNaam>>";
+            this.LGerechtenRestaurantOutputNaam.Visible = false;
+            this.LGerechtenRestaurantOutputNaam.Click += new System.EventHandler(this.LGerechtenRestaurantOutputNaam_Click);
+            // 
+            // LOrderRestaurantNaam
+            // 
+            this.LOrderRestaurantNaam.AutoSize = true;
+            this.LOrderRestaurantNaam.Location = new System.Drawing.Point(10, 6);
+            this.LOrderRestaurantNaam.Name = "LOrderRestaurantNaam";
+            this.LOrderRestaurantNaam.Size = new System.Drawing.Size(62, 13);
+            this.LOrderRestaurantNaam.TabIndex = 2;
+            this.LOrderRestaurantNaam.Text = "Restaurant:";
+            // 
+            // GBBestellingen
+            // 
+            this.GBBestellingen.Controls.Add(this.LBestellingGerechten);
+            this.GBBestellingen.Controls.Add(this.LBBestellingGerechten);
+            this.GBBestellingen.Controls.Add(this.BBestellingToevoegen);
+            this.GBBestellingen.Controls.Add(this.LBHuidigeBestelling);
+            this.GBBestellingen.Controls.Add(this.LBBestellingen);
+            this.GBBestellingen.Location = new System.Drawing.Point(7, 233);
+            this.GBBestellingen.Name = "GBBestellingen";
+            this.GBBestellingen.Size = new System.Drawing.Size(778, 209);
+            this.GBBestellingen.TabIndex = 0;
+            this.GBBestellingen.TabStop = false;
+            this.GBBestellingen.Text = "Bestellingen";
+            // 
+            // LBestellingGerechten
+            // 
+            this.LBestellingGerechten.AutoSize = true;
+            this.LBestellingGerechten.Location = new System.Drawing.Point(394, 55);
+            this.LBestellingGerechten.Name = "LBestellingGerechten";
+            this.LBestellingGerechten.Size = new System.Drawing.Size(60, 13);
+            this.LBestellingGerechten.TabIndex = 6;
+            this.LBestellingGerechten.Text = "Gerechten:";
+            // 
+            // LBBestellingGerechten
+            // 
+            this.LBBestellingGerechten.FormattingEnabled = true;
+            this.LBBestellingGerechten.Location = new System.Drawing.Point(394, 71);
+            this.LBBestellingGerechten.Name = "LBBestellingGerechten";
+            this.LBBestellingGerechten.Size = new System.Drawing.Size(98, 134);
+            this.LBBestellingGerechten.TabIndex = 5;
+            // 
+            // BBestellingToevoegen
+            // 
+            this.BBestellingToevoegen.Location = new System.Drawing.Point(209, 184);
+            this.BBestellingToevoegen.Name = "BBestellingToevoegen";
+            this.BBestellingToevoegen.Size = new System.Drawing.Size(75, 23);
+            this.BBestellingToevoegen.TabIndex = 3;
+            this.BBestellingToevoegen.Text = "Bestellen";
+            this.BBestellingToevoegen.UseVisualStyleBackColor = true;
+            // 
+            // LBHuidigeBestelling
+            // 
+            this.LBHuidigeBestelling.FormattingEnabled = true;
+            this.LBHuidigeBestelling.Location = new System.Drawing.Point(6, 19);
+            this.LBHuidigeBestelling.Name = "LBHuidigeBestelling";
+            this.LBHuidigeBestelling.Size = new System.Drawing.Size(120, 186);
+            this.LBHuidigeBestelling.TabIndex = 2;
+            // 
+            // LBBestellingen
+            // 
+            this.LBBestellingen.FormattingEnabled = true;
+            this.LBBestellingen.Location = new System.Drawing.Point(290, 19);
+            this.LBBestellingen.Name = "LBBestellingen";
+            this.LBBestellingen.Size = new System.Drawing.Size(98, 186);
+            this.LBBestellingen.TabIndex = 1;
+            // 
+            // GBGerechten
+            // 
+            this.GBGerechten.Controls.Add(this.GBGerechtDetails);
+            this.GBGerechten.Controls.Add(this.BToevoegen);
+            this.GBGerechten.Controls.Add(this.LBGerechten);
+            this.GBGerechten.Location = new System.Drawing.Point(7, 22);
+            this.GBGerechten.Name = "GBGerechten";
+            this.GBGerechten.Size = new System.Drawing.Size(778, 205);
+            this.GBGerechten.TabIndex = 1;
+            this.GBGerechten.TabStop = false;
+            this.GBGerechten.Text = "A";
+            // 
+            // GBGerechtDetails
+            // 
+            this.GBGerechtDetails.Controls.Add(this.pictureBox3);
+            this.GBGerechtDetails.Controls.Add(this.GBDescription);
+            this.GBGerechtDetails.Controls.Add(this.LGerechtNaam);
+            this.GBGerechtDetails.Location = new System.Drawing.Point(290, 18);
+            this.GBGerechtDetails.Name = "GBGerechtDetails";
+            this.GBGerechtDetails.Size = new System.Drawing.Size(482, 181);
+            this.GBGerechtDetails.TabIndex = 2;
+            this.GBGerechtDetails.TabStop = false;
+            this.GBGerechtDetails.Text = "Gerecht Details:";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(270, 14);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(206, 156);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // GBDescription
+            // 
+            this.GBDescription.Controls.Add(this.RTBGerechtDetails);
+            this.GBDescription.Location = new System.Drawing.Point(6, 58);
+            this.GBDescription.Name = "GBDescription";
+            this.GBDescription.Size = new System.Drawing.Size(221, 117);
+            this.GBDescription.TabIndex = 1;
+            this.GBDescription.TabStop = false;
+            this.GBDescription.Text = "Informatie over het gerecht:";
+            // 
+            // RTBGerechtDetails
+            // 
+            this.RTBGerechtDetails.Location = new System.Drawing.Point(6, 16);
+            this.RTBGerechtDetails.Name = "RTBGerechtDetails";
+            this.RTBGerechtDetails.Size = new System.Drawing.Size(209, 96);
+            this.RTBGerechtDetails.TabIndex = 0;
+            this.RTBGerechtDetails.Text = "";
+            // 
+            // LGerechtNaam
+            // 
+            this.LGerechtNaam.AutoSize = true;
+            this.LGerechtNaam.Location = new System.Drawing.Point(30, 32);
+            this.LGerechtNaam.Name = "LGerechtNaam";
+            this.LGerechtNaam.Size = new System.Drawing.Size(38, 13);
+            this.LGerechtNaam.TabIndex = 0;
+            this.LGerechtNaam.Text = "Naam:";
+            // 
+            // BToevoegen
+            // 
+            this.BToevoegen.Location = new System.Drawing.Point(209, 176);
+            this.BToevoegen.Name = "BToevoegen";
+            this.BToevoegen.Size = new System.Drawing.Size(75, 23);
+            this.BToevoegen.TabIndex = 1;
+            this.BToevoegen.Text = "Toevoegen";
+            this.BToevoegen.UseVisualStyleBackColor = true;
+            // 
+            // LBGerechten
+            // 
+            this.LBGerechten.FormattingEnabled = true;
+            this.LBGerechten.Location = new System.Drawing.Point(6, 18);
+            this.LBGerechten.Name = "LBGerechten";
+            this.LBGerechten.Size = new System.Drawing.Size(197, 184);
+            this.LBGerechten.TabIndex = 0;
+            // 
             // LRol
             // 
             this.LRol.AutoSize = true;
@@ -430,180 +605,6 @@
             this.LVerificatieLogInSuccesvol.Text = "<Log in Succesvol!>";
             this.LVerificatieLogInSuccesvol.Visible = false;
             // 
-            // TPOrder
-            // 
-            this.TPOrder.BackColor = System.Drawing.Color.Pink;
-            this.TPOrder.Controls.Add(this.LGerechtenRestaurantOutputNaam);
-            this.TPOrder.Controls.Add(this.LOrderRestaurantNaam);
-            this.TPOrder.Controls.Add(this.GBBestellingen);
-            this.TPOrder.Controls.Add(this.GBGerechten);
-            this.TPOrder.Location = new System.Drawing.Point(4, 22);
-            this.TPOrder.Name = "TPOrder";
-            this.TPOrder.Size = new System.Drawing.Size(793, 448);
-            this.TPOrder.TabIndex = 2;
-            this.TPOrder.Text = "Order";
-            // 
-            // GBGerechten
-            // 
-            this.GBGerechten.Controls.Add(this.GBGerechtDetails);
-            this.GBGerechten.Controls.Add(this.BToevoegen);
-            this.GBGerechten.Controls.Add(this.LBGerechten);
-            this.GBGerechten.Location = new System.Drawing.Point(7, 22);
-            this.GBGerechten.Name = "GBGerechten";
-            this.GBGerechten.Size = new System.Drawing.Size(778, 205);
-            this.GBGerechten.TabIndex = 1;
-            this.GBGerechten.TabStop = false;
-            this.GBGerechten.Text = "Gerechten";
-            // 
-            // GBBestellingen
-            // 
-            this.GBBestellingen.Controls.Add(this.LBestellingGerechten);
-            this.GBBestellingen.Controls.Add(this.LBBestellingGerechten);
-            this.GBBestellingen.Controls.Add(this.BBestellingToevoegen);
-            this.GBBestellingen.Controls.Add(this.LBHuidigeBestelling);
-            this.GBBestellingen.Controls.Add(this.LBBestellingen);
-            this.GBBestellingen.Location = new System.Drawing.Point(7, 233);
-            this.GBBestellingen.Name = "GBBestellingen";
-            this.GBBestellingen.Size = new System.Drawing.Size(778, 209);
-            this.GBBestellingen.TabIndex = 0;
-            this.GBBestellingen.TabStop = false;
-            this.GBBestellingen.Text = "Bestellingen";
-            // 
-            // LBBestellingen
-            // 
-            this.LBBestellingen.FormattingEnabled = true;
-            this.LBBestellingen.Location = new System.Drawing.Point(290, 19);
-            this.LBBestellingen.Name = "LBBestellingen";
-            this.LBBestellingen.Size = new System.Drawing.Size(98, 186);
-            this.LBBestellingen.TabIndex = 1;
-            // 
-            // LBGerechten
-            // 
-            this.LBGerechten.FormattingEnabled = true;
-            this.LBGerechten.Location = new System.Drawing.Point(6, 18);
-            this.LBGerechten.Name = "LBGerechten";
-            this.LBGerechten.Size = new System.Drawing.Size(197, 184);
-            this.LBGerechten.TabIndex = 0;
-            // 
-            // BToevoegen
-            // 
-            this.BToevoegen.Location = new System.Drawing.Point(209, 176);
-            this.BToevoegen.Name = "BToevoegen";
-            this.BToevoegen.Size = new System.Drawing.Size(75, 23);
-            this.BToevoegen.TabIndex = 1;
-            this.BToevoegen.Text = "Toevoegen";
-            this.BToevoegen.UseVisualStyleBackColor = true;
-            // 
-            // GBGerechtDetails
-            // 
-            this.GBGerechtDetails.Controls.Add(this.pictureBox3);
-            this.GBGerechtDetails.Controls.Add(this.GBDescription);
-            this.GBGerechtDetails.Controls.Add(this.LGerechtNaam);
-            this.GBGerechtDetails.Location = new System.Drawing.Point(290, 18);
-            this.GBGerechtDetails.Name = "GBGerechtDetails";
-            this.GBGerechtDetails.Size = new System.Drawing.Size(482, 181);
-            this.GBGerechtDetails.TabIndex = 2;
-            this.GBGerechtDetails.TabStop = false;
-            this.GBGerechtDetails.Text = "Gerecht Details:";
-            // 
-            // LGerechtNaam
-            // 
-            this.LGerechtNaam.AutoSize = true;
-            this.LGerechtNaam.Location = new System.Drawing.Point(30, 32);
-            this.LGerechtNaam.Name = "LGerechtNaam";
-            this.LGerechtNaam.Size = new System.Drawing.Size(38, 13);
-            this.LGerechtNaam.TabIndex = 0;
-            this.LGerechtNaam.Text = "Naam:";
-            // 
-            // GBDescription
-            // 
-            this.GBDescription.Controls.Add(this.RTBGerechtDetails);
-            this.GBDescription.Location = new System.Drawing.Point(6, 58);
-            this.GBDescription.Name = "GBDescription";
-            this.GBDescription.Size = new System.Drawing.Size(221, 117);
-            this.GBDescription.TabIndex = 1;
-            this.GBDescription.TabStop = false;
-            this.GBDescription.Text = "Informatie over het gerecht:";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(270, 14);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(206, 156);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
-            // LBHuidigeBestelling
-            // 
-            this.LBHuidigeBestelling.FormattingEnabled = true;
-            this.LBHuidigeBestelling.Location = new System.Drawing.Point(6, 19);
-            this.LBHuidigeBestelling.Name = "LBHuidigeBestelling";
-            this.LBHuidigeBestelling.Size = new System.Drawing.Size(120, 186);
-            this.LBHuidigeBestelling.TabIndex = 2;
-            // 
-            // BBestellingToevoegen
-            // 
-            this.BBestellingToevoegen.Location = new System.Drawing.Point(209, 184);
-            this.BBestellingToevoegen.Name = "BBestellingToevoegen";
-            this.BBestellingToevoegen.Size = new System.Drawing.Size(75, 23);
-            this.BBestellingToevoegen.TabIndex = 3;
-            this.BBestellingToevoegen.Text = "Bestellen";
-            this.BBestellingToevoegen.UseVisualStyleBackColor = true;
-            // 
-            // LBBestellingGerechten
-            // 
-            this.LBBestellingGerechten.FormattingEnabled = true;
-            this.LBBestellingGerechten.Location = new System.Drawing.Point(394, 71);
-            this.LBBestellingGerechten.Name = "LBBestellingGerechten";
-            this.LBBestellingGerechten.Size = new System.Drawing.Size(98, 134);
-            this.LBBestellingGerechten.TabIndex = 5;
-            // 
-            // LBestellingGerechten
-            // 
-            this.LBestellingGerechten.AutoSize = true;
-            this.LBestellingGerechten.Location = new System.Drawing.Point(394, 55);
-            this.LBestellingGerechten.Name = "LBestellingGerechten";
-            this.LBestellingGerechten.Size = new System.Drawing.Size(60, 13);
-            this.LBestellingGerechten.TabIndex = 6;
-            this.LBestellingGerechten.Text = "Gerechten:";
-            // 
-            // RTBGerechtDetails
-            // 
-            this.RTBGerechtDetails.Location = new System.Drawing.Point(6, 16);
-            this.RTBGerechtDetails.Name = "RTBGerechtDetails";
-            this.RTBGerechtDetails.Size = new System.Drawing.Size(209, 96);
-            this.RTBGerechtDetails.TabIndex = 0;
-            this.RTBGerechtDetails.Text = "";
-            // 
-            // BNaarOrder
-            // 
-            this.BNaarOrder.Location = new System.Drawing.Point(242, 159);
-            this.BNaarOrder.Name = "BNaarOrder";
-            this.BNaarOrder.Size = new System.Drawing.Size(75, 23);
-            this.BNaarOrder.TabIndex = 8;
-            this.BNaarOrder.Text = "Order";
-            this.BNaarOrder.UseVisualStyleBackColor = true;
-            this.BNaarOrder.Click += new System.EventHandler(this.BNaarOrder_Click);
-            // 
-            // LOrderRestaurantNaam
-            // 
-            this.LOrderRestaurantNaam.AutoSize = true;
-            this.LOrderRestaurantNaam.Location = new System.Drawing.Point(10, 6);
-            this.LOrderRestaurantNaam.Name = "LOrderRestaurantNaam";
-            this.LOrderRestaurantNaam.Size = new System.Drawing.Size(62, 13);
-            this.LOrderRestaurantNaam.TabIndex = 2;
-            this.LOrderRestaurantNaam.Text = "Restaurant:";
-            // 
-            // LGerechtenRestaurantOutputNaam
-            // 
-            this.LGerechtenRestaurantOutputNaam.AutoSize = true;
-            this.LGerechtenRestaurantOutputNaam.Location = new System.Drawing.Point(78, 6);
-            this.LGerechtenRestaurantOutputNaam.Name = "LGerechtenRestaurantOutputNaam";
-            this.LGerechtenRestaurantOutputNaam.Size = new System.Drawing.Size(111, 13);
-            this.LGerechtenRestaurantOutputNaam.TabIndex = 3;
-            this.LGerechtenRestaurantOutputNaam.Text = "<<RestaurantNaam>>";
-            this.LGerechtenRestaurantOutputNaam.Visible = false;
-            // 
             // FOrdirect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,13 +631,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.TPOrder.ResumeLayout(false);
             this.TPOrder.PerformLayout();
-            this.GBGerechten.ResumeLayout(false);
             this.GBBestellingen.ResumeLayout(false);
             this.GBBestellingen.PerformLayout();
+            this.GBGerechten.ResumeLayout(false);
             this.GBGerechtDetails.ResumeLayout(false);
             this.GBGerechtDetails.PerformLayout();
-            this.GBDescription.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.GBDescription.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

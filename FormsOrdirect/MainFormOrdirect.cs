@@ -23,6 +23,8 @@ namespace FormsOrdirect
 
         public void LoadLists(string Email)
         {
+            LBRestaurants.Items.Clear();
+            LBReserveringen.Items.Clear();
             List<Restaurant> restaurants = rc.GetAllRestaurants();
             foreach (Restaurant r in restaurants)
             {
@@ -32,10 +34,43 @@ namespace FormsOrdirect
             List<Reservering> reserveringen = rvc.GetReserveringenById(a.AccountID);
             foreach (Reservering r in reserveringen)
             {
-                LBReserveringen.Items.Add("Restaurant " + rc.GetRestaurantByID(r.RestaurantID).Naam + " Om: " + r.datetime.ToString());
+                Restaurant Res = new Restaurant();
+                Res = rc.GetRestaurantByID(r.RestaurantID);
+                LBReserveringen.Items.Add(Res.RestaurantID + " Restaurant " + Res.Naam + " Om: " + r.datetime.ToString());
             }
             LNaamOutput.Text = Email;
             LNaamOutput.Visible = true;
+        }
+
+        public void LoadRestaurants(string Email)
+        {
+            LBRestaurants.Items.Clear();
+
+            List<Restaurant> restaurants = rc.GetAllRestaurants();
+            foreach (Restaurant r in restaurants)
+            {
+                LBRestaurants.Items.Add(r.Naam);
+            }
+        }
+
+        public void LoadReserveringenFromUser(string Email)
+        {
+            Account a = ac.GetAccountByEmail(Email);
+            List<Reservering> reserveringen = rvc.GetReserveringenById(a.AccountID);
+            foreach (Reservering r in reserveringen)
+            {
+                Restaurant Res = new Restaurant();
+                Res = rc.GetRestaurantByID(r.RestaurantID);
+                LBReserveringen.Items.Add(Res.RestaurantID + " Restaurant " + Res.Naam + " Om: " + r.datetime.ToString());
+            }
+            LNaamOutput.Text = Email;
+            LNaamOutput.Visible = true;
+        }
+
+        public void LoadGerechtenFromRestaurant(int RestaurantID)
+        {
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -136,8 +171,8 @@ namespace FormsOrdirect
 
         private void LBReserveringen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string RestaurantString = LBReserveringen.Text.Split(' ')[1];
-            Restaurant r = rc.GetRestaurantByName(RestaurantString);
+            int RestaurantID = Convert.ToInt32(LBReserveringen.Text.Split(' ')[0]);
+            Restaurant r = rc.GetRestaurantByID(RestaurantID);
             GBRestaurantDetailsReserveringen.Visible = true;
             LNaamOutputReserveringen.Text = r.Naam.ToString();
             LNaamOutputReserveringen.Visible = true;
@@ -149,8 +184,13 @@ namespace FormsOrdirect
 
         private void BNaarOrder_Click(object sender, EventArgs e)
         {
-            rc.GetRestaurantByName(LNaamOutputReserveringen.Text);
-            
+            LGerechtenRestaurantOutputNaam.Text = rc.GetRestaurantByName(LNaamOutputReserveringen.Text).RestaurantID + rc.GetRestaurantByName(LNaamOutputReserveringen.Text).Naam;
+            TCOrdirect.SelectTab(2);
+        }
+
+        private void LGerechtenRestaurantOutputNaam_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

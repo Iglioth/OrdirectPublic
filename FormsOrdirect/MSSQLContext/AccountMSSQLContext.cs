@@ -7,8 +7,10 @@ using System.Data;
 
 namespace FormsOrdirect
 {
-    class AccountMSSQLContext : BaseMSSQLContext, IAccountContext
+    class AccountMSSQLContext :  BaseMSSQLContext, IAccountContext
     {
+
+
         public Account GetAccountByID(int id)
         {
             string sql = "Select * From Account where AccountID= @id";

@@ -32,7 +32,7 @@ namespace FormsOrdirect
 
         public Restaurant GetRestaurantByName(string Name)
         {
-            string sql = "Select * From restaurant where Naam=@name";
+            string sql = "Select * From restaurant where Naam like @name";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
             parameters.Add("name", Name);
 
