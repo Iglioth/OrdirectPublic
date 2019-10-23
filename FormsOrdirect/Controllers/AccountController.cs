@@ -8,7 +8,7 @@ namespace FormsOrdirect
 {
     public class AccountController
     {
-        AccountRepository repo;
+        AccountRepository repo; 
         AccountConverter cvt = new AccountConverter();
         IAccountContext context;
 
