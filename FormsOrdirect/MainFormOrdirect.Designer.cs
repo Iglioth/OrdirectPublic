@@ -68,7 +68,7 @@
             this.LBBestellingen = new System.Windows.Forms.ListBox();
             this.GBGerechten = new System.Windows.Forms.GroupBox();
             this.GBGerechtDetails = new System.Windows.Forms.GroupBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.PBGerechtDetails = new System.Windows.Forms.PictureBox();
             this.GBDescription = new System.Windows.Forms.GroupBox();
             this.RTBGerechtDetails = new System.Windows.Forms.RichTextBox();
             this.LGerechtNaam = new System.Windows.Forms.Label();
@@ -78,6 +78,10 @@
             this.LNaamOutput = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.LVerificatieLogInSuccesvol = new System.Windows.Forms.Label();
+            this.LRestaurantIDOutputReserveringen = new System.Windows.Forms.Label();
+            this.LRestaurantIdReserveringen = new System.Windows.Forms.Label();
+            this.LGerechtenOutputNaam = new System.Windows.Forms.Label();
+            this.LReserveringNummerGerechten = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -90,7 +94,7 @@
             this.GBBestellingen.SuspendLayout();
             this.GBGerechten.SuspendLayout();
             this.GBGerechtDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBGerechtDetails)).BeginInit();
             this.GBDescription.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -299,6 +303,8 @@
             // 
             // GBRestaurantDetailsReserveringen
             // 
+            this.GBRestaurantDetailsReserveringen.Controls.Add(this.LRestaurantIdReserveringen);
+            this.GBRestaurantDetailsReserveringen.Controls.Add(this.LRestaurantIDOutputReserveringen);
             this.GBRestaurantDetailsReserveringen.Controls.Add(this.BNaarOrder);
             this.GBRestaurantDetailsReserveringen.Controls.Add(this.LTelefoonNummerOutputReserveringen);
             this.GBRestaurantDetailsReserveringen.Controls.Add(this.LAdresOutputReserveringen);
@@ -348,7 +354,7 @@
             // LNaamOutputReserveringen
             // 
             this.LNaamOutputReserveringen.AutoSize = true;
-            this.LNaamOutputReserveringen.Location = new System.Drawing.Point(68, 42);
+            this.LNaamOutputReserveringen.Location = new System.Drawing.Point(67, 69);
             this.LNaamOutputReserveringen.Name = "LNaamOutputReserveringen";
             this.LNaamOutputReserveringen.Size = new System.Drawing.Size(47, 13);
             this.LNaamOutputReserveringen.TabIndex = 4;
@@ -376,7 +382,7 @@
             // LNaamReserveringen
             // 
             this.LNaamReserveringen.AutoSize = true;
-            this.LNaamReserveringen.Location = new System.Drawing.Point(24, 42);
+            this.LNaamReserveringen.Location = new System.Drawing.Point(23, 69);
             this.LNaamReserveringen.Name = "LNaamReserveringen";
             this.LNaamReserveringen.Size = new System.Drawing.Size(38, 13);
             this.LNaamReserveringen.TabIndex = 1;
@@ -402,6 +408,7 @@
             // TPOrder
             // 
             this.TPOrder.BackColor = System.Drawing.Color.Pink;
+            this.TPOrder.Controls.Add(this.LReserveringNummerGerechten);
             this.TPOrder.Controls.Add(this.LGerechtenRestaurantOutputNaam);
             this.TPOrder.Controls.Add(this.LOrderRestaurantNaam);
             this.TPOrder.Controls.Add(this.GBBestellingen);
@@ -471,6 +478,7 @@
             this.BBestellingToevoegen.TabIndex = 3;
             this.BBestellingToevoegen.Text = "Bestellen";
             this.BBestellingToevoegen.UseVisualStyleBackColor = true;
+            this.BBestellingToevoegen.Click += new System.EventHandler(this.BBestellingToevoegen_Click);
             // 
             // LBHuidigeBestelling
             // 
@@ -502,7 +510,8 @@
             // 
             // GBGerechtDetails
             // 
-            this.GBGerechtDetails.Controls.Add(this.pictureBox3);
+            this.GBGerechtDetails.Controls.Add(this.LGerechtenOutputNaam);
+            this.GBGerechtDetails.Controls.Add(this.PBGerechtDetails);
             this.GBGerechtDetails.Controls.Add(this.GBDescription);
             this.GBGerechtDetails.Controls.Add(this.LGerechtNaam);
             this.GBGerechtDetails.Location = new System.Drawing.Point(290, 18);
@@ -511,14 +520,15 @@
             this.GBGerechtDetails.TabIndex = 2;
             this.GBGerechtDetails.TabStop = false;
             this.GBGerechtDetails.Text = "Gerecht Details:";
+            this.GBGerechtDetails.Visible = false;
             // 
-            // pictureBox3
+            // PBGerechtDetails
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(270, 14);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(206, 156);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
+            this.PBGerechtDetails.Location = new System.Drawing.Point(270, 14);
+            this.PBGerechtDetails.Name = "PBGerechtDetails";
+            this.PBGerechtDetails.Size = new System.Drawing.Size(206, 156);
+            this.PBGerechtDetails.TabIndex = 0;
+            this.PBGerechtDetails.TabStop = false;
             // 
             // GBDescription
             // 
@@ -555,6 +565,7 @@
             this.BToevoegen.TabIndex = 1;
             this.BToevoegen.Text = "Toevoegen";
             this.BToevoegen.UseVisualStyleBackColor = true;
+            this.BToevoegen.Click += new System.EventHandler(this.BToevoegen_Click);
             // 
             // LBGerechten
             // 
@@ -563,6 +574,7 @@
             this.LBGerechten.Name = "LBGerechten";
             this.LBGerechten.Size = new System.Drawing.Size(197, 184);
             this.LBGerechten.TabIndex = 0;
+            this.LBGerechten.SelectedIndexChanged += new System.EventHandler(this.LBGerechten_SelectedIndexChanged);
             // 
             // LRol
             // 
@@ -605,6 +617,44 @@
             this.LVerificatieLogInSuccesvol.Text = "<Log in Succesvol!>";
             this.LVerificatieLogInSuccesvol.Visible = false;
             // 
+            // LRestaurantIDOutputReserveringen
+            // 
+            this.LRestaurantIDOutputReserveringen.AutoSize = true;
+            this.LRestaurantIDOutputReserveringen.Location = new System.Drawing.Point(133, 43);
+            this.LRestaurantIDOutputReserveringen.Name = "LRestaurantIDOutputReserveringen";
+            this.LRestaurantIDOutputReserveringen.Size = new System.Drawing.Size(30, 13);
+            this.LRestaurantIDOutputReserveringen.TabIndex = 9;
+            this.LRestaurantIDOutputReserveringen.Text = "<ID>";
+            this.LRestaurantIDOutputReserveringen.Visible = false;
+            // 
+            // LRestaurantIdReserveringen
+            // 
+            this.LRestaurantIdReserveringen.AutoSize = true;
+            this.LRestaurantIdReserveringen.Location = new System.Drawing.Point(23, 43);
+            this.LRestaurantIdReserveringen.Name = "LRestaurantIdReserveringen";
+            this.LRestaurantIdReserveringen.Size = new System.Drawing.Size(104, 13);
+            this.LRestaurantIdReserveringen.TabIndex = 10;
+            this.LRestaurantIdReserveringen.Text = "Restaurant Nummer:";
+            // 
+            // LGerechtenOutputNaam
+            // 
+            this.LGerechtenOutputNaam.AutoSize = true;
+            this.LGerechtenOutputNaam.Location = new System.Drawing.Point(74, 32);
+            this.LGerechtenOutputNaam.Name = "LGerechtenOutputNaam";
+            this.LGerechtenOutputNaam.Size = new System.Drawing.Size(97, 13);
+            this.LGerechtenOutputNaam.TabIndex = 2;
+            this.LGerechtenOutputNaam.Text = "<<GerechtNaam>>";
+            this.LGerechtenOutputNaam.Visible = false;
+            // 
+            // LReserveringNummerGerechten
+            // 
+            this.LReserveringNummerGerechten.AutoSize = true;
+            this.LReserveringNummerGerechten.Location = new System.Drawing.Point(242, 6);
+            this.LReserveringNummerGerechten.Name = "LReserveringNummerGerechten";
+            this.LReserveringNummerGerechten.Size = new System.Drawing.Size(101, 13);
+            this.LReserveringNummerGerechten.TabIndex = 4;
+            this.LReserveringNummerGerechten.Text = "Reserveringnummer";
+            // 
             // FOrdirect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -636,7 +686,7 @@
             this.GBGerechten.ResumeLayout(false);
             this.GBGerechtDetails.ResumeLayout(false);
             this.GBGerechtDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBGerechtDetails)).EndInit();
             this.GBDescription.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -687,7 +737,7 @@
         private System.Windows.Forms.ListBox LBBestellingen;
         private System.Windows.Forms.GroupBox GBGerechten;
         private System.Windows.Forms.GroupBox GBGerechtDetails;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox PBGerechtDetails;
         private System.Windows.Forms.GroupBox GBDescription;
         private System.Windows.Forms.RichTextBox RTBGerechtDetails;
         private System.Windows.Forms.Label LGerechtNaam;
@@ -695,6 +745,10 @@
         private System.Windows.Forms.CheckedListBox LBGerechten;
         private System.Windows.Forms.Label LGerechtenRestaurantOutputNaam;
         private System.Windows.Forms.Label LOrderRestaurantNaam;
+        private System.Windows.Forms.Label LRestaurantIdReserveringen;
+        private System.Windows.Forms.Label LRestaurantIDOutputReserveringen;
+        private System.Windows.Forms.Label LGerechtenOutputNaam;
+        private System.Windows.Forms.Label LReserveringNummerGerechten;
     }
 }
 

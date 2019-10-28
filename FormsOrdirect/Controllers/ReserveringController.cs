@@ -30,5 +30,11 @@ namespace FormsOrdirect
             List<Reservering> reserveringen = repo.GetReserveringenByEmail(id);
             return reserveringen;
         }
+
+        /*internal Reservering GetReserveringByAccountAndRestaurant(int accountID, int restaurantID)
+        {
+            Reservering r = repo.GetReserveringByAccountAndRestaurant(accountID, restaurantID);
+            return r;
+        }*/
     }
 }

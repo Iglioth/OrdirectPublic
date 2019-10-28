@@ -15,5 +15,7 @@ namespace FormsOrdirect
         List<Gerecht> GetAllGerechtenFromRestaurantID(int id);
 
         List<Gerecht> GetAllGerechtenAndRondesFromOrderId(int id);
+
+        bool BestellingMaken(int ReserveringID, int GerechtID, int Aantal, int BestellingNummer);
     }
 }

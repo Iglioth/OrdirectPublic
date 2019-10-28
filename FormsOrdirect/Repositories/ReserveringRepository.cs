@@ -24,5 +24,10 @@ namespace FormsOrdirect
         {
             return Context.GetReserveringenById(id);
         }
+
+        /*internal Reservering GetReserveringByAccountAndRestaurant(int accountID, int restaurantID)
+        {
+            //return Context.GetReserveringByAccountAndRestaurant()
+        }*/
     }
 }

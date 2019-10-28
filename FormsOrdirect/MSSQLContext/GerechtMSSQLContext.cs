@@ -43,9 +43,9 @@ namespace FormsOrdirect
 
         public List<Gerecht> GetAllGerechtenFromRestaurantID(int id)
         {
-            string sql = "select * from Gerecht where RestaurantID = @ID";
+            string sql = "select * from Gerecht where RestaurantID = @Id";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
-            parameters.Add("ID", id);
+            parameters.Add("Id", id);
             List<Gerecht> gerechten = new List<Gerecht>();
             DataSet set = GetDataSetSql(sql, parameters);
 
@@ -88,6 +88,11 @@ namespace FormsOrdirect
             }
 
             return gerechten;
+        }
+
+        public bool BestellingMaken(int ReserveringID, int GerechtID, int Aantal, int BestellingNummer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -13,11 +13,11 @@ namespace FormsOrdirect
 
         public GerechtController()
         {
-            repo = new GerechtRepository(context);
             context = new GerechtMSSQLContext();
+            repo = new GerechtRepository(context);
         }
 
-        Gerecht GetGerechtById(int id)
+        public Gerecht GetGerechtById(int id)
         {
             return repo.GetGerechtById(id);
         }
@@ -27,7 +27,7 @@ namespace FormsOrdirect
             return repo.GetGerechtByRondeAndGerechtIdAndOrderId(ronde, GerechtId, OrderId);
         }
 
-        List<Gerecht> GetAllGerechtenFromRestaurantID(int id)
+        public List<Gerecht> GetAllGerechtenFromRestaurantID(int id)
         {
             return repo.GetAllGerechtenFromRestaurantID(id);
         }
@@ -36,5 +36,11 @@ namespace FormsOrdirect
         {
             return repo.GetAllGerechtenAndRondesFromOrderId(id);
         }
+
+        public bool MaakBestelling(int ReserveringID, int GerechtID, int Aantal, int BestellingNummer)
+        {
+            return repo.MaakBestelling(ReserveringID, GerechtID, Aantal, BestellingNummer);
+        }
+
     }
 }
