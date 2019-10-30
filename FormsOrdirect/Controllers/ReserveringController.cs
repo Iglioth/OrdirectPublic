@@ -31,10 +31,15 @@ namespace FormsOrdirect
             return reserveringen;
         }
 
-        /*internal Reservering GetReserveringByAccountAndRestaurant(int accountID, int restaurantID)
+        internal bool CheckRonde(int ronde, int reserveringID)
         {
-            Reservering r = repo.GetReserveringByAccountAndRestaurant(accountID, restaurantID);
+            return repo.CheckRonde(ronde, reserveringID);
+        }
+
+        internal Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, DateTime dt)
+        {
+            Reservering r = repo.GetReserveringByAccountAndRestaurantAndDate(accountID, restaurantID, dt);
             return r;
-        }*/
+        }
     }
 }

@@ -62,7 +62,7 @@ namespace FormsOrdirect
             {
                 Restaurant Res = new Restaurant();
                 Res = rc.GetRestaurantByID(r.RestaurantID);
-                LBReserveringen.Items.Add(Res.RestaurantID + " Restaurant " + Res.Naam + " Om: " + r.datetime.ToString());
+                LBReserveringen.Items.Add(Res.RestaurantID + " Restaurant: " + Res.Naam + " Om: " + r.datetime.ToString());
             }
             LNaamOutput.Text = Email;
             LNaamOutput.Visible = true;
@@ -191,7 +191,7 @@ namespace FormsOrdirect
         {
             Restaurant r = new Restaurant();
             r = rc.GetRestaurantByID(Convert.ToInt32(LRestaurantIDOutputReserveringen.Text));
-            LGerechtenRestaurantOutputNaam.Text = r.RestaurantID + " " + r.Naam;
+            LGerechtenRestaurantOutputNaam.Text = LBReserveringen.Text ;
             LGerechtenRestaurantOutputNaam.Visible = true;
             TCOrdirect.SelectTab(2);
             List<Gerecht> Gerechten = new List<Gerecht>();
@@ -223,7 +223,7 @@ namespace FormsOrdirect
 
         private void BToevoegen_Click(object sender, EventArgs e)
         {
-            foreach(string item in LBGerechten.SelectedItems)
+            foreach(string item in LBGerechten.CheckedItems)
             {
                 LBHuidigeBestelling.Items.Add(item);
             }
@@ -232,10 +232,20 @@ namespace FormsOrdirect
 
         private void BBestellingToevoegen_Click(object sender, EventArgs e)
         {
-            /*Account a = ac.GetAccountByEmail(LNaamOutput.Text);
-            Reservering r = rvc.GetReserveringByAccountAndRestaurant(a.AccountID, LGerechtenRestaurantOutputNaam.Text.Split(' ')[0]);
-            gc.MaakBestelling()*/
-
+            DateTime dtp = Convert.ToDateTime(LGerechtenRestaurantOutputNaam.Text.Split(' ').Last());
+            int RestaurantID = Convert.ToInt32(LGerechtenRestaurantOutputNaam.Text.Split(' ')[0]);
+            int AccountID = Convert.ToInt32(ac.GetAccountByEmail(LNaamOutput.Text).AccountID);
+            Reservering r = rvc.GetReserveringByAccountAndRestaurantAndDate(AccountID, RestaurantID, dtp);
+            int Ronde = 1;
+            bool RondeCheck = true;
+            while(RondeCheck == true){
+                RondeCheck = rvc.CheckRonde(Ronde, r.ReserveringID);
+                Ronde++;
+            }
+            foreach (string item in LBHuidigeBestelling.Items)
+            {
+                string GerechtID;
+            }
         }
     }
 }

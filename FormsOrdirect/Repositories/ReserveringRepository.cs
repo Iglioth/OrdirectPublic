@@ -17,17 +17,33 @@ namespace FormsOrdirect
 
         public bool CreateReservering(DateTime datum, int restaurantID, int KlantID)
         {
-            return Context.CreateReservering(datum, restaurantID, KlantID);
+            bool Check = Context.CheckDuplicateReservering(restaurantID, KlantID);
+            if(Check == true)
+            {
+                return Context.CreateReservering(datum, restaurantID, KlantID);
+            }
+            else
+            {
+                return false;
+            }
         }
+
+        
 
         public List<Reservering> GetReserveringenByEmail(int id)
         {
             return Context.GetReserveringenById(id);
         }
 
-        /*internal Reservering GetReserveringByAccountAndRestaurant(int accountID, int restaurantID)
+        internal bool CheckRonde(int ronde, int reserveringID)
         {
-            //return Context.GetReserveringByAccountAndRestaurant()
-        }*/
+            return Context.CheckRonde(ronde, reserveringID);
+        }
+
+
+        internal Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, DateTime dtp )
+        {
+            return Context.GetReserveringByAccountAndRestaurantAndDate(accountID, restaurantID, dtp);
+        }
     }
 }
