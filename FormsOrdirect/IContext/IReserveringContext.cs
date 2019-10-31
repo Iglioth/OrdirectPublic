@@ -14,8 +14,8 @@ namespace FormsOrdirect
 
         bool CheckDuplicateReservering(int Restaurantid, int AccountId);
 
-        bool CheckRonde(int ronde, int reserveringID);
 
-        Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, DateTime dtp);
+        Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp);
+        Reservering GetReserveringById(string text);
     }
 }

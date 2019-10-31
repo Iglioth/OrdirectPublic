@@ -20,15 +20,7 @@ namespace FormsOrdirect
             return result;
         }
 
-        public bool CheckRonde(int ronde, int reserveringID)
-        {
-            string sql = "Select Ronde from GerechtReservering where ReserveringID = @ReserveringId and Ronde = @Ronde";
-            Dictionary<object, object> parameters = new Dictionary<object, object>();
-            parameters.Add("ReserveringId", reserveringID);
-            parameters.Add("Ronde", ronde);
-            bool result = GetBoolSql(sql, parameters);
-            return result;
-        }
+
 
         public bool CreateReservering(DateTime datum, int RestaurantID, int AccountID)
         {
@@ -41,11 +33,11 @@ namespace FormsOrdirect
             return result;
         }
 
-        public Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, DateTime dtp)
+        public Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp)
         {
-            string sql = "select * from Reservering Where AccountID = @AccountID and RestaurantID = @RestaurantID and Datum like @datum";
+            string sql = "select * from Reservering Where AccountID = @AccountID and RestaurantID = @RestaurantID and Datum = @datum + '.000' ";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
-            parameters.Add("RestaurnatID", restaurantID);
+            parameters.Add("RestaurantID", restaurantID);
             parameters.Add("AccountID", accountID);
             parameters.Add("datum", dtp);
             DataSet results = GetDataSetSql(sql, parameters);
@@ -59,6 +51,22 @@ namespace FormsOrdirect
             {
                 MessageBox.Show("Too many/few data found.");
             }
+            return r;
+        }
+
+        public Reservering GetReserveringById(string text)
+        {
+            string sql = "Select * From Reservering Where ReserveringID = @reserveringID";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("reserveringID", text);
+            Reservering r = new Reservering();
+            DataSet results = GetDataSetSql(sql, parameters);
+            if (results != null && results.Tables[0].Rows.Count > 0)
+            {
+                r = DataSetParser.DataSetToReservering(results, 0);
+            }
+            else return null;
+
             return r;
         }
 

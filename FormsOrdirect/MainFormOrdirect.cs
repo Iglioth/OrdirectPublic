@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FormsOrdirect.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,8 @@ namespace FormsOrdirect
         RestaurantController rc = new RestaurantController();
         ReserveringController rvc = new ReserveringController();
         GerechtController gc = new GerechtController();
+        BestellingController bc = new BestellingController();
+
         public FOrdirect(string Email)
         {
             InitializeComponent();
@@ -102,6 +105,9 @@ namespace FormsOrdirect
 
         }
 
+        
+
+
         private void BReserveer_Click(object sender, EventArgs e)
         {
             string Email = LNaamOutput.Text;
@@ -111,7 +117,7 @@ namespace FormsOrdirect
             string datetime = Date + " " + Time + ":00";
             DateTime dateTime = Convert.ToDateTime(datetime);
             Restaurant r = rc.GetRestaurantByName(RestaurantName);
-            Account a = ac.GetAccountByEmail(Email);// Moet nog gefixt worden.
+            Account a = ac.GetAccountByEmail(Email);
             if(rvc.CreateReservering(dateTime, r.RestaurantID, a.AccountID) == true)
             {
                 LVerificatie.Text = "Reservering Aangemaakt";
@@ -174,17 +180,25 @@ namespace FormsOrdirect
 
         private void LBReserveringen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int RestaurantID = Convert.ToInt32(LBReserveringen.Text.Split(' ')[0]);
-            Restaurant r = rc.GetRestaurantByID(RestaurantID);
-            GBRestaurantDetailsReserveringen.Visible = true;
-            LRestaurantIDOutputReserveringen.Text = r.RestaurantID.ToString();
-            LRestaurantIDOutputReserveringen.Visible = true;
-            LNaamOutputReserveringen.Text = r.Naam.ToString();
-            LNaamOutputReserveringen.Visible = true;
-            LAdresOutputReserveringen.Text = r.Adres.ToString();
-            LAdresOutputReserveringen.Visible = true;
-            LTelefoonNummerOutputReserveringen.Text = r.Telefoonnummer.ToString();
-            LTelefoonNummerOutputReserveringen.Visible = true;
+            try
+            {
+                int RestaurantID = Convert.ToInt32(LBReserveringen.Text.Split(' ')[0]);
+                Restaurant r = rc.GetRestaurantByID(RestaurantID);
+                GBRestaurantDetailsReserveringen.Visible = true;
+                LRestaurantIDOutputReserveringen.Text = r.RestaurantID.ToString();
+                LRestaurantIDOutputReserveringen.Visible = true;
+                LNaamOutputReserveringen.Text = r.Naam.ToString();
+                LNaamOutputReserveringen.Visible = true;
+                LAdresOutputReserveringen.Text = r.Adres.ToString();
+                LAdresOutputReserveringen.Visible = true;
+                LTelefoonNummerOutputReserveringen.Text = r.Telefoonnummer.ToString();
+                LTelefoonNummerOutputReserveringen.Visible = true;
+            }
+            catch
+            {
+                MessageBox.Show("Please choose a real reservation");
+            }
+
         }
 
         private void BNaarOrder_Click(object sender, EventArgs e)
@@ -200,6 +214,11 @@ namespace FormsOrdirect
             {
                 LBGerechten.Items.Add(gerecht.GerechtID + " " +  gerecht.Naam);
             }
+            DateTime dt = Convert.ToDateTime(LGerechtenRestaurantOutputNaam.Text.Split(' ').Last() + ".000");
+            string dtp = Convert.ToString(dt.Year) + "-" + Convert.ToString(dt.Month) + "-" + Convert.ToString(dt.Day) + " " + dt.Hour + ":" + dt.Minute;
+            int RestaurantID = Convert.ToInt32(LGerechtenRestaurantOutputNaam.Text.Split(' ')[0]);
+            int AccountID = Convert.ToInt32(ac.GetAccountByEmail(LNaamOutput.Text).AccountID);
+            LReserveringNummerGerechten.Text = rvc.GetReserveringByAccountAndRestaurantAndDate(AccountID, RestaurantID, dtp).ReserveringID.ToString();
         }
 
         private void LGerechtenRestaurantOutputNaam_Click(object sender, EventArgs e)
@@ -229,23 +248,46 @@ namespace FormsOrdirect
             }
 
         }
+        private void LoadBestellingen(int Reserveringid)
+        {
+            List<Bestelling> Bestellingen = bc.GetBestellingen(Reserveringid);
+            int Rondes = Bestellingen.Count();
+            for (int x = 0; x < Rondes; x++)
+            {
+                LBBestellingen.Items.Add(x + 1);
+            }
+        }
+
+        private void LoadBestellingDetails(int ReserveringID, int Ronde)
+        {
+
+        }
 
         private void BBestellingToevoegen_Click(object sender, EventArgs e)
         {
-            DateTime dtp = Convert.ToDateTime(LGerechtenRestaurantOutputNaam.Text.Split(' ').Last());
-            int RestaurantID = Convert.ToInt32(LGerechtenRestaurantOutputNaam.Text.Split(' ')[0]);
-            int AccountID = Convert.ToInt32(ac.GetAccountByEmail(LNaamOutput.Text).AccountID);
-            Reservering r = rvc.GetReserveringByAccountAndRestaurantAndDate(AccountID, RestaurantID, dtp);
+            Reservering r = rvc.GetReserveringById(LReserveringNummerGerechten.Text);
+            List<Gerecht> GekozenGerechten = new List<Gerecht>();
             int Ronde = 1;
             bool RondeCheck = true;
             while(RondeCheck == true){
-                RondeCheck = rvc.CheckRonde(Ronde, r.ReserveringID);
+                RondeCheck = bc.CheckRonde(Ronde, r.ReserveringID);
                 Ronde++;
             }
             foreach (string item in LBHuidigeBestelling.Items)
             {
-                string GerechtID;
+                Gerecht g = gc.GetGerechtById(Convert.ToInt32(item.Split(' ')[0]));
+                GekozenGerechten.Add(g);
             }
+            foreach(Gerecht g in GekozenGerechten)
+            {
+                    bc.InsertBestelling(g.GerechtID, r.ReserveringID, Ronde, 1);
+            }
+
+        }
+
+        private void LBBestellingen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

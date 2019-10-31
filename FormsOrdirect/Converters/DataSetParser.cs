@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using FormsOrdirect.Models;
 
 namespace FormsOrdirect
 {
@@ -43,6 +44,17 @@ namespace FormsOrdirect
                 Descriptie = ds.Tables[0].Rows[rowIndex][3].ToString(),
                 Naam = ds.Tables[0].Rows[rowIndex][4].ToString(),
                 Ronde = (int)ds.Tables[0].Rows[rowIndex][5]
+            };
+        }
+
+        internal static Bestelling DataSetToBestelling(DataSet results, int x)
+        {
+            return new Bestelling()
+            {
+                ReserveringID = (int)results.Tables[0].Rows[x][0],
+                GerechtID = (int)results.Tables[0].Rows[x][1],
+                Aantal = (int)results.Tables[0].Rows[x][2],
+                Ronde = (int)results.Tables[0].Rows[x][3]
             };
         }
 

@@ -49,7 +49,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GerechtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\BestellingController.cs" />
     <Compile Include="Controllers\ReserveringController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Converters\AccountConverter.cs" />
@@ -58,7 +58,7 @@
     <Compile Include="Converters\DataSetParser.cs" />
     <Compile Include="IContext\IAccountContext.cs" />
     <Compile Include="IContext\IGerechtContext.cs" />
-    <Compile Include="IContext\IOrderContext.cs" />
+    <Compile Include="IContext\IBestellingContext.cs" />
     <Compile Include="MainFormOrdirect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,20 +75,20 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Gerecht.cs" />
-    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Bestelling.cs" />
     <Compile Include="Models\Reservering.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="MSSQLContext\AccountMSSQLContext.cs" />
     <Compile Include="MSSQLContext\BaseMSSQLContext.cs" />
     <Compile Include="MSSQLContext\GerechtMSSQLContext.cs" />
-    <Compile Include="MSSQLContext\OrderMSSQLContext.cs" />
+    <Compile Include="MSSQLContext\BestellingMSSQLContext.cs" />
     <Compile Include="MSSQLContext\ReserveringMSSQLContext.cs" />
     <Compile Include="MSSQLContext\RestaurantMSSQLContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\GerechtRepository.cs" />
-    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\BestellingRepository.cs" />
     <Compile Include="Repositories\ReserveringRepository.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />
     <Compile Include="Viewmodels\KlantDetailViewModel.cs" />

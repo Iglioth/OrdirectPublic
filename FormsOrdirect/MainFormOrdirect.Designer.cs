@@ -48,6 +48,8 @@
             this.TPRestaurants = new System.Windows.Forms.TabPage();
             this.TPReserveringen = new System.Windows.Forms.TabPage();
             this.GBRestaurantDetailsReserveringen = new System.Windows.Forms.GroupBox();
+            this.LReserveringNummerOutputGerechten = new System.Windows.Forms.Label();
+            this.LReserveringNummer = new System.Windows.Forms.Label();
             this.LRestaurantIdReserveringen = new System.Windows.Forms.Label();
             this.LRestaurantIDOutputReserveringen = new System.Windows.Forms.Label();
             this.BNaarOrder = new System.Windows.Forms.Button();
@@ -82,8 +84,6 @@
             this.LNaamOutput = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.LVerificatieLogInSuccesvol = new System.Windows.Forms.Label();
-            this.LReserveringNummer = new System.Windows.Forms.Label();
-            this.LReserveringNummerOutputGerechten = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -249,7 +249,7 @@
             // 
             // DTPDate
             // 
-            this.DTPDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DTPDate.Location = new System.Drawing.Point(62, 32);
             this.DTPDate.Name = "DTPDate";
             this.DTPDate.Size = new System.Drawing.Size(200, 20);
@@ -324,6 +324,25 @@
             this.GBRestaurantDetailsReserveringen.TabStop = false;
             this.GBRestaurantDetailsReserveringen.Text = "Restaurant Details:";
             this.GBRestaurantDetailsReserveringen.Visible = false;
+            // 
+            // LReserveringNummerOutputGerechten
+            // 
+            this.LReserveringNummerOutputGerechten.AutoSize = true;
+            this.LReserveringNummerOutputGerechten.Location = new System.Drawing.Point(138, 128);
+            this.LReserveringNummerOutputGerechten.Name = "LReserveringNummerOutputGerechten";
+            this.LReserveringNummerOutputGerechten.Size = new System.Drawing.Size(115, 13);
+            this.LReserveringNummerOutputGerechten.TabIndex = 12;
+            this.LReserveringNummerOutputGerechten.Text = "<ReserveringNummer>";
+            this.LReserveringNummerOutputGerechten.Visible = false;
+            // 
+            // LReserveringNummer
+            // 
+            this.LReserveringNummer.AutoSize = true;
+            this.LReserveringNummer.Location = new System.Drawing.Point(25, 128);
+            this.LReserveringNummer.Name = "LReserveringNummer";
+            this.LReserveringNummer.Size = new System.Drawing.Size(107, 13);
+            this.LReserveringNummer.TabIndex = 11;
+            this.LReserveringNummer.Text = "Reservering nummer:";
             // 
             // LRestaurantIdReserveringen
             // 
@@ -527,6 +546,7 @@
             this.LBBestellingen.Name = "LBBestellingen";
             this.LBBestellingen.Size = new System.Drawing.Size(98, 186);
             this.LBBestellingen.TabIndex = 1;
+            this.LBBestellingen.SelectedIndexChanged += new System.EventHandler(this.LBBestellingen_SelectedIndexChanged);
             // 
             // GBGerechten
             // 
@@ -658,25 +678,6 @@
             this.LVerificatieLogInSuccesvol.TabIndex = 12;
             this.LVerificatieLogInSuccesvol.Text = "<Log in Succesvol!>";
             this.LVerificatieLogInSuccesvol.Visible = false;
-            // 
-            // LReserveringNummer
-            // 
-            this.LReserveringNummer.AutoSize = true;
-            this.LReserveringNummer.Location = new System.Drawing.Point(25, 128);
-            this.LReserveringNummer.Name = "LReserveringNummer";
-            this.LReserveringNummer.Size = new System.Drawing.Size(107, 13);
-            this.LReserveringNummer.TabIndex = 11;
-            this.LReserveringNummer.Text = "Reservering nummer:";
-            // 
-            // LReserveringNummerOutputGerechten
-            // 
-            this.LReserveringNummerOutputGerechten.AutoSize = true;
-            this.LReserveringNummerOutputGerechten.Location = new System.Drawing.Point(138, 128);
-            this.LReserveringNummerOutputGerechten.Name = "LReserveringNummerOutputGerechten";
-            this.LReserveringNummerOutputGerechten.Size = new System.Drawing.Size(115, 13);
-            this.LReserveringNummerOutputGerechten.TabIndex = 12;
-            this.LReserveringNummerOutputGerechten.Text = "<ReserveringNummer>";
-            this.LReserveringNummerOutputGerechten.Visible = false;
             // 
             // FOrdirect
             // 

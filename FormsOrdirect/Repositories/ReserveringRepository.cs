@@ -35,15 +35,17 @@ namespace FormsOrdirect
             return Context.GetReserveringenById(id);
         }
 
-        internal bool CheckRonde(int ronde, int reserveringID)
-        {
-            return Context.CheckRonde(ronde, reserveringID);
-        }
 
 
-        internal Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, DateTime dtp )
+
+        internal Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp )
         {
             return Context.GetReserveringByAccountAndRestaurantAndDate(accountID, restaurantID, dtp);
+        }
+
+        internal Reservering GetReserveringById(string text)
+        {
+            return Context.GetReserveringById(text);
         }
     }
 }
