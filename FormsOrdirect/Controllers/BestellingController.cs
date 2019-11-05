@@ -32,5 +32,15 @@ namespace FormsOrdirect
         {
             return repo.GetBestellingen(reserveringID);
         }
+
+        internal List<int> GetDistinctRondes(int ReserveringID)
+        {
+            return repo.GetDistinctRondes(ReserveringID);
+        }
+
+        internal List<Gerecht> GetGerechtenUitBestelling(int ReserveringID, int ronde)
+        {
+            return repo.GetGerechtenUitBestelling(ReserveringID, ronde);
+        }
     }
 }

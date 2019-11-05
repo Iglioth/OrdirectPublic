@@ -27,21 +27,8 @@ namespace FormsOrdirect
 
         public void LoadLists(string Email)
         {
-            LBRestaurants.Items.Clear();
-            LBReserveringen.Items.Clear();
-            List<Restaurant> restaurants = rc.GetAllRestaurants();
-            foreach (Restaurant r in restaurants)
-            {
-                LBRestaurants.Items.Add(r.Naam);
-            }
-            Account a = ac.GetAccountByEmail(Email);
-            List<Reservering> reserveringen = rvc.GetReserveringenById(a.AccountID);
-            foreach (Reservering r in reserveringen)
-            {
-                Restaurant Res = new Restaurant();
-                Res = rc.GetRestaurantByID(r.RestaurantID);
-                LBReserveringen.Items.Add(Res.RestaurantID + " Restaurant " + Res.Naam + " Om: " + r.datetime.ToString());
-            }
+            LoadRestaurants(Email);
+            LoadReserveringenFromUser(Email);
             LNaamOutput.Text = Email;
             LNaamOutput.Visible = true;
         }
@@ -59,16 +46,15 @@ namespace FormsOrdirect
 
         public void LoadReserveringenFromUser(string Email)
         {
+            LBReserveringen.Items.Clear();
             Account a = ac.GetAccountByEmail(Email);
             List<Reservering> reserveringen = rvc.GetReserveringenById(a.AccountID);
             foreach (Reservering r in reserveringen)
             {
                 Restaurant Res = new Restaurant();
                 Res = rc.GetRestaurantByID(r.RestaurantID);
-                LBReserveringen.Items.Add(Res.RestaurantID + " Restaurant: " + Res.Naam + " Om: " + r.datetime.ToString());
+                LBReserveringen.Items.Add(Res.RestaurantID + " " + r.ReserveringID + " Restaurant: " + Res.Naam + " Om: " + r.datetime.ToString());
             }
-            LNaamOutput.Text = Email;
-            LNaamOutput.Visible = true;
         }
 
         public void LoadGerechtenFromRestaurant(int RestaurantID)
@@ -105,7 +91,7 @@ namespace FormsOrdirect
 
         }
 
-        
+
 
 
         private void BReserveer_Click(object sender, EventArgs e)
@@ -118,7 +104,7 @@ namespace FormsOrdirect
             DateTime dateTime = Convert.ToDateTime(datetime);
             Restaurant r = rc.GetRestaurantByName(RestaurantName);
             Account a = ac.GetAccountByEmail(Email);
-            if(rvc.CreateReservering(dateTime, r.RestaurantID, a.AccountID) == true)
+            if (rvc.CreateReservering(dateTime, r.RestaurantID, a.AccountID) == true)
             {
                 LVerificatie.Text = "Reservering Aangemaakt";
                 LVerificatie.Visible = true;
@@ -160,7 +146,7 @@ namespace FormsOrdirect
         private void TPRestaurants_Click(object sender, EventArgs e)
         {
 
-            
+
         }
 
         private void FOrdirect_Load(object sender, EventArgs e)
@@ -191,6 +177,8 @@ namespace FormsOrdirect
                 LNaamOutputReserveringen.Visible = true;
                 LAdresOutputReserveringen.Text = r.Adres.ToString();
                 LAdresOutputReserveringen.Visible = true;
+                LReserveringNummerOutputReserveringen.Text = LBReserveringen.Text.Split(' ')[1];
+                LReserveringNummerOutputReserveringen.Visible = true;
                 LTelefoonNummerOutputReserveringen.Text = r.Telefoonnummer.ToString();
                 LTelefoonNummerOutputReserveringen.Visible = true;
             }
@@ -205,20 +193,20 @@ namespace FormsOrdirect
         {
             Restaurant r = new Restaurant();
             r = rc.GetRestaurantByID(Convert.ToInt32(LRestaurantIDOutputReserveringen.Text));
-            LGerechtenRestaurantOutputNaam.Text = LBReserveringen.Text ;
+            LGerechtenRestaurantOutputNaam.Text = LBReserveringen.Text;
             LGerechtenRestaurantOutputNaam.Visible = true;
             TCOrdirect.SelectTab(2);
             List<Gerecht> Gerechten = new List<Gerecht>();
             Gerechten = gc.GetAllGerechtenFromRestaurantID(Convert.ToInt32(LGerechtenRestaurantOutputNaam.Text.Split(' ')[0]));
-            foreach(Gerecht gerecht in Gerechten)
+            foreach (Gerecht gerecht in Gerechten)
             {
-                LBGerechten.Items.Add(gerecht.GerechtID + " " +  gerecht.Naam);
+                LBGerechten.Items.Add(gerecht.GerechtID + " " + gerecht.Naam);
             }
             DateTime dt = Convert.ToDateTime(LGerechtenRestaurantOutputNaam.Text.Split(' ').Last() + ".000");
             string dtp = Convert.ToString(dt.Year) + "-" + Convert.ToString(dt.Month) + "-" + Convert.ToString(dt.Day) + " " + dt.Hour + ":" + dt.Minute;
             int RestaurantID = Convert.ToInt32(LGerechtenRestaurantOutputNaam.Text.Split(' ')[0]);
             int AccountID = Convert.ToInt32(ac.GetAccountByEmail(LNaamOutput.Text).AccountID);
-            LReserveringNummerGerechten.Text = rvc.GetReserveringByAccountAndRestaurantAndDate(AccountID, RestaurantID, dtp).ReserveringID.ToString();
+            LReserveringNummerGerechten.Text = LReserveringNummerOutputReserveringen.Text;
         }
 
         private void LGerechtenRestaurantOutputNaam_Click(object sender, EventArgs e)
@@ -228,27 +216,30 @@ namespace FormsOrdirect
 
         private void LBGerechten_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadGerechtDetail(LBGerechten.SelectedItem.ToString());
+        }
+
+        private void LoadGerechtDetail(string ActiveGerecht)
+        {
             Gerecht g = new Gerecht();
-            string ActiveGerecht = LBGerechten.SelectedItem.ToString();
+            
             int id = Convert.ToInt32(ActiveGerecht.Split(' ')[0]);
             g = gc.GetGerechtById(id);
             LGerechtenOutputNaam.Text = g.Naam;
             LGerechtenOutputNaam.Visible = true;
             RTBGerechtDetails.Text = g.Descriptie;
-            //PBGerechtDetails.Image
 
             GBGerechtDetails.Visible = true;
         }
-
         private void BToevoegen_Click(object sender, EventArgs e)
         {
-            foreach(string item in LBGerechten.CheckedItems)
+            foreach (string item in LBGerechten.CheckedItems)
             {
                 LBHuidigeBestelling.Items.Add(item);
             }
 
         }
-        private void LoadBestellingen(int Reserveringid)
+        /*private void LoadBestellingen(int Reserveringid)
         {
             List<Bestelling> Bestellingen = bc.GetBestellingen(Reserveringid);
             int Rondes = Bestellingen.Count();
@@ -256,7 +247,7 @@ namespace FormsOrdirect
             {
                 LBBestellingen.Items.Add(x + 1);
             }
-        }
+        }*/
 
         private void LoadBestellingDetails(int ReserveringID, int Ronde)
         {
@@ -267,27 +258,68 @@ namespace FormsOrdirect
         {
             Reservering r = rvc.GetReserveringById(LReserveringNummerGerechten.Text);
             List<Gerecht> GekozenGerechten = new List<Gerecht>();
-            int Ronde = 1;
+            int Ronde = 0;
             bool RondeCheck = true;
-            while(RondeCheck == true){
-                RondeCheck = bc.CheckRonde(Ronde, r.ReserveringID);
+            while (RondeCheck == true)
+            {
                 Ronde++;
+                RondeCheck = bc.CheckRonde(Ronde, r.ReserveringID);
+
             }
+
             foreach (string item in LBHuidigeBestelling.Items)
             {
                 Gerecht g = gc.GetGerechtById(Convert.ToInt32(item.Split(' ')[0]));
                 GekozenGerechten.Add(g);
             }
-            foreach(Gerecht g in GekozenGerechten)
+            foreach (Gerecht g in GekozenGerechten)
             {
-                    bc.InsertBestelling(g.GerechtID, r.ReserveringID, Ronde, 1);
+                bc.InsertBestelling(r.ReserveringID, g.GerechtID, Ronde, 1);
             }
-
+            LoadBestellingen(r.ReserveringID);
+            LBHuidigeBestelling.Items.Clear();
         }
 
-        private void LBBestellingen_SelectedIndexChanged(object sender, EventArgs e)
+        private void LoadBestellingen(int ReserveringId)
+        {
+            LBBestellingen.Items.Clear();
+            List<int> Rondes = new List<int>();
+            Rondes = bc.GetDistinctRondes(ReserveringId);
+            foreach (int Ronde in Rondes)
+            {
+                LBBestellingen.Items.Add(Ronde);
+            }
+        }
+
+        private void LoadSpecificBestelling(int ReserveringId, int Ronde)
         {
 
+        }
+        private void LBBestellingen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LBBestellingGerechten.Items.Clear();
+            List<Gerecht> GerechtenUitBestelling = new List<Gerecht>();
+            int Ronde = (int)LBBestellingen.SelectedItem;
+            GerechtenUitBestelling = bc.GetGerechtenUitBestelling(Convert.ToInt32(LReserveringNummerGerechten.Text), Ronde);
+            foreach(Gerecht g in GerechtenUitBestelling)
+            {
+                LBBestellingGerechten.Items.Add(g.GerechtID + " " + g.Naam);
+            }
+        }
+
+        private void LBHuidigeBestelling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGerechtDetail(LBHuidigeBestelling.SelectedItem.ToString());
+        }
+
+        private void BVerwijderGerechtUitBestelling_Click(object sender, EventArgs e)
+        {
+            LBHuidigeBestelling.SelectedItems.Clear();
+        }
+
+        private void LBBestellingGerechten_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGerechtDetail(LBBestellingGerechten.SelectedItem.ToString());
         }
     }
 }

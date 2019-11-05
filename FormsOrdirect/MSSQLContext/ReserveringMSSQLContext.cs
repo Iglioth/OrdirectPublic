@@ -35,7 +35,7 @@ namespace FormsOrdirect
 
         public Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp)
         {
-            string sql = "select * from Reservering Where AccountID = @AccountID and RestaurantID = @RestaurantID and Datum = @datum + '.000' ";
+            string sql = "select * from Reservering Where AccountID = @AccountID and RestaurantID = @RestaurantID and Datum = @datum + ':00.000' ";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
             parameters.Add("RestaurantID", restaurantID);
             parameters.Add("AccountID", accountID);

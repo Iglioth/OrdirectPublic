@@ -30,5 +30,15 @@ namespace FormsOrdirect
         {
             return Context.CheckRonde(ronde, reserveringID);
         }
+
+        internal List<int> GetDistinctRondes(int reserveringID)
+        {
+            return Context.GetDistinctRondes(reserveringID);
+        }
+
+        internal List<Gerecht> GetGerechtenUitBestelling(int reserveringID, int ronde)
+        {
+            return Context.GetGerechtenUitBestelling(reserveringID, ronde);
+        }
     }
 }

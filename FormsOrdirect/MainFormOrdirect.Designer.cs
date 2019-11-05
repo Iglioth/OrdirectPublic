@@ -48,7 +48,7 @@
             this.TPRestaurants = new System.Windows.Forms.TabPage();
             this.TPReserveringen = new System.Windows.Forms.TabPage();
             this.GBRestaurantDetailsReserveringen = new System.Windows.Forms.GroupBox();
-            this.LReserveringNummerOutputGerechten = new System.Windows.Forms.Label();
+            this.LReserveringNummerOutputReserveringen = new System.Windows.Forms.Label();
             this.LReserveringNummer = new System.Windows.Forms.Label();
             this.LRestaurantIdReserveringen = new System.Windows.Forms.Label();
             this.LRestaurantIDOutputReserveringen = new System.Windows.Forms.Label();
@@ -84,6 +84,8 @@
             this.LNaamOutput = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.LVerificatieLogInSuccesvol = new System.Windows.Forms.Label();
+            this.BVerwijderGerechtUitBestelling = new System.Windows.Forms.Button();
+            this.LBestellingen = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -305,7 +307,7 @@
             // 
             // GBRestaurantDetailsReserveringen
             // 
-            this.GBRestaurantDetailsReserveringen.Controls.Add(this.LReserveringNummerOutputGerechten);
+            this.GBRestaurantDetailsReserveringen.Controls.Add(this.LReserveringNummerOutputReserveringen);
             this.GBRestaurantDetailsReserveringen.Controls.Add(this.LReserveringNummer);
             this.GBRestaurantDetailsReserveringen.Controls.Add(this.LRestaurantIdReserveringen);
             this.GBRestaurantDetailsReserveringen.Controls.Add(this.LRestaurantIDOutputReserveringen);
@@ -325,15 +327,15 @@
             this.GBRestaurantDetailsReserveringen.Text = "Restaurant Details:";
             this.GBRestaurantDetailsReserveringen.Visible = false;
             // 
-            // LReserveringNummerOutputGerechten
+            // LReserveringNummerOutputReserveringen
             // 
-            this.LReserveringNummerOutputGerechten.AutoSize = true;
-            this.LReserveringNummerOutputGerechten.Location = new System.Drawing.Point(138, 128);
-            this.LReserveringNummerOutputGerechten.Name = "LReserveringNummerOutputGerechten";
-            this.LReserveringNummerOutputGerechten.Size = new System.Drawing.Size(115, 13);
-            this.LReserveringNummerOutputGerechten.TabIndex = 12;
-            this.LReserveringNummerOutputGerechten.Text = "<ReserveringNummer>";
-            this.LReserveringNummerOutputGerechten.Visible = false;
+            this.LReserveringNummerOutputReserveringen.AutoSize = true;
+            this.LReserveringNummerOutputReserveringen.Location = new System.Drawing.Point(138, 128);
+            this.LReserveringNummerOutputReserveringen.Name = "LReserveringNummerOutputReserveringen";
+            this.LReserveringNummerOutputReserveringen.Size = new System.Drawing.Size(115, 13);
+            this.LReserveringNummerOutputReserveringen.TabIndex = 12;
+            this.LReserveringNummerOutputReserveringen.Text = "<ReserveringNummer>";
+            this.LReserveringNummerOutputReserveringen.Visible = false;
             // 
             // LReserveringNummer
             // 
@@ -492,6 +494,8 @@
             // 
             // GBBestellingen
             // 
+            this.GBBestellingen.Controls.Add(this.LBestellingen);
+            this.GBBestellingen.Controls.Add(this.BVerwijderGerechtUitBestelling);
             this.GBBestellingen.Controls.Add(this.LBestellingGerechten);
             this.GBBestellingen.Controls.Add(this.LBBestellingGerechten);
             this.GBBestellingen.Controls.Add(this.BBestellingToevoegen);
@@ -520,6 +524,7 @@
             this.LBBestellingGerechten.Name = "LBBestellingGerechten";
             this.LBBestellingGerechten.Size = new System.Drawing.Size(98, 134);
             this.LBBestellingGerechten.TabIndex = 5;
+            this.LBBestellingGerechten.SelectedIndexChanged += new System.EventHandler(this.LBBestellingGerechten_SelectedIndexChanged);
             // 
             // BBestellingToevoegen
             // 
@@ -538,13 +543,14 @@
             this.LBHuidigeBestelling.Name = "LBHuidigeBestelling";
             this.LBHuidigeBestelling.Size = new System.Drawing.Size(120, 186);
             this.LBHuidigeBestelling.TabIndex = 2;
+            this.LBHuidigeBestelling.SelectedIndexChanged += new System.EventHandler(this.LBHuidigeBestelling_SelectedIndexChanged);
             // 
             // LBBestellingen
             // 
             this.LBBestellingen.FormattingEnabled = true;
-            this.LBBestellingen.Location = new System.Drawing.Point(290, 19);
+            this.LBBestellingen.Location = new System.Drawing.Point(290, 32);
             this.LBBestellingen.Name = "LBBestellingen";
-            this.LBBestellingen.Size = new System.Drawing.Size(98, 186);
+            this.LBBestellingen.Size = new System.Drawing.Size(98, 173);
             this.LBBestellingen.TabIndex = 1;
             this.LBBestellingen.SelectedIndexChanged += new System.EventHandler(this.LBBestellingen_SelectedIndexChanged);
             // 
@@ -679,6 +685,26 @@
             this.LVerificatieLogInSuccesvol.Text = "<Log in Succesvol!>";
             this.LVerificatieLogInSuccesvol.Visible = false;
             // 
+            // BVerwijderGerechtUitBestelling
+            // 
+            this.BVerwijderGerechtUitBestelling.Location = new System.Drawing.Point(128, 184);
+            this.BVerwijderGerechtUitBestelling.Name = "BVerwijderGerechtUitBestelling";
+            this.BVerwijderGerechtUitBestelling.Size = new System.Drawing.Size(75, 23);
+            this.BVerwijderGerechtUitBestelling.TabIndex = 7;
+            this.BVerwijderGerechtUitBestelling.Text = "Verwijderen";
+            this.BVerwijderGerechtUitBestelling.UseVisualStyleBackColor = true;
+            this.BVerwijderGerechtUitBestelling.Visible = false;
+            this.BVerwijderGerechtUitBestelling.Click += new System.EventHandler(this.BVerwijderGerechtUitBestelling_Click);
+            // 
+            // LBestellingen
+            // 
+            this.LBestellingen.AutoSize = true;
+            this.LBestellingen.Location = new System.Drawing.Point(287, 16);
+            this.LBestellingen.Name = "LBestellingen";
+            this.LBestellingen.Size = new System.Drawing.Size(67, 13);
+            this.LBestellingen.TabIndex = 8;
+            this.LBestellingen.Text = "Bestellingen:";
+            // 
             // FOrdirect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -773,8 +799,10 @@
         private System.Windows.Forms.Label LRestaurantIDOutputReserveringen;
         private System.Windows.Forms.Label LGerechtenOutputNaam;
         private System.Windows.Forms.Label LReserveringNummerGerechten;
-        private System.Windows.Forms.Label LReserveringNummerOutputGerechten;
+        private System.Windows.Forms.Label LReserveringNummerOutputReserveringen;
         private System.Windows.Forms.Label LReserveringNummer;
+        private System.Windows.Forms.Button BVerwijderGerechtUitBestelling;
+        private System.Windows.Forms.Label LBestellingen;
     }
 }
 

@@ -23,6 +23,15 @@ namespace FormsOrdirect
                 Rol = set.Tables[0].Rows[rowIndex][6].ToString()
             };  
         }
+        
+        internal static Gerecht DataSetToMinimalGerecht(DataSet ds, int rowIndex)
+        {
+            return new Gerecht()
+            {
+                GerechtID = (int)ds.Tables[0].Rows[rowIndex][0],
+                Naam = ds.Tables[0].Rows[rowIndex][1].ToString()
+            };
+        }
 
         internal static Gerecht DataSetToGerecht(DataSet ds, int rowIndex)
         {
