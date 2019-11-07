@@ -15,14 +15,14 @@ namespace OrdirectWebsite.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Restaurants()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Reserveringen()
         {
             ViewData["Message"] = "Your contact page.";
 
