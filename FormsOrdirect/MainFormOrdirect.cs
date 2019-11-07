@@ -115,6 +115,7 @@ namespace FormsOrdirect
                 LVerificatie.Visible = true;
             }
             TCOrdirect.SelectTab(1);
+            LoadReserveringenFromUser(LNaamOutput.Text);
         }
 
 
