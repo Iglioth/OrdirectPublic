@@ -1,0 +1,6 @@
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.csprojAssemblyReference.cache
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.csproj.CoreCompileInputs.cache
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.RazorAssemblyInfo.cache
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.RazorAssemblyInfo.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.AssemblyInfoInputs.cache
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.AssemblyInfo.cs
