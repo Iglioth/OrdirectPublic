@@ -4,36 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormsOrdirect
+namespace OrdirectWebsite
 {
     public class AccountConverter
     {
-        /*public Account ModelToAccount(KlantDetailViewModel vm)
+        public Account ViewModelToModel(AccountDetailViewModel vm)
         {
             Account k = new Account()
             {
-                KlantID = vm.KlantID,
+                AccountID = vm.AccountID,
                 Voornaam = vm.Voornaam,
                 Achternaam = vm.Achternaam,
-                //Email = vm.Email,
-                Wachtwoord = vm.Wachtwoord
+                Email = vm.Email,
+                Wachtwoord = vm.Wachtwoord,
+                RestaurantID = vm.RestaurantID,
+                Rol = vm.Rol
             };
 
             return k;
         }
 
-        public KlantDetailViewModel KlantToModel(Klant k)
+        public AccountDetailViewModel ModelToViewModel(Account a)
         {
-            KlantDetailViewModel vm = new KlantDetailViewModel
+            AccountDetailViewModel vm = new AccountDetailViewModel
             {
-                KlantID = k.KlantID,
-                Achternaam = k.Achternaam,
-                //Email = k.Email,
-                Voornaam = k.Voornaam,
-                Wachtwoord = k.Wachtwoord
+                AccountID = a.AccountID,
+                Achternaam = a.Achternaam,
+                Email = a.Email,
+                Voornaam = a.Voornaam,
+                Wachtwoord = a.Wachtwoord,
+                RestaurantID = a.RestaurantID,
+                Rol = a.Rol
             };
 
             return vm;
-        }*/
+        }
     }
 }

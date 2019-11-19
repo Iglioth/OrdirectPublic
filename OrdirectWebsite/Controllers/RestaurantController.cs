@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FormsOrdirect
+namespace OrdirectWebsite
 {
-    public class RestaurantController
+    public class RestaurantController : Controller
     {
         RestaurantRepository rep;
         IRestaurantContext context;
@@ -18,6 +18,18 @@ namespace FormsOrdirect
             rep = new RestaurantRepository(context);
         }
 
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            List<Restaurant> restaurants = rep.GetAllRestaurants();
+            RestaurantViewModel vm = new RestaurantViewModel();
+
+            return View()
+        }
+
+
+        //OUDE CODE
         public List<Restaurant> GetAllRestaurants()
         {
             List<Restaurant> restaurants = rep.GetAllRestaurants();

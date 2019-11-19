@@ -64,12 +64,12 @@ using OrdirectWebsite.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(47, 123, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f2e87f646b664f95820cf9e4f3f7d117", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "399674b515e145188e61bb9e356d4116", async() => {
                 BeginContext(53, 6, true);
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(59, 102, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3d247d45cf0e454b82ee85e337f9d60d", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "1297c9c1210a441bb99893e3a9d4b9b8", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

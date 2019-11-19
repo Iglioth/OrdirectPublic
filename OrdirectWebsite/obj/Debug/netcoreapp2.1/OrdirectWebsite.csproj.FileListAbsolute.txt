@@ -30,3 +30,7 @@ D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\O
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.csproj.CopyComplete
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Home\Restaurants.g.cshtml.cs
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Home\Reserveringen.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\Index.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\Detail.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\Edit.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\LogIn.g.cshtml.cs

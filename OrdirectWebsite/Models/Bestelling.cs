@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormsOrdirect.Models
+namespace OrdirectWebsite
 {
     public class Bestelling
     {

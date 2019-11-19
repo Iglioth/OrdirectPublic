@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FormsOrdirect
+namespace OrdirectWebsite
 {
-    public class AccountController
+    public class AccountController : Controller
     {
         AccountRepository repo; 
         AccountConverter cvt = new AccountConverter();
@@ -21,6 +21,24 @@ namespace FormsOrdirect
             repo = new AccountRepository(context);
         }
 
+        /*[HttpPost]
+        public IActionResult LogIn(AccountDetailViewModel vm)
+        {
+            Account a = cvt.ViewModelToModel(vm);
+            if (repo.GetByEmail(a.Email) != null)
+                return View(vm);
+            else
+                return
+            return NotImplementedException sduoh;
+
+        }*/
+
+        [HttpGet]
+        public IActionResult LogIn()
+        {
+            AccountDetailViewModel vm = new AccountDetailViewModel();
+            return View(vm);
+        }
 
         public Account AccountDetailbyID(int id)
         {
@@ -40,5 +58,6 @@ namespace FormsOrdirect
             return a;
         }
 
+       
     }
 }
