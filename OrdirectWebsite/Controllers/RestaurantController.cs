@@ -25,7 +25,7 @@ namespace OrdirectWebsite
             List<Restaurant> restaurants = rep.GetAllRestaurants();
             RestaurantViewModel vm = new RestaurantViewModel();
 
-            return View()
+            return View();
         }
 
 

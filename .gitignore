@@ -4,3 +4,7 @@
 .vs/FormsOrdirect/v15/.suo
 
 .vs/FormsOrdirect/v15/
+
+*.ide-shm
+
+*.ide-wal
