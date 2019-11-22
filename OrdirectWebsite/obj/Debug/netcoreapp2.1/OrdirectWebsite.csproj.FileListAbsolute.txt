@@ -34,3 +34,4 @@ D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\O
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\Detail.g.cshtml.cs
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\Edit.g.cshtml.cs
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\LogIn.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Restaurant\Index.g.cshtml.cs

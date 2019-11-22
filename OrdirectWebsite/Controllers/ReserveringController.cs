@@ -7,12 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OrdirectWebsite
 {
-    public class ReserveringController
+    public class ReserveringController : Controller
     {
         ReserveringRepository repo;
         IReserveringContext context;
-
-
 
         public ReserveringController()
         {
@@ -20,29 +18,12 @@ namespace OrdirectWebsite
             repo = new ReserveringRepository(context);
         }
 
-        public bool CreateReservering(DateTime date, int ReserveringID, int KlantID)
+        [HttpGet]
+        public IActionResult Index(int id)
         {
-            bool result = repo.CreateReservering(date, ReserveringID, KlantID);
-            return result;
-        }
-
-        public List<Reservering> GetReserveringenById(int id)
-        {
-            List<Reservering> reserveringen = repo.GetReserveringenByEmail(id);
-            return reserveringen;
-        }
-
-
-
-        internal Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dt)
-        {
-            Reservering r = repo.GetReserveringByAccountAndRestaurantAndDate(accountID, restaurantID, dt);
-            return r;
-        }
-
-        internal Reservering GetReserveringById(string text)
-        {
-            return repo.GetReserveringById(text);
+            ReserveringViewModel vm = new ReserveringViewModel();
+            vm = repo.GetReserveringById(string id);
+            return View(vm);
         }
     }
 }
