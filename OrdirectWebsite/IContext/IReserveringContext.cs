@@ -14,8 +14,8 @@ namespace OrdirectWebsite
 
         bool CheckDuplicateReservering(int Restaurantid, int AccountId);
 
-
         Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp);
-        Reservering GetReserveringById(string text);
+
+        Reservering GetReserveringById(int id);
     }
 }

@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 
 namespace OrdirectWebsite
 {
-    public interface IViewModelConverterContext
+    public interface IViewModelConverterContext<TModel, TViewModel>
     {
-        object ModelToViewModel(object o);
+        TViewModel ModelToDetailViewModel(TModel m);
 
-        object ViewModelToModel(object o);
+        TModel DetailViewModelToModel(TViewModel vm);
+
+        List<TModel> ViewModelToModels(List<TViewModel> vms);
+
+        List<TViewModel> ModelsToViewModel(List<TModel> ms);
     }
 }

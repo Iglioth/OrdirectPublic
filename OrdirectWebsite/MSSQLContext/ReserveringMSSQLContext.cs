@@ -55,11 +55,11 @@ namespace OrdirectWebsite
             
         }
 
-        public Reservering GetReserveringById(string text)
+        public Reservering GetReserveringById(int id)
         {
             string sql = "Select * From Reservering Where ReserveringID = @reserveringID";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
-            parameters.Add("reserveringID", text);
+            parameters.Add("reserveringID", id);
             Reservering r = new Reservering();
             DataSet results = GetDataSetSql(sql, parameters);
             if (results != null && results.Tables[0].Rows.Count > 0)

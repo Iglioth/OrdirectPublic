@@ -12,6 +12,8 @@ namespace OrdirectWebsite
         RestaurantRepository rep;
         IRestaurantContext context;
 
+        RestaurantConverter converter = new RestaurantConverter();
+
         public RestaurantController()
         {
             context = new RestaurantMSSQLContext();
@@ -23,30 +25,22 @@ namespace OrdirectWebsite
         public IActionResult Index()
         {
             List<Restaurant> restaurants = rep.GetAllRestaurants();
-            RestaurantViewModel vm = new RestaurantViewModel();
+            RestaurantViewModel vm = new RestaurantViewModel
+            {
+                restaurantDetailViewModels = converter.ModelsToViewModel(restaurants)
+            };
 
-            return View();
+            return View(vm);
         }
 
-
-        //OUDE CODE
-        public List<Restaurant> GetAllRestaurants()
-        {
-            List<Restaurant> restaurants = rep.GetAllRestaurants();
-            return restaurants;
-        }
-
-        public Restaurant GetRestaurantByName(string Name)
-        {
-            Restaurant r = rep.GetRestaurantByName(Name);
-            return r;
-        }
-
-        public Restaurant GetRestaurantByID(int id)
+        public IActionResult Detail(int id)
         {
             Restaurant r = rep.GetRestaurantByID(id);
-            return r;
+            RestaurantDetailViewModel vm = converter.ModelToDetailViewModel(r);
+            return View(vm);
         }
     }
-
 }
+
+
+

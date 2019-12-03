@@ -22,7 +22,7 @@
                 @Html.DisplayName(item.Naam)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.RestaurantID}) |
+                <a asp-controller="Restaurant" asp-action="Detail" asp-route-id="@item.RestaurantID"> Details</a>
             </td>
 
         </tr>

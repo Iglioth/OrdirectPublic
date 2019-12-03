@@ -30,7 +30,7 @@ namespace OrdirectWebsite
 
         
 
-        public List<Reservering> GetReserveringenByEmail(int id)
+        public List<Reservering> GetReserveringenById(int id)
         {
             return Context.GetReserveringenById(id);
         }
@@ -43,9 +43,9 @@ namespace OrdirectWebsite
             return Context.GetReserveringByAccountAndRestaurantAndDate(accountID, restaurantID, dtp);
         }
 
-        internal Reservering GetReserveringById(string text)
+        internal Reservering GetReserveringById(int id)
         {
-            return Context.GetReserveringById(text);
+            return Context.GetReserveringById(id);
         }
     }
 }

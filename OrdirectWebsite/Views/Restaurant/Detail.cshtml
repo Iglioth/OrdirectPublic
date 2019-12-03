@@ -1,0 +1,48 @@
+﻿@model OrdirectWebsite.RestaurantDetailViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<h2>Detail</h2>
+
+<div>
+    <h4>RestaurantDetailViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefoonnummer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefoonnummer)
+        </dd>
+    </dl>
+    <div class="container">
+        <form>
+            <input type="datetime" name="datetime"/>
+            <button asp-controller="Reservering" asp-action="Aanmaken" asp-route-datetime="datetime" asp-route-RestaurantId=@Model.RestaurantID> Reserveer </button>
+        </form>
+    </div>
+
+</div>
+<div>
+    <a asp-action="Index">Terug naar de restaurants</a>
+</div>

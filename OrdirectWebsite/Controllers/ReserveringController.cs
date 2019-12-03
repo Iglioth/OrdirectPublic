@@ -22,8 +22,15 @@ namespace OrdirectWebsite
         public IActionResult Index(int id)
         {
             ReserveringViewModel vm = new ReserveringViewModel();
-            vm = repo.GetReserveringById(string id);
+            List<Reservering> reserveringen = repo.GetReserveringenById(id);
             return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult Aanmaken(int RestaurantId, int KlantId, DateTime datetime)
+        {
+
+            return RedirectToAction("Index");
         }
     }
 }
