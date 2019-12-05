@@ -16,6 +16,7 @@ namespace OrdirectWebsite
                 Adres = vm.Adres,
                 Naam = vm.Naam,
                 Telefoonnummer = vm.Telefoonnummer
+                
             };
         }
 

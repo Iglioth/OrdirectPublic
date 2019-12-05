@@ -36,7 +36,8 @@ namespace OrdirectWebsite
         public IActionResult Detail(int id)
         {
             Restaurant r = rep.GetRestaurantByID(id);
-            RestaurantDetailViewModel vm = converter.ModelToDetailViewModel(r);
+            ResRevViewModel vm = new ResRevViewModel();
+            vm.RestaurantDetailViewModel = converter.ModelToDetailViewModel(r);
             return View(vm);
         }
     }

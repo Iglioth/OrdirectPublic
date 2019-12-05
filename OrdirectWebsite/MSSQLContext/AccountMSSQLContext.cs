@@ -29,7 +29,7 @@ namespace OrdirectWebsite
 
         }
 
-        public Account GetAccountByEmail(string Email)
+        public Account Check(string Email)
         {
             string sql = "Select * From Account where Email = @Email";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
@@ -42,7 +42,10 @@ namespace OrdirectWebsite
             {
                 a = DataSetParser.DataSetToAccount(results, 0);
             }
-
+            else
+            {
+                return null;
+            }
             return a;
 
         }

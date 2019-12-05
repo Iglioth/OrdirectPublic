@@ -15,5 +15,6 @@ namespace OrdirectWebsite
         public string Achternaam { get; set; }
         public string Rol { get; set; }
         public int RestaurantID { get; set; }
+        public bool LoggedIn { get; set; }
     }
 }

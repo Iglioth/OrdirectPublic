@@ -12,13 +12,13 @@ namespace FormsOrdirect
     {
         public static Account DataSetToAccount(DataSet set, int rowIndex)
         {
-
             return new Account()
             {
                 AccountID = (int)set.Tables[0].Rows[rowIndex][0],
                 Wachtwoord = set.Tables[0].Rows[rowIndex][1].ToString(),
                 Voornaam = set.Tables[0].Rows[rowIndex][2].ToString(),
                 Achternaam = set.Tables[0].Rows[rowIndex][3].ToString(),
+                RestaurantID = (int)set.Tables[0].Rows[rowIndex][4],
                 Email = set.Tables[0].Rows[rowIndex][5].ToString(),
                 Rol = set.Tables[0].Rows[rowIndex][6].ToString()
             };  

@@ -12,6 +12,6 @@ namespace OrdirectWebsite
 
         bool CreateAccount(string voornaam, string achternaam, string email, string wachtwoord, string RestaurantID, string Rol);
 
-        Account GetAccountByEmail(string Email);
+        Account Check(string Email);
     }
 }

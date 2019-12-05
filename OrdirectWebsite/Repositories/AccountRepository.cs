@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,29 @@ namespace OrdirectWebsite
 
         public Account GetByEmail(string Email)
         {
-            return Context.GetAccountByEmail(Email);
+            return Context.Check(Email);
         }
+
+        public string Check(string Email, string Wachtwoord)
+        {
+            Account a = Context.Check(Email);
+            if (a == null)
+            {
+                return "FEmail";
+            }
+            else if (a.Wachtwoord != Wachtwoord)
+            {
+                return "FWachtwoord";
+            }
+            else if (a.Wachtwoord == Wachtwoord && a.Email == Email)
+            {
+                return "Correct";
+            }
+            else
+            {
+                return "ValidationError";
+            }
+        }
+
     }
 }

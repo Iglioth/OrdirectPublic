@@ -9,9 +9,15 @@ namespace OrdirectWebsite
 {
     public class ReserveringController : Controller
     {
+        //Properties
         ReserveringRepository repo;
         IReserveringContext context;
 
+        //Converters
+        ReserveringConverter ReserveringConverter = new ReserveringConverter();
+        RestaurantConverter RestaurantConverter = new RestaurantConverter();
+
+        //Constructor
         public ReserveringController()
         {
             context = new ReserveringMSSQLContext();
@@ -26,11 +32,13 @@ namespace OrdirectWebsite
             return View(vm);
         }
 
-        [HttpGet]
-        public IActionResult Aanmaken(int RestaurantId, int KlantId, DateTime datetime)
+        [HttpPost]
+        public IActionResult Aanmaken(ResRevViewModel vm)
         {
-
-            return RedirectToAction("Index");
+            Reservering reservering = ReserveringConverter.DetailViewModelToModel(vm.ReserveringDetailViewModel);
+            Restaurant restaurant = RestaurantConverter.DetailViewModelToModel(vm.RestaurantDetailViewModel);
+            repo.CreateReservering(reservering.datetime, restaurant.RestaurantID, 1);
+            return RedirectToAction("Index", controllerName: "Restaurant");
         }
     }
 }

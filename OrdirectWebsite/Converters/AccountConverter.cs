@@ -6,27 +6,12 @@ using System.Threading.Tasks;
 
 namespace OrdirectWebsite
 {
-    public class AccountConverter
+    public class AccountConverter : IViewModelConverterContext<Account, AccountDetailViewModel>
     {
-        public Account ViewModelToModel(AccountDetailViewModel vm)
-        {
-            Account k = new Account()
-            {
-                AccountID = vm.AccountID,
-                Voornaam = vm.Voornaam,
-                Achternaam = vm.Achternaam,
-                Email = vm.Email,
-                Wachtwoord = vm.Wachtwoord,
-                RestaurantID = vm.RestaurantID,
-                Rol = vm.Rol
-            };
 
-            return k;
-        }
-
-        public AccountDetailViewModel ModelToViewModel(Account a)
+        public AccountDetailViewModel ModelToDetailViewModel(Account a)
         {
-            AccountDetailViewModel vm = new AccountDetailViewModel
+            return new AccountDetailViewModel
             {
                 AccountID = a.AccountID,
                 Achternaam = a.Achternaam,
@@ -36,8 +21,60 @@ namespace OrdirectWebsite
                 RestaurantID = a.RestaurantID,
                 Rol = a.Rol
             };
+        }
 
-            return vm;
+        public Account DetailViewModelToModel(AccountDetailViewModel vm)
+        {
+            return new Account()
+            {
+                AccountID = vm.AccountID,
+                Voornaam = vm.Voornaam,
+                Achternaam = vm.Achternaam,
+                Email = vm.Email,
+                Wachtwoord = vm.Wachtwoord,
+                RestaurantID = vm.RestaurantID,
+                Rol = vm.Rol
+            };
+        }
+
+        public List<Account> ViewModelToModels(List<AccountDetailViewModel> vms)
+        {
+            List<Account> accounts = new List<Account>();
+            foreach (AccountDetailViewModel vm in vms)
+            {
+                accounts.Add(
+                    new Account()
+                    {
+                        AccountID = vm.AccountID,
+                        Voornaam = vm.Voornaam,
+                        Achternaam = vm.Achternaam,
+                        Email = vm.Email,
+                        Wachtwoord = vm.Wachtwoord,
+                        RestaurantID = vm.RestaurantID,
+                        Rol = vm.Rol
+                    });
+            }
+            return accounts;
+        }
+
+        public List<AccountDetailViewModel> ModelsToViewModel(List<Account> ms)
+        {
+            List<AccountDetailViewModel> accountDetailViewModels = new List<AccountDetailViewModel>();
+            foreach (Account a in ms)
+            {
+                accountDetailViewModels.Add(
+                    new AccountDetailViewModel
+                    {
+                        AccountID = a.AccountID,
+                        Achternaam = a.Achternaam,
+                        Email = a.Email,
+                        Voornaam = a.Voornaam,
+                        Wachtwoord = a.Wachtwoord,
+                        RestaurantID = a.RestaurantID,
+                        Rol = a.Rol
+                    });
+            }
+            return accountDetailViewModels;
         }
     }
 }
