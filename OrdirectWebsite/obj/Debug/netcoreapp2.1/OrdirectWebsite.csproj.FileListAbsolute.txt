@@ -37,3 +37,4 @@ D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\O
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\LogIn\LogIn.g.cshtml.cs
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\LogIn\LogOut.g.cshtml.cs
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\LogIn\ValidationError.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectS2\OrdirectS2\OrdirectS2\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\DeleteFailed.g.cshtml.cs

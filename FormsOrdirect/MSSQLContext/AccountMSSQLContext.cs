@@ -36,14 +36,14 @@ namespace FormsOrdirect
             parameters.Add("Email", Email.ToString());
 
             DataSet results = GetDataSetSql(sql, parameters);
-            Account a = null;
+            Account fullaccount = null;
 
             if (results != null && results.Tables[0].Rows.Count > 0)
             {
-                a = DataSetParser.DataSetToAccount(results, 0);
+                fullaccount = DataSetParser.DataSetToAccount(results, 0);
             }
 
-            return a;
+            return fullaccount;
 
         }
 

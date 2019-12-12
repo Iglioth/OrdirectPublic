@@ -3,11 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OrdirectWebsite.Converters
+namespace OrdirectWebsite
 {
-    public class BestellingConverter
+    public class BestellingConverter : IViewModelConverterContext<Bestelling, BestellingDetailViewModel>
     {
-        public BestellingDetailViewModel ModelToViewModel(Bestelling b)
+        public Bestelling DetailViewModelToModel(BestellingDetailViewModel vm)
+        {
+            return new Bestelling
+            {
+                Aantal = vm.Aantal,
+                GerechtID = vm.GerechtID,
+                ReserveringID = vm.ReserveringID,
+                Ronde = vm.Ronde
+            };
+        }
+
+        public List<BestellingDetailViewModel> ModelsToViewModel(List<Bestelling> ms)
+        {
+            List<BestellingDetailViewModel> vm = new List<BestellingDetailViewModel>();
+            foreach(Bestelling b in ms)
+            {
+                vm.Add(ModelToDetailViewModel(b));
+            }
+            return vm;
+        }
+
+        public BestellingDetailViewModel ModelToDetailViewModel(Bestelling b)
         {
             return new BestellingDetailViewModel
             {
@@ -18,15 +39,14 @@ namespace OrdirectWebsite.Converters
             };
         }
 
-        public Bestelling ViewModelToModel(BestellingDetailViewModel vm)
+        public List<Bestelling> ViewModelToModels(List<BestellingDetailViewModel> vms)
         {
-            return new Bestelling
+            List<Bestelling> bestellingen = new List<Bestelling>();
+            foreach(BestellingDetailViewModel dvm in vms)
             {
-                Aantal = vm.Aantal,
-                GerechtID = vm.GerechtID,
-                ReserveringID = vm.ReserveringID,
-                Ronde = vm.Ronde
-            };
+                bestellingen.Add(DetailViewModelToModel(dvm));
+            }
+            return bestellingen;
         }
     }
 }

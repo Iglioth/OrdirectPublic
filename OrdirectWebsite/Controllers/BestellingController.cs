@@ -1,46 +1,68 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace OrdirectWebsite
 {
-    public class BestellingController
+    public class BestellingController : Controller
     {
-        BestellingRepository repo;
-        IBestellingContext context;
+        BestellingRepository BestellingRepo;
+        GerechtRepository GerechtRepo;
+        IGerechtContext GerechtContext;
+        IBestellingContext BestellingContext;
+
+        readonly BestellingConverter BestellingConverter = new BestellingConverter();
+        readonly GerechtConverter GerechtConverter = new GerechtConverter();
 
         public BestellingController()
         {
-            context = new BestellingMSSQLContext();
-            repo = new BestellingRepository(context);
+            BestellingContext = new BestellingMSSQLContext();
+            BestellingRepo = new BestellingRepository(BestellingContext);
+            GerechtContext = new GerechtMSSQLContext();
+            GerechtRepo = new GerechtRepository(GerechtContext);
+        }
+
+        [HttpGet]
+        public IActionResult Overview(Reservering r)
+        {
+            HttpContext.Session.SetInt32("ReserveringId", r.ReserveringID);
+
+            List<Gerecht> RestaurantGerechten = GerechtRepo.GetAllGerechtenFromRestaurantID(r.RestaurantID);
+            List<int> Rondes = BestellingRepo.GetDistinctRondes(r.ReserveringID);
+            List<Bestelling> ReserveringBestellingen = BestellingRepo.GetBestellingen(r.ReserveringID);
+            BestellingViewModel vm = new BestellingViewModel();
+            vm.bestellingDetailViewModels = BestellingConverter.ModelsToViewModel(ReserveringBestellingen);
+            vm.gerechtDetailViewModels = GerechtConverter.ModelsToViewModel(RestaurantGerechten);
+            vm.Rondes = Rondes;
+            return View(vm);
         }
 
         public bool InsertBestelling(int gerechtID, int reserveringID, int ronde, int v)
         {
-            return repo.InsertBestelling(gerechtID, reserveringID, ronde, v);
+            return BestellingRepo.InsertBestelling(gerechtID, reserveringID, ronde, v);
         }
 
         public bool CheckRonde(int ronde, int reserveringID)
         {
-            return repo.CheckRonde(ronde, reserveringID);
+            return BestellingRepo.CheckRonde(ronde, reserveringID);
         }
 
         internal List<Bestelling> GetBestellingen(int reserveringID)
         {
-            return repo.GetBestellingen(reserveringID);
+            return BestellingRepo.GetBestellingen(reserveringID);
         }
 
         internal List<int> GetDistinctRondes(int ReserveringID)
         {
-            return repo.GetDistinctRondes(ReserveringID);
+            return BestellingRepo.GetDistinctRondes(ReserveringID);
         }
 
         internal List<Gerecht> GetGerechtenUitBestelling(int ReserveringID, int ronde)
         {
-            return repo.GetGerechtenUitBestelling(ReserveringID, ronde);
+            return BestellingRepo.GetGerechtenUitBestelling(ReserveringID, ronde);
         }
     }
 }

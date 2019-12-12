@@ -37,9 +37,9 @@ namespace OrdirectWebsite
         [HttpPost]
         public IActionResult LogIn(AccountDetailViewModel vm)
         {
-            Account a = AccountConverter.DetailViewModelToModel(vm);
-            string check = accountRepository.Check(a.Email, a.Wachtwoord);
-            Account fullaccount = accountRepository.GetByEmail(a.Email);
+            Account simpleaccount = AccountConverter.DetailViewModelToModel(vm);
+            string check = accountRepository.Check(simpleaccount.Email, simpleaccount.Wachtwoord);
+            Account fullaccount = accountRepository.GetByEmail(simpleaccount.Email);
             if (check == "Correct")
             {
                 HttpContext.Session.SetInt32("AccountID", fullaccount.AccountID);

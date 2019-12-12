@@ -8,5 +8,7 @@ namespace OrdirectWebsite
     public class BestellingViewModel
     {
         public List<BestellingDetailViewModel> bestellingDetailViewModels { get; set; }
+        public List<int> Rondes { get; set; }
+        public List<GerechtDetailViewModel> gerechtDetailViewModels { get; set; }
     }
 }

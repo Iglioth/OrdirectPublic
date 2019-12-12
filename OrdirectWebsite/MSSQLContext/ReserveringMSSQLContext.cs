@@ -33,6 +33,15 @@ namespace OrdirectWebsite
             return result;
         }
 
+        public bool DeleteReservering(int id)
+        {
+            string sql = "Delete From Reservering Where ReserveringID = @ReserveringId";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("ReserveringId", id);
+            bool result = GetBoolSql(sql, parameters);
+            return result;
+        }
+
         public Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp)
         {
             string sql = "select * from Reservering Where AccountID = @AccountID and RestaurantID = @RestaurantID and Datum = @datum + ':00.000' ";
@@ -75,7 +84,7 @@ namespace OrdirectWebsite
         {
             List<Reservering> reserveringen = new List<Reservering>();
 
-            string sql = "select * from Reservering where AccountID = @id";
+            string sql = "Select R.ReserveringID, R.Datum, R.Status, R.RestaurantID, R.AccountID, A.Naam From Reservering R inner join Restaurant A on R.RestaurantID = A.RestaurantID where AccountID = @id";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
             parameters.Add("id", id);
 

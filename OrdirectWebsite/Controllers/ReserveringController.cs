@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OrdirectWebsite
@@ -10,7 +11,7 @@ namespace OrdirectWebsite
     public class ReserveringController : Controller
     {
         //Properties
-        ReserveringRepository repo;
+        ReserveringRepository ReserveringRepo;
         IReserveringContext context;
 
         //Converters
@@ -21,14 +22,15 @@ namespace OrdirectWebsite
         public ReserveringController()
         {
             context = new ReserveringMSSQLContext();
-            repo = new ReserveringRepository(context);
+            ReserveringRepo = new ReserveringRepository(context);
         }
 
         [HttpGet]
-        public IActionResult Index(int id)
+        public IActionResult Index()
         {
             ReserveringViewModel vm = new ReserveringViewModel();
-            List<Reservering> reserveringen = repo.GetReserveringenById(id);
+            List<Reservering> reserveringen = ReserveringRepo.GetReserveringenById(Convert.ToInt32(HttpContext.Session.GetInt32("AccountID")));
+            vm.reserveringDetailViewModels = ReserveringConverter.ModelsToViewModel(reserveringen);
             return View(vm);
         }
 
@@ -37,8 +39,37 @@ namespace OrdirectWebsite
         {
             Reservering reservering = ReserveringConverter.DetailViewModelToModel(vm.ReserveringDetailViewModel);
             Restaurant restaurant = RestaurantConverter.DetailViewModelToModel(vm.RestaurantDetailViewModel);
-            repo.CreateReservering(reservering.datetime, restaurant.RestaurantID, 1);
+            ReserveringRepo.CreateReservering(reservering.datetime, restaurant.RestaurantID, 1);
             return RedirectToAction("Index", controllerName: "Restaurant");
+        }
+        
+        public IActionResult Detail(ReserveringDetailViewModel vm)
+        {
+            return View(vm);
+        }
+
+        public IActionResult ToOverview(int id)
+        {
+            Reservering reservering = ReserveringRepo.GetReserveringById(id);
+            return RedirectToAction(controllerName: "Bestelling", actionName: "Overview", routeValues: reservering);
+        }
+
+        public IActionResult Delete(int id)
+        {
+
+            if (ReserveringRepo.DeleteReservering(id))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("DeleteFailed");
+            }
+        }
+
+        public IActionResult DeleteFailed()
+        {
+            return View();
         }
     }
 }

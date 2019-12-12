@@ -16,7 +16,8 @@ namespace OrdirectWebsite
                 ReserveringID = vm.ReserveringID,
                 RestaurantID = vm.RestaurantID,
                 datetime = vm.datetime,
-                Status = vm.Status
+                Status = vm.Status,
+                RestaurantNaam = vm.RestaurantNaam
             };
         }
 
@@ -33,7 +34,8 @@ namespace OrdirectWebsite
                         ReserveringID = r.ReserveringID,
                         RestaurantID = r.RestaurantID,
                         datetime = r.datetime,
-                        Status = r.Status
+                        Status = r.Status,
+                        RestaurantNaam = r.RestaurantNaam
                     });
 
             }
@@ -48,7 +50,8 @@ namespace OrdirectWebsite
                 ReserveringID = r.ReserveringID,
                 RestaurantID = r.RestaurantID,
                 datetime = r.datetime,
-                Status = r.Status
+                Status = r.Status,
+                RestaurantNaam = r.RestaurantNaam
             };
         }
 
@@ -67,7 +70,8 @@ namespace OrdirectWebsite
                         ReserveringID = vm.ReserveringID,
                         RestaurantID = vm.RestaurantID,
                         datetime = vm.datetime,
-                        Status = vm.Status
+                        Status = vm.Status,
+                        RestaurantNaam = vm.RestaurantNaam
                     });
             }
 

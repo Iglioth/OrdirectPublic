@@ -58,7 +58,7 @@ namespace OrdirectWebsite
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=LogIn}/{action=LogIn}/{id?}");
             });
         }
     }

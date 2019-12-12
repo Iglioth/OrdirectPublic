@@ -16,11 +16,13 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.reserveringDetailViewModels) {
+@foreach (ReserveringDetailViewModel item in Model.reserveringDetailViewModels) {
         <tr>
+            <td>    
+                @Html.DisplayName(item.RestaurantNaam + " om " + Convert.ToString(item.datetime))
+            </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ReserveringID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ReserveringID }) |
+                @Html.ActionLink(linkText: "Details",actionName: "Detail", controllerName: "Reservering", routeValues: item) |
             </td>
         </tr>
 }
