@@ -28,15 +28,10 @@ namespace OrdirectWebsite
             }
         }
 
-        
-
         public List<Reservering> GetReserveringenById(int id)
         {
             return Context.GetReserveringenById(id);
         }
-
-
-
 
         internal Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp )
         {
@@ -46,6 +41,20 @@ namespace OrdirectWebsite
         internal Reservering GetReserveringById(int id)
         {
             return Context.GetReserveringById(id);
+        }
+
+        internal bool DeleteReservering(int id)
+        {
+            Context.DeleteReservering(id);
+            if (Context.GetReserveringById(id) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

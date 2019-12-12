@@ -86,7 +86,8 @@ namespace OrdirectWebsite
                 datetime = (DateTime)results.Tables[0].Rows[x][1],
                 Status = results.Tables[0].Rows[x][2].ToString(),
                 RestaurantID = (int)results.Tables[0].Rows[x][3],
-                KlantID = (int)results.Tables[0].Rows[x][4]
+                KlantID = (int)results.Tables[0].Rows[x][4],
+                RestaurantNaam = results.Tables[0].Rows[x][5].ToString()
             };
         }
     }

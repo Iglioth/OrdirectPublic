@@ -13,5 +13,6 @@ namespace OrdirectWebsite
         public string Status { get; set; }
         public int KlantID { get; set; }
         public int RestaurantID { get; set; }
+        public string RestaurantNaam { get; set; }
     }
 }

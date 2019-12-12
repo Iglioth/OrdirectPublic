@@ -5,9 +5,32 @@ using System.Threading.Tasks;
 
 namespace OrdirectWebsite
 {
-    public class GerechtConverter
+    public class GerechtConverter : IViewModelConverterContext<Gerecht, GerechtDetailViewModel>
     {
-        public GerechtDetailViewModel ModelToViewModel(Gerecht g)
+        public Gerecht DetailViewModelToModel(GerechtDetailViewModel vm)
+        {
+            return new Gerecht
+            {
+                Ronde = vm.Ronde,
+                Descriptie = vm.Descriptie,
+                GerechtID = vm.GerechtID,
+                Naam = vm.Naam,
+                RestaurantID = vm.RestaurantID
+            };
+        }
+
+        public List<GerechtDetailViewModel> ModelsToViewModel(List<Gerecht> ms)
+        {
+            List<GerechtDetailViewModel> vm = new List<GerechtDetailViewModel>();
+            foreach(Gerecht g in ms)
+            {
+                vm.Add(ModelToDetailViewModel(g));
+            }
+
+            return vm;
+        }
+
+        public GerechtDetailViewModel ModelToDetailViewModel(Gerecht g)
         {
             return new GerechtDetailViewModel
             {
@@ -19,16 +42,15 @@ namespace OrdirectWebsite
             };
         }
 
-        public Gerecht ViewModelToModel(GerechtDetailViewModel vm)
+        public List<Gerecht> ViewModelToModels(List<GerechtDetailViewModel> vms)
         {
-            return new Gerecht
+            List<Gerecht> g = new List<Gerecht>();
+            foreach (GerechtDetailViewModel dvm in vms)
             {
-                Ronde = vm.Ronde,
-                Descriptie = vm.Descriptie,
-                GerechtID = vm.GerechtID,
-                Naam = vm.Naam,
-                RestaurantID = vm.RestaurantID
-            };
+                g.Add(DetailViewModelToModel(dvm));
+            }
+
+            return g;
         }
     }
 }

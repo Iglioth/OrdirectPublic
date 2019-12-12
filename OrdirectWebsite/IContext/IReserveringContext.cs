@@ -17,5 +17,6 @@ namespace OrdirectWebsite
         Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp);
 
         Reservering GetReserveringById(int id);
+        bool DeleteReservering(int id);
     }
 }
