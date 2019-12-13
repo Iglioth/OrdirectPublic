@@ -12530,23 +12530,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lars\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Lars\\.nuget\\packages\\": {},
+    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectS2\\OrdirectS2\\OrdirectS2\\OrdirectWebsite\\OrdirectWebsite.csproj",
+      "projectUniqueName": "D:\\School\\Semester2Take2Individueel\\OrdirectS2\\OrdirectWebsite\\OrdirectWebsite.csproj",
       "projectName": "OrdirectWebsite",
-      "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectS2\\OrdirectS2\\OrdirectS2\\OrdirectWebsite\\OrdirectWebsite.csproj",
-      "packagesPath": "C:\\Users\\lars\\.nuget\\packages\\",
-      "outputPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectS2\\OrdirectS2\\OrdirectS2\\OrdirectWebsite\\obj\\",
+      "projectPath": "D:\\School\\Semester2Take2Individueel\\OrdirectS2\\OrdirectWebsite\\OrdirectWebsite.csproj",
+      "packagesPath": "C:\\Users\\Lars\\.nuget\\packages\\",
+      "outputPath": "D:\\School\\Semester2Take2Individueel\\OrdirectS2\\OrdirectWebsite\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\lars\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Lars\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

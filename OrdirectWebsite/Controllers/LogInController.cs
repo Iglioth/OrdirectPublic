@@ -45,6 +45,7 @@ namespace OrdirectWebsite
                 HttpContext.Session.SetInt32("AccountID", fullaccount.AccountID);
                 HttpContext.Session.SetString("AccountRol", fullaccount.Rol);
                 HttpContext.Session.SetInt32("AccountRestaurantID", fullaccount.RestaurantID);
+                HttpContext.Session.SetString("AccountNaam", fullaccount.Voornaam);
                 return RedirectToAction("Index", controllerName: "Restaurant");
             }
             else

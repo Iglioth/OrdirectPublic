@@ -1,0 +1,44 @@
+﻿@model OrdirectWebsite.ReserveringViewModel
+
+@{
+    ViewData["Title"] = "IndexVoorRestaurant";
+}
+
+<h2>IndexVoorRestaurant</h2>
+
+<p>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ReserveringDetailViewModel item in Model.reserveringDetailViewModels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayName(item.KlantVoorNaam + " " + item.KlantAchterNaam + " om " + item.datetime)
+                </td>
+                <td>
+                    @if (item.Status == "Pending")
+                    {
+                        @Html.ActionLink("Accepteer", "Accepteer", item.ReserveringID)
+                        @Html.ActionLink("Weiger", "Delete", item.ReserveringID)
+                    }
+
+                    @if (item.Status == "Geaccepteerd")
+                    {
+                        @Html.ActionLink("Open", "Open", item.ReserveringID)
+                    }
+                    @if (item.Status == "Open")
+                    {
+                        @Html.ActionLink("Sluit", "Sluit", item.ReserveringID)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -34,6 +34,14 @@ namespace OrdirectWebsite
             return View(vm);
         }
 
+        public IActionResult IndexVoorRestaurant()
+        {
+            ReserveringViewModel vm = new ReserveringViewModel();
+            List<Reservering> reserveringen = ReserveringRepo.GetReserveringenByRestaurantId(Convert.ToInt32(HttpContext.Session.GetInt32("AccountRestaurantID")));
+            vm.reserveringDetailViewModels = ReserveringConverter.ModelsToViewModel(reserveringen);
+            return View(vm);
+        }
+
         [HttpPost]
         public IActionResult Aanmaken(ResRevViewModel vm)
         {
@@ -70,6 +78,24 @@ namespace OrdirectWebsite
         public IActionResult DeleteFailed()
         {
             return View();
+        }
+
+        public IActionResult Open(int ReserveringId)
+        {
+            ReserveringRepo.OpenReservering(ReserveringId);
+            return RedirectToAction("IndexVoorRestaurant");
+        }
+
+        public IActionResult Sluit(int ReserveringId)
+        {
+            ReserveringRepo.SluitReservering(ReserveringId);
+            return RedirectToAction("IndexVoorRestaurant");
+        }
+
+        public IActionResult Accepteer(int ReserveringId)
+        {
+            ReserveringRepo.AccepteerReservering(ReserveringId);
+            return RedirectToAction("IndexVoorRestaurant");
         }
     }
 }

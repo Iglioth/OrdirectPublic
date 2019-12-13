@@ -10,6 +10,15 @@ namespace OrdirectWebsite
 {
     public class ReserveringMSSQLContext : BaseMSSQLContext, IReserveringContext
     {
+        public bool AccepteerReservering(int reserveringId)
+        {
+            string sql = "Update Reservering Set Status = 'Geaccepteerd' Where ReserveringID = @ReserveringId";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("ReserveringId", reserveringId);
+            bool result = GetBoolSql(sql, parameters);
+            return result;
+        }
+
         public bool CheckDuplicateReservering(int Restaurantid, int Accountid)
         {
             string sql = "Select * from Reservering where RestaurantID = @RestaurantId and AccountID = @AccountId";
@@ -100,10 +109,52 @@ namespace OrdirectWebsite
             }
             else
             {
+                return null;
             }
             return reserveringen;
         }
 
+        public List<Reservering> GetReserveringenByRestaurantId(int restaurantId)
+        {
+            List<Reservering> reserveringen = new List<Reservering>();
 
+            string sql = "Select R.ReserveringID, R.Datum, R.Status, R.RestaurantID, R.AccountID, A.Voornaam, A.Achternaam From Reservering R inner join Account A on R.AccountID = A.AccountID where R.RestaurantID = @id";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("id", restaurantId);
+
+            DataSet results = GetDataSetSql(sql, parameters);
+
+            if (results != null && results.Tables[0].Rows.Count > 0)
+            {
+                for (int x = 0; x < results.Tables[0].Rows.Count; x++)
+                {
+                    Reservering r = DataSetParser.DataSetToRestaurantReservering(results, x);
+                    reserveringen.Add(r);
+                }
+            }
+            else
+            {
+                return null;
+            }
+            return reserveringen;
+        }
+
+        public bool OpenReservering(int reserveringId)
+        {
+            string sql = "Update Reservering Set Status = 'Open' Where ReserveringID = @ReserveringId";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("ReserveringId", reserveringId);
+            bool result = GetBoolSql(sql, parameters);
+            return result;
+        }
+
+        public bool SluitReservering(int reserveringId)
+        {
+            string sql = "Update Reservering Set Status = 'Gesloten' Where ReserveringID = @ReserveringId";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("ReserveringId", reserveringId);
+            bool result = GetBoolSql(sql, parameters);
+            return result;
+        }
     }
 }

@@ -18,7 +18,6 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
                 @if (Context.Session.GetString("AccountRol") == null)
                 {
                     <li class="nav-item active">
@@ -30,20 +29,20 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Restaurant" asp-action="Index">Restaurants</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Reservering" asp-action="Index">Reserveringen</a>
+                    </li>
                 }
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Reservering" asp-action="Index">Reserveringen</a>
-                </li>
-                @if (Context.Session.GetString("AccountRol") == "Manager")
+
+                @if (Context.Session.GetString("AccountRol") == "Werknemer")
                 {
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Account" asp-action="RestaurantIndex"> Account Beheer </a>
+                        <a class="nav-link" asp-controller="Reservering" asp-action="IndexVoorRestaurant"> Reserveringen </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Restaurant" asp-action="Detail"> Mijn Restaurant </a>
                     </li>
                 }
-
                 @if (Context.Session.GetString("AccountRol") == "Admin")
                 {
                     <li class="nav-item">
@@ -66,10 +65,17 @@
         </div>
     </li>-->
                 <!-- <li class="nav-item">
-         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-     </li> -->
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </li> -->
             </ul>
-            
+
+            @if (Context.Session.GetString("AccountRol") != null)
+            {
+              
+                    <text> Welkom @Context.Session.GetString("AccountNaam") </text>
+                
+            }
+
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

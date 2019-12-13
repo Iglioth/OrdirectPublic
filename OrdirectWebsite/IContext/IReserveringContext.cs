@@ -18,5 +18,9 @@ namespace OrdirectWebsite
 
         Reservering GetReserveringById(int id);
         bool DeleteReservering(int id);
+        List<Reservering> GetReserveringenByRestaurantId(int restaurantId);
+        bool OpenReservering(int reserveringId);
+        bool SluitReservering(int reserveringId);
+        bool AccepteerReservering(int reserveringId);
     }
 }

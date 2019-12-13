@@ -17,7 +17,9 @@ namespace OrdirectWebsite
                 RestaurantID = vm.RestaurantID,
                 datetime = vm.datetime,
                 Status = vm.Status,
-                RestaurantNaam = vm.RestaurantNaam
+                RestaurantNaam = vm.RestaurantNaam,
+                KlantVoorNaam = vm.KlantVoorNaam,
+                KlantAchterNaam = vm.KlantAchterNaam
             };
         }
 
@@ -35,7 +37,9 @@ namespace OrdirectWebsite
                         RestaurantID = r.RestaurantID,
                         datetime = r.datetime,
                         Status = r.Status,
-                        RestaurantNaam = r.RestaurantNaam
+                        RestaurantNaam = r.RestaurantNaam,
+                        KlantVoorNaam = r.KlantVoorNaam,
+                        KlantAchterNaam = r.KlantAchterNaam
                     });
 
             }
@@ -51,7 +55,9 @@ namespace OrdirectWebsite
                 RestaurantID = r.RestaurantID,
                 datetime = r.datetime,
                 Status = r.Status,
-                RestaurantNaam = r.RestaurantNaam
+                RestaurantNaam = r.RestaurantNaam,
+                KlantVoorNaam = r.KlantVoorNaam,
+                KlantAchterNaam = r.KlantAchterNaam
             };
         }
 
@@ -71,7 +77,9 @@ namespace OrdirectWebsite
                         RestaurantID = vm.RestaurantID,
                         datetime = vm.datetime,
                         Status = vm.Status,
-                        RestaurantNaam = vm.RestaurantNaam
+                        RestaurantNaam = vm.RestaurantNaam,
+                        KlantVoorNaam = vm.KlantVoorNaam,
+                        KlantAchterNaam = vm.KlantAchterNaam
                     });
             }
 

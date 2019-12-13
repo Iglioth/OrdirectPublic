@@ -18,6 +18,7 @@ namespace OrdirectWebsite
                 Wachtwoord = set.Tables[0].Rows[rowIndex][1].ToString(),
                 Voornaam = set.Tables[0].Rows[rowIndex][2].ToString(),
                 Achternaam = set.Tables[0].Rows[rowIndex][3].ToString(),
+                RestaurantID = (int)set.Tables[0].Rows[rowIndex][4],
                 Email = set.Tables[0].Rows[rowIndex][5].ToString(),
                 Rol = set.Tables[0].Rows[rowIndex][6].ToString()
             };  
@@ -87,8 +88,23 @@ namespace OrdirectWebsite
                 Status = results.Tables[0].Rows[x][2].ToString(),
                 RestaurantID = (int)results.Tables[0].Rows[x][3],
                 KlantID = (int)results.Tables[0].Rows[x][4],
-                RestaurantNaam = results.Tables[0].Rows[x][5].ToString()
+                RestaurantNaam = results.Tables[0].Rows[x][5].ToString(),
             };
+        }
+
+        public static Reservering DataSetToRestaurantReservering(DataSet results, int x)
+        {
+            return new Reservering()
+            {
+                ReserveringID = (int)results.Tables[0].Rows[x][0],
+                datetime = (DateTime)results.Tables[0].Rows[x][1],
+                Status = results.Tables[0].Rows[x][2].ToString(),
+                RestaurantID = (int)results.Tables[0].Rows[x][3],
+                KlantID = (int)results.Tables[0].Rows[x][4],
+                KlantVoorNaam = results.Tables[0].Rows[x][5].ToString(),
+                KlantAchterNaam = results.Tables[0].Rows[x][6].ToString()
+            };
+            
         }
     }
 }
