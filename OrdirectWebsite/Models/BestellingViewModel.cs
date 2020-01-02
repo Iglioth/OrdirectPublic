@@ -10,5 +10,7 @@ namespace OrdirectWebsite
         public List<BestellingDetailViewModel> bestellingDetailViewModels { get; set; }
         public List<int> Rondes { get; set; }
         public List<GerechtDetailViewModel> gerechtDetailViewModels { get; set; }
+        public List<GerechtDetailViewModel> HuidigeBestelling { get; set; }
+        public int SelectedGerecht { get; set; }
     }
 }

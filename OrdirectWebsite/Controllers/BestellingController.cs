@@ -20,7 +20,7 @@ namespace OrdirectWebsite
         public BestellingController()
         {
             BestellingContext = new BestellingMSSQLContext();
-            BestellingRepo = new BestellingRepository(BestellingContext);
+            BestellingRepo = new BestellingRepository(BestellingContext, GerechtContext);
             GerechtContext = new GerechtMSSQLContext();
             GerechtRepo = new GerechtRepository(GerechtContext);
         }
@@ -33,36 +33,63 @@ namespace OrdirectWebsite
             List<Gerecht> RestaurantGerechten = GerechtRepo.GetAllGerechtenFromRestaurantID(r.RestaurantID);
             List<int> Rondes = BestellingRepo.GetDistinctRondes(r.ReserveringID);
             List<Bestelling> ReserveringBestellingen = BestellingRepo.GetBestellingen(r.ReserveringID);
+            List<Gerecht> HuidigeBestelling = BestellingRepo.GetHuidigeBestelling(r.ReserveringID);
+
             BestellingViewModel vm = new BestellingViewModel();
-            vm.bestellingDetailViewModels = BestellingConverter.ModelsToViewModel(ReserveringBestellingen);
+            if (ReserveringBestellingen != null)
+            {
+                vm.bestellingDetailViewModels = BestellingConverter.ModelsToViewModel(ReserveringBestellingen);
+                vm.Rondes = Rondes;
+            }
+            if(HuidigeBestelling != null)
+            {
+                vm.HuidigeBestelling = GerechtConverter.ModelsToViewModel(HuidigeBestelling);
+            }
             vm.gerechtDetailViewModels = GerechtConverter.ModelsToViewModel(RestaurantGerechten);
-            vm.Rondes = Rondes;
             return View(vm);
         }
 
-        public bool InsertBestelling(int gerechtID, int reserveringID, int ronde, int v)
+        public IActionResult VoegToeAanHuidigeBestelling(int gerechtid)
         {
-            return BestellingRepo.InsertBestelling(gerechtID, reserveringID, ronde, v);
+            bool NietNieuw = new bool();
+            int ReserveringId = Convert.ToInt32(HttpContext.Session.GetInt32("ReserveringId"));
+            List<Gerecht> HuidigeBestelling = BestellingRepo.GetHuidigeBestelling(ReserveringId);
+            foreach(Gerecht g in HuidigeBestelling)
+            {
+                if(g.GerechtID == gerechtid)
+                {
+                    BestellingRepo.BumpBestellingUp(g.GerechtID, ReserveringId);
+                    NietNieuw = true;
+                    break;
+                }
+            }
+            if (NietNieuw == false)
+            {
+                BestellingRepo.InsertBestelling(ReserveringId, gerechtid, 0, 1);
+            }
+            return RedirectToAction("Overview");
         }
 
-        public bool CheckRonde(int ronde, int reserveringID)
+        public IActionResult VerwijderVanHuidigeBestelling(int gerechtid)
         {
-            return BestellingRepo.CheckRonde(ronde, reserveringID);
+            bool NietNieuw = new bool();
+            int ReserveringId = Convert.ToInt32(HttpContext.Session.GetInt32("ReserveringId"));
+            List<Gerecht> HuidigeBestelling = BestellingRepo.GetHuidigeBestelling(ReserveringId);
+            foreach (Gerecht g in HuidigeBestelling)
+            {
+                if (g.GerechtID == gerechtid)
+                {
+                    BestellingRepo.BumpBestellingUp
+                    NietNieuw = true;
+                    break;
+                }
+            }
+            if (NietNieuw == false)
+            {
+                BestellingRepo.InsertBestelling(ReserveringId, gerechtid, 0, 1);
+            }
+            return RedirectToAction("Overview");
         }
 
-        internal List<Bestelling> GetBestellingen(int reserveringID)
-        {
-            return BestellingRepo.GetBestellingen(reserveringID);
-        }
-
-        internal List<int> GetDistinctRondes(int ReserveringID)
-        {
-            return BestellingRepo.GetDistinctRondes(ReserveringID);
-        }
-
-        internal List<Gerecht> GetGerechtenUitBestelling(int ReserveringID, int ronde)
-        {
-            return BestellingRepo.GetGerechtenUitBestelling(ReserveringID, ronde);
-        }
     }
 }

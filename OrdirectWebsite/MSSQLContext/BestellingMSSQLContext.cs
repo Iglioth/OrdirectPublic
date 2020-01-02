@@ -101,5 +101,28 @@ namespace OrdirectWebsite
 
             return GerechtenUitBestelling;
         }
+
+        public List<Gerecht> GetHuidigeBestellingGerechtenMinimaal(int reserveringID)
+        {
+            string sql = "Select GerechtID From GerechtReservering Where Ronde = 0 and ReserveringID = @id";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("id", reserveringID);
+
+            List<Gerecht> MinGerechten = new List<Gerecht>();
+            DataSet Results = GetDataSetSql(sql, parameters);
+            if (Results != null && Results.Tables[0].Rows.Count > 0)
+            {
+                for (int x = 0; x < Results.Tables[0].Rows.Count; x++)
+                {
+                    MinGerechten.Add(DataSetParser.DataSetToMinimalGerecht(Results, x));
+                }
+            }
+            return MinGerechten;
+        }
+
+        public void BumpBestellingUp(int gerechtID, int reserveringId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

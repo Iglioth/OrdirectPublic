@@ -5,19 +5,99 @@
 
 <h2>Overview</h2>
 
-<div class="col-4">
-    <label>Gerechten</label>
-    <button>Gerecht Toevoegen aan Bestelling</button>
+<div class="col-6">
+    <div class="table thead-dark">
+        <label>Gerechten</label>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">Naam</th>
+                    <th class="col-md-2">Descriptie</th>
+                    <th class="col-md-3">Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.gerechtDetailViewModels[0].Naam != null && Model.gerechtDetailViewModels[0].Descriptie != null)
+                {
+                    @foreach (GerechtDetailViewModel g in Model.gerechtDetailViewModels)
+                    {
+                        <tr>
+                            <td class="col-md-1">
+                                @Html.DisplayName(g.Naam)
+                            </td>
+                            <td class="col-md-2">
+                                @Html.DisplayName(g.Descriptie)
+                            </td>
+                            <td class="col-md-3">
+                                @Html.ActionLink(controllerName: "Bestelling", actionName: "VoegToeAanHuidigeBestelling", linkText: " + ", routeValues: g.GerechtID)
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            <text> Dit restaurant heeft nog geen gerechten.</text>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
 </div>
-<div class="col-4">
-    <label>Huidige Bestelling</label>
-    <button>Bestelling Plaatsen</button>
+<div class="col-6">
+    <div class="table thead-dark">
+        <label>Huidige Bestelling</label>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">Naam</th>
+                    <th class="col-md-2">Descriptie</th>
+                    <th class="col-md-3">Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.HuidigeBestelling != null)
+                {
+                    @foreach (GerechtDetailViewModel g in Model.HuidigeBestelling)
+                    {
+                        <tr>
+                            <td class="col-md-1">
+                                @Html.DisplayName(g.Naam)
+                            </td>
+                            <td class="col-md-2">
+                                @Html.DisplayName(g.Descriptie)
+                            </td>
+                            <td class="col-md-3">
+                                @Html.ActionLink(controllerName: "Bestelling", actionName: "VerwijderVanHuidigeBestelling", linkText: " - ", routeValues: g.GerechtID)
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            <text class="text-center">Je hebt nog geen gerechten toegevoegd aan je huidige bestelling</text>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button>Bestelling Plaatsen</button>
+    </div>   
 </div>
 <br />
-<div class="col-4">
-    <label> Alle Bestelling</label>
+<div class="col-6">
+    <label> Alle Bestellingen</label>
 </div>
-<div class="col-4">
+<div class="col-6">
     <label> Bestelling Details</label>
 </div>
 

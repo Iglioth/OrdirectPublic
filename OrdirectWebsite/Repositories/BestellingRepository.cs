@@ -8,36 +8,55 @@ namespace OrdirectWebsite
 {
     public class BestellingRepository
     {
-        IBestellingContext Context;
-
-        public BestellingRepository(IBestellingContext orderContext)
+        IBestellingContext BestellingContext;
+        IGerechtContext GerechtContext;
+        public BestellingRepository(IBestellingContext bestellingContext, IGerechtContext gerechtContext)
         {
-            Context = orderContext;
+            BestellingContext = bestellingContext;
+            GerechtContext = gerechtContext;
         }
 
         public bool InsertBestelling(int ReserveringID, int GerechtID, int Ronde, int Aantal)
         {
-            return Context.InsertBestelling(ReserveringID, GerechtID, Ronde, Aantal);
+            return BestellingContext.InsertBestelling(ReserveringID, GerechtID, Ronde, Aantal);
         }
 
         public List<Bestelling> GetBestellingen(int ReserveringID)
         {
-            return Context.GetBestellingen(ReserveringID);
+            return BestellingContext.GetBestellingen(ReserveringID);
         }
 
         public bool CheckRonde(int ronde, int reserveringID)
         {
-            return Context.CheckRonde(ronde, reserveringID);
+            return BestellingContext.CheckRonde(ronde, reserveringID);
         }
 
         internal List<int> GetDistinctRondes(int reserveringID)
         {
-            return Context.GetDistinctRondes(reserveringID);
+            return BestellingContext.GetDistinctRondes(reserveringID);
         }
 
         internal List<Gerecht> GetGerechtenUitBestelling(int reserveringID, int ronde)
         {
-            return Context.GetGerechtenUitBestelling(reserveringID, ronde);
+            return BestellingContext.GetGerechtenUitBestelling(reserveringID, ronde);
+        }
+
+        internal List<Gerecht> GetHuidigeBestelling(int reserveringID)
+        {
+            List<Gerecht> MinGerechten = BestellingContext.GetHuidigeBestellingGerechtenMinimaal(reserveringID);
+            List<Gerecht> FullGerechten = new List<Gerecht>();
+
+            foreach(Gerecht g in MinGerechten)
+            {
+                FullGerechten.Add(GerechtContext.GetGerechtById(g.GerechtID));
+            }
+
+            return FullGerechten;
+        }
+
+        internal void BumpBestellingUp(int gerechtID, int reserveringId)
+        {
+            BestellingContext.BumpBestellingUp(gerechtID, reserveringId);
         }
     }
 }
