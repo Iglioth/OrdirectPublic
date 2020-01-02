@@ -79,7 +79,7 @@ namespace OrdirectWebsite
             {
                 if (g.GerechtID == gerechtid)
                 {
-                    BestellingRepo.BumpBestellingUp
+                    BestellingRepo.BumpBestellingDown(ReserveringId, gerechtid);
                     NietNieuw = true;
                     break;
                 }

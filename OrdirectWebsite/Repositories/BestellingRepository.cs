@@ -58,5 +58,10 @@ namespace OrdirectWebsite
         {
             BestellingContext.BumpBestellingUp(gerechtID, reserveringId);
         }
+
+        internal void BumpBestellingDown(int reserveringId, int gerechtid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
