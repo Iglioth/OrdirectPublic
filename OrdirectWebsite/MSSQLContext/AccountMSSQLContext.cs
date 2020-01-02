@@ -50,7 +50,7 @@ namespace OrdirectWebsite
 
         }
 
-        public bool CreateAccount(string Voornaam, string Achternaam, string Email, string Wachtwoord, string RestaurantID, string Rol)
+        public bool CreateAccount(string Voornaam, string Achternaam, string Email, string Wachtwoord, int RestaurantID, string Rol)
         {
             string sql = "Insert Into Account(Voornaam, Achternaam, Email, Wachtwoord, Rol) Values (@voornaam, @achternaam, @email, @wachtwoord, @Rol)";
             Dictionary<object, object> parameters = new Dictionary<object, object>();

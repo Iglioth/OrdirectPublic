@@ -10,7 +10,7 @@ namespace OrdirectWebsite
     {
         Account GetAccountByID(int id);
 
-        bool CreateAccount(string voornaam, string achternaam, string email, string wachtwoord, string RestaurantID, string Rol);
+        bool CreateAccount(string voornaam, string achternaam, string email, string wachtwoord, int RestaurantID, string Rol);
 
         Account Check(string Email);
     }

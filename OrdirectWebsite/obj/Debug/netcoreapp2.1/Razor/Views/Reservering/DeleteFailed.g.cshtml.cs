@@ -63,7 +63,7 @@ using OrdirectWebsite.Models;
             WriteLiteral("\n<h2>DeleteFailed</h2>\n<div>\n    <p> De reservering kon niet geannuleerd worden.</p>\n</div>\n<div>\n    ");
             EndContext();
             BeginContext(148, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "85cf3de33a3b412a8fbbc0846c644e16", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8977915bb59743a684790d12d50838d3", async() => {
                 BeginContext(170, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

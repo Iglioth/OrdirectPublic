@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsOrdirect", "FormsOrdirect\FormsOrdirect.csproj", "{C5C8BFCA-D58B-400F-BF97-C0A0B14B9CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdirectWebsite", "OrdirectWebsite\OrdirectWebsite.csproj", "{8E051EED-05A5-43AF-8B9E-CA24879E5BD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdirectWebsite", "OrdirectWebsite\OrdirectWebsite.csproj", "{8E051EED-05A5-43AF-8B9E-CA24879E5BD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdirectTest", "OrdirectTest\OrdirectTest.csproj", "{3CD6C650-9203-4CD4-BF8B-D1F0A1206E21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8E051EED-05A5-43AF-8B9E-CA24879E5BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E051EED-05A5-43AF-8B9E-CA24879E5BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E051EED-05A5-43AF-8B9E-CA24879E5BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CD6C650-9203-4CD4-BF8B-D1F0A1206E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CD6C650-9203-4CD4-BF8B-D1F0A1206E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CD6C650-9203-4CD4-BF8B-D1F0A1206E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CD6C650-9203-4CD4-BF8B-D1F0A1206E21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

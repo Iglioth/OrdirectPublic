@@ -21,7 +21,7 @@ namespace OrdirectWebsite
                 return Context.GetAccountByID(id);
         }
 
-        public bool CreateAccount(string voornaam, string achternaam, string wachtwoord, string email, string RestaurantID, string Rol)
+        public bool CreateAccount(string voornaam, string achternaam, string wachtwoord, string email, int RestaurantID, string Rol)
         {
             return Context.CreateAccount(voornaam, achternaam, email, wachtwoord, RestaurantID, Rol);
         }
