@@ -46,22 +46,29 @@ namespace OrdirectWebsite
             List<Gerecht> MinGerechten = BestellingContext.GetHuidigeBestellingGerechtenMinimaal(reserveringID);
             List<Gerecht> FullGerechten = new List<Gerecht>();
 
-            foreach(Gerecht g in MinGerechten)
+            foreach (Gerecht g in MinGerechten)
             {
-                FullGerechten.Add(GerechtContext.GetGerechtById(g.GerechtID));
+                Gerecht gerecht = new Gerecht();
+                gerecht = GerechtContext.GetGerechtById(g.GerechtID);
+                FullGerechten.Add(gerecht);
             }
 
             return FullGerechten;
         }
 
-        internal void BumpBestellingUp(int gerechtID, int reserveringId)
+        internal bool BumpBestellingUp(int gerechtID, int reserveringId)
         {
-            BestellingContext.BumpBestellingUp(gerechtID, reserveringId);
+            return BestellingContext.BumpBestellingUp(gerechtID, reserveringId);
         }
 
-        internal void BumpBestellingDown(int reserveringId, int gerechtid)
+        internal bool BumpBestellingDown(int reserveringId, int gerechtid)
         {
-            throw new NotImplementedException();
+            return BestellingContext.BumpbestellingDown(gerechtid, reserveringId);
+        }
+
+        internal bool DeleteBestelling(int reserveringId, int gerechtID)
+        {
+            return BestellingContext.DeleteBestelling(reserveringId, gerechtID);
         }
     }
 }

@@ -32,7 +32,7 @@
         @if (Model.Status == "Open")
         {
             <dd>
-                @Html.ActionLink("Bestel Hier", "Overview", controllerName: "Bestelling", routeValues: Model)
+                @Html.ActionLink("Bestel Hier", "SetUpBestelling", controllerName: "Bestelling", routeValues: Model)
             </dd>
         }
         else

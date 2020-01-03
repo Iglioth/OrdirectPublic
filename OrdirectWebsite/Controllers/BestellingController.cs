@@ -20,20 +20,29 @@ namespace OrdirectWebsite
         public BestellingController()
         {
             BestellingContext = new BestellingMSSQLContext();
-            BestellingRepo = new BestellingRepository(BestellingContext, GerechtContext);
             GerechtContext = new GerechtMSSQLContext();
+            BestellingRepo = new BestellingRepository(BestellingContext, GerechtContext);
             GerechtRepo = new GerechtRepository(GerechtContext);
         }
 
         [HttpGet]
-        public IActionResult Overview(Reservering r)
+        public IActionResult SetUpBestelling(ReserveringDetailViewModel r)
         {
             HttpContext.Session.SetInt32("ReserveringId", r.ReserveringID);
+            HttpContext.Session.SetInt32("RestaurantId", r.RestaurantID);
+            return RedirectToAction("Overview");
+        }
 
-            List<Gerecht> RestaurantGerechten = GerechtRepo.GetAllGerechtenFromRestaurantID(r.RestaurantID);
-            List<int> Rondes = BestellingRepo.GetDistinctRondes(r.ReserveringID);
-            List<Bestelling> ReserveringBestellingen = BestellingRepo.GetBestellingen(r.ReserveringID);
-            List<Gerecht> HuidigeBestelling = BestellingRepo.GetHuidigeBestelling(r.ReserveringID);
+        [HttpGet]
+        public IActionResult Overview()
+        {
+            int ReserveringID = Convert.ToInt32(HttpContext.Session.GetInt32("ReserveringId"));
+            int RestaurantID = Convert.ToInt32(HttpContext.Session.GetInt32("RestaurantId"));
+
+            List<Gerecht> RestaurantGerechten = GerechtRepo.GetAllGerechtenFromRestaurantID(RestaurantID);
+            List<int> Rondes = BestellingRepo.GetDistinctRondes(ReserveringID);
+            List<Bestelling> ReserveringBestellingen = BestellingRepo.GetBestellingen(ReserveringID);
+            List<Gerecht> HuidigeBestelling = BestellingRepo.GetGerechtenUitBestelling(ReserveringID, 0);
 
             BestellingViewModel vm = new BestellingViewModel();
             if (ReserveringBestellingen != null)
@@ -49,45 +58,51 @@ namespace OrdirectWebsite
             return View(vm);
         }
 
-        public IActionResult VoegToeAanHuidigeBestelling(int gerechtid)
+        [HttpGet]
+        public IActionResult VoegToeAanHuidigeBestelling(GerechtDetailViewModel gerechtDetailViewModel)
         {
+            Gerecht gerecht = new Gerecht();
+            gerecht = GerechtConverter.DetailViewModelToModel(gerechtDetailViewModel);
             bool NietNieuw = new bool();
+            NietNieuw = false;
             int ReserveringId = Convert.ToInt32(HttpContext.Session.GetInt32("ReserveringId"));
-            List<Gerecht> HuidigeBestelling = BestellingRepo.GetHuidigeBestelling(ReserveringId);
-            foreach(Gerecht g in HuidigeBestelling)
+            List<Gerecht> HuidigeBestelling = BestellingRepo.GetGerechtenUitBestelling(ReserveringId, 0);
+            foreach (Gerecht g in HuidigeBestelling)
             {
-                if(g.GerechtID == gerechtid)
+                if(g.GerechtID == gerecht.GerechtID)
                 {
                     BestellingRepo.BumpBestellingUp(g.GerechtID, ReserveringId);
                     NietNieuw = true;
                     break;
                 }
             }
-            if (NietNieuw == false)
+            if (!NietNieuw)
             {
-                BestellingRepo.InsertBestelling(ReserveringId, gerechtid, 0, 1);
+                BestellingRepo.InsertBestelling(ReserveringId, gerecht.GerechtID, 0, 1);
             }
             return RedirectToAction("Overview");
         }
 
-        public IActionResult VerwijderVanHuidigeBestelling(int gerechtid)
+        [HttpGet]
+        public IActionResult VerwijderVanHuidigeBestelling(GerechtDetailViewModel gerechtDetailViewModel)
         {
-            bool NietNieuw = new bool();
+            Gerecht gerecht = new Gerecht();
+            gerecht = GerechtConverter.DetailViewModelToModel(gerechtDetailViewModel);
             int ReserveringId = Convert.ToInt32(HttpContext.Session.GetInt32("ReserveringId"));
-            List<Gerecht> HuidigeBestelling = BestellingRepo.GetHuidigeBestelling(ReserveringId);
+            List<Gerecht> HuidigeBestelling = BestellingRepo.GetGerechtenUitBestelling(ReserveringId, 0);
             foreach (Gerecht g in HuidigeBestelling)
             {
-                if (g.GerechtID == gerechtid)
+                if (g.GerechtID == gerecht.GerechtID && g.Aantal >= 2)
                 {
-                    BestellingRepo.BumpBestellingDown(ReserveringId, gerechtid);
-                    NietNieuw = true;
+                    BestellingRepo.BumpBestellingDown(ReserveringId, g.GerechtID);
                     break;
                 }
-            }
-            if (NietNieuw == false)
-            {
-                BestellingRepo.InsertBestelling(ReserveringId, gerechtid, 0, 1);
-            }
+
+                else if(g.GerechtID == gerecht.GerechtID && g.Aantal == 1)
+                {
+                    BestellingRepo.DeleteBestelling(ReserveringId, g.GerechtID);
+                }
+            } 
             return RedirectToAction("Overview");
         }
 

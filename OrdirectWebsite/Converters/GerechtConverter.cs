@@ -11,11 +11,11 @@ namespace OrdirectWebsite
         {
             return new Gerecht
             {
-                Ronde = vm.Ronde,
                 Descriptie = vm.Descriptie,
                 GerechtID = vm.GerechtID,
                 Naam = vm.Naam,
-                RestaurantID = vm.RestaurantID
+                RestaurantID = vm.RestaurantID,
+                Aantal = vm.Aantal
             };
         }
 
@@ -35,10 +35,10 @@ namespace OrdirectWebsite
             return new GerechtDetailViewModel
             {
                 RestaurantID = g.RestaurantID,
-                Ronde = g.Ronde,
                 Descriptie = g.Descriptie,
                 GerechtID = g.GerechtID,
-                Naam = g.Naam
+                Naam = g.Naam,
+                Aantal = g.Aantal
             };
         }
 

@@ -44,7 +44,8 @@ namespace OrdirectWebsite
             return new Gerecht()
             {
                 GerechtID = (int)ds.Tables[0].Rows[rowIndex][0],
-                Naam = ds.Tables[0].Rows[rowIndex][1].ToString()
+                Naam = ds.Tables[0].Rows[rowIndex][1].ToString(),
+                Aantal = (int)ds.Tables[0].Rows[rowIndex][2]
             };
         }
 
@@ -67,7 +68,6 @@ namespace OrdirectWebsite
                 RestaurantID = (int)ds.Tables[0].Rows[rowIndex][1],
                 Descriptie = ds.Tables[0].Rows[rowIndex][3].ToString(),
                 Naam = ds.Tables[0].Rows[rowIndex][4].ToString(),
-                Ronde = (int)ds.Tables[0].Rows[rowIndex][5]
             };
         }
 

@@ -11,6 +11,6 @@ namespace OrdirectWebsite
         public int RestaurantID { get; set; }
         public string Descriptie { get; set; }
         public string Naam { get; set; }
-        public int Ronde { get; set; }
+        public int Aantal { get; set; }
     }
 }

@@ -85,7 +85,7 @@ namespace OrdirectWebsite
         public List<Gerecht> GetGerechtenUitBestelling(int reserveringID, int ronde)
         {
             List<Gerecht> GerechtenUitBestelling = new List<Gerecht>();
-            string sql = "Select GerechtReservering.GerechtID, Gerecht.Naam From (GerechtReservering INNER JOIN Gerecht ON GerechtReservering.GerechtID = Gerecht.GerechtID) Where GerechtReservering.ReserveringID = @ReserveringId AND GerechtReservering.Ronde = @ronde ";
+            string sql = "Select GerechtReservering.GerechtID, Gerecht.Naam, GerechtReservering.Aantal From (GerechtReservering INNER JOIN Gerecht ON GerechtReservering.GerechtID = Gerecht.GerechtID) Where GerechtReservering.ReserveringID = @ReserveringId AND GerechtReservering.Ronde = @ronde ";
             Dictionary<object, object> Parameters = new Dictionary<object, object>();
             Parameters.Add("ReserveringId", reserveringID);
             Parameters.Add("ronde", ronde);
@@ -120,9 +120,39 @@ namespace OrdirectWebsite
             return MinGerechten;
         }
 
-        public void BumpBestellingUp(int gerechtID, int reserveringId)
+        public bool BumpBestellingUp(int gerechtid, int reserveringId)
         {
-            throw new NotImplementedException();
+            string sql = "Update GerechtReservering Set Aantal = Aantal + 1 Where GerechtId = @gerechtid And ReserveringId = @reserveringid And Ronde = 0";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("reserveringid", reserveringId);
+            parameters.Add("gerechtid", gerechtid);
+
+            bool Succes = GetBoolSql(sql, parameters);
+            return Succes;
+        }
+
+        public bool BumpbestellingDown(int gerechtid, int reserveringid)
+        {
+            string sql = "Update GerechtReservering Set Aantal = Aantal - 1 Where GerechtId = @gerechtid And ReserveringId = @reserveringid And Ronde = 0";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("reserveringid", reserveringid);
+            parameters.Add("gerechtid", gerechtid);
+
+
+            bool Succes = GetBoolSql(sql, parameters);
+            return Succes;
+        }
+
+        public bool DeleteBestelling(int reserveringid, int gerechtid)
+        {
+            string sql = "Delete From GerechtReservering Where ReserveringId = @reserveringid And GerechtId = @gerechtid And Ronde = 0";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("reserveringid", reserveringid);
+            parameters.Add("gerechtid", gerechtid);
+
+            bool Succes = GetBoolSql(sql, parameters);
+
+            return Succes;
         }
     }
 }
