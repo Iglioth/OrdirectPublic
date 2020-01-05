@@ -22,5 +22,6 @@ namespace OrdirectWebsite
         bool OpenReservering(int reserveringId);
         bool SluitReservering(int reserveringId);
         bool AccepteerReservering(int reserveringId);
+        bool EindigReservering(int reserveringID);
     }
 }

@@ -25,17 +25,25 @@
                 <td>
                     @if (item.Status == "Pending")
                     {
-                        @Html.ActionLink("Accepteer", "Accepteer", item.ReserveringID)
-                        @Html.ActionLink("Weiger", "Delete", item.ReserveringID)
+                        @Html.ActionLink("Accepteer", "Accepteer", item)
+                        @Html.ActionLink("Weiger", "Delete", item)
                     }
 
                     @if (item.Status == "Geaccepteerd")
                     {
-                        @Html.ActionLink("Open", "Open", item.ReserveringID)
+                        @Html.ActionLink("Open", "Open", item)
                     }
                     @if (item.Status == "Open")
                     {
-                        @Html.ActionLink("Sluit", "Sluit", item.ReserveringID)
+                        @Html.ActionLink("Sluit", "Sluit", item)
+                    }
+                    @if (item.Status == "Gesloten")
+                    {
+                        @Html.ActionLink("Open", "Open", item)
+                    }
+                    @if (item.Status == "Open" || item.Status == "Gesloten")
+                    {
+                        @Html.ActionLink("Eind", "Eind", item)
                     }
                 </td>
             </tr>

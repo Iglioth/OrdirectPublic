@@ -50,24 +50,25 @@ namespace OrdirectWebsite
             ReserveringRepo.CreateReservering(reservering.datetime, restaurant.RestaurantID, 1);
             return RedirectToAction("Index", controllerName: "Restaurant");
         }
-        
+
         public IActionResult Detail(ReserveringDetailViewModel vm)
         {
             return View(vm);
         }
 
-        public IActionResult ToOverview(int id)
+        /*public IActionResult ToOverview(int id)
         {
             Reservering reservering = ReserveringRepo.GetReserveringById(id);
             return RedirectToAction(controllerName: "Bestelling", actionName: "Overview", routeValues: reservering);
-        }
+        }*/
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(ReserveringDetailViewModel detailViewModel)
         {
+            Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
 
-            if (ReserveringRepo.DeleteReservering(id))
+            if (ReserveringRepo.DeleteReservering(r.ReserveringID))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexVoorRestaurant");
             }
             else
             {
@@ -80,22 +81,33 @@ namespace OrdirectWebsite
             return View();
         }
 
-        public IActionResult Open(int ReserveringId)
+        public IActionResult Open(ReserveringDetailViewModel detailViewModel)
         {
-            ReserveringRepo.OpenReservering(ReserveringId);
+            Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
+            ReserveringRepo.OpenReservering(r.ReserveringID);
             return RedirectToAction("IndexVoorRestaurant");
         }
 
-        public IActionResult Sluit(int ReserveringId)
+        public IActionResult Sluit(ReserveringDetailViewModel detailViewModel)
         {
-            ReserveringRepo.SluitReservering(ReserveringId);
+            Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
+            ReserveringRepo.SluitReservering(r.ReserveringID);
             return RedirectToAction("IndexVoorRestaurant");
         }
 
-        public IActionResult Accepteer(int ReserveringId)
+        public IActionResult Accepteer(ReserveringDetailViewModel detailViewModel)
         {
-            ReserveringRepo.AccepteerReservering(ReserveringId);
+            Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
+            ReserveringRepo.AccepteerReservering(r.ReserveringID);
             return RedirectToAction("IndexVoorRestaurant");
+        }
+
+        public IActionResult Eindig(ReserveringDetailViewModel detailViewModel)
+        {
+            Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
+            ReserveringRepo.EindigReservering(r.ReserveringID);
+            return RedirectToAction("IndexVoorRestaurant");
+
         }
     }
 }

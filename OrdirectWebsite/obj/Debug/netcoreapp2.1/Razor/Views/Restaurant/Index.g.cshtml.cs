@@ -65,7 +65,7 @@ using OrdirectWebsite.Models;
             WriteLiteral("\n<h2>Index</h2>\n\n<p>\n    ");
             EndContext();
             BeginContext(107, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6876aa680b47418fb33c5948f9d7bf27", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "988fdeec4df440c0ab1ec650a02f7eb6", async() => {
                 BeginContext(130, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -105,7 +105,7 @@ using OrdirectWebsite.Models;
             WriteLiteral("\n            </td>\n            <td>\n                ");
             EndContext();
             BeginContext(464, 97, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2fdf5ef88dce439d953e9d542faa5925", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b90a859a786c4f0e85abfe8dd03f3e33", async() => {
                 BeginContext(549, 8, true);
                 WriteLiteral(" Details");
                 EndContext();

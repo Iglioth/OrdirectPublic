@@ -45,8 +45,8 @@ namespace OrdirectWebsite
 
         internal bool DeleteReservering(int id)
         {
-            Context.DeleteReservering(id);
-            if (Context.GetReserveringById(id) != null)
+            
+            if (Context.DeleteReservering(id))
             {
                 return true;
             }
@@ -96,6 +96,17 @@ namespace OrdirectWebsite
             }
             else
                 return false;
+        }
+
+        internal bool EindigReservering(int reserveringID)
+        {
+            if (Context.EindigReservering(reserveringID))
+            {
+                return true;
+            }
+            else
+                return false;
+
         }
     }
 }
