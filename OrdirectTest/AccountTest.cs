@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ordirect.Core;
 using OrdirectWebsite;
 
 namespace OrdirectTest
@@ -13,7 +14,6 @@ namespace OrdirectTest
         {
             context = new AccountTestContext();
             context.CreateAccount("Japser", "Kronig", "JasperKronig@DE.nl", "hitcher312", 0, "Klant");
-
         }
 
         [TestMethod]
@@ -28,7 +28,6 @@ namespace OrdirectTest
         public void CreatBadAccountTest()
         {
             bool created = context.CreateAccount(null, null, null, null, 0, null);
-            bool test;
             Assert.IsFalse(created);
         }
 

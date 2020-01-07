@@ -17,3 +17,24 @@ D:\School\Semester2Take2Individueel\OrdirectS2\OrdirectTest\obj\Debug\netcoreapp
 D:\School\Semester2Take2Individueel\OrdirectS2\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.csproj.CopyComplete
 D:\School\Semester2Take2Individueel\OrdirectS2\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.dll
 D:\School\Semester2Take2Individueel\OrdirectS2\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.pdb
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.csprojAssemblyReference.cache
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.csproj.CoreCompileInputs.cache
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.AssemblyInfoInputs.cache
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.AssemblyInfo.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.pdb
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectWebsite.Views.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectWebsite.Views.pdb
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectTest.deps.json
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectTest.runtimeconfig.json
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectTest.runtimeconfig.dev.json
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectTest.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectTest.pdb
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\Ordirect.Core.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectWebsite.dll
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\Ordirect.Core.pdb
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\bin\Debug\netcoreapp2.1\OrdirectWebsite.pdb
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectTest\obj\Debug\netcoreapp2.1\OrdirectTest.csproj.CopyComplete

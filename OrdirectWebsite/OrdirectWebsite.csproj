@@ -15,4 +15,8 @@
     <Folder Include="Views\Gerecht\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ordirect.Core\Ordirect.Core.csproj" />
+  </ItemGroup>
+
 </Project>
