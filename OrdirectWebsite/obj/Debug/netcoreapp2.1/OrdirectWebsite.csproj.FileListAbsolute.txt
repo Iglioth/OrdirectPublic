@@ -124,3 +124,14 @@ D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\OrdirectWebsite.csproj.CopyComplete
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\bin\Debug\netcoreapp2.1\Ordirect.Core.dll
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\bin\Debug\netcoreapp2.1\Ordirect.Core.pdb
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\DetailOwn.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\EditOwn.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\EditSucces.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\EditFail.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\CreateSucces.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\CreateFail.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\Index.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\Edit.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\Delete.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Restaurant\Edit.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Restaurant\Delete.g.cshtml.cs

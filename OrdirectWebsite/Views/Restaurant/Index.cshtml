@@ -1,4 +1,5 @@
-﻿@model OrdirectWebsite.RestaurantViewModel
+﻿@using Microsoft.AspNetCore.Http;
+@model OrdirectWebsite.RestaurantViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -6,26 +7,41 @@
 
 <h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+@if (Context.Session.GetString("AccountRol") == "Admin")
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+}
+<table class="table table-striped">
     <thead>
         <tr>
-            <th></th>
+            <th>Naam</th>
+            
+            <th>Acties</th>
         </tr>
     </thead>
     <tbody>
-@foreach (RestaurantDetailViewModel item in Model.restaurantDetailViewModels) {
-        <tr>
-            <td>
-                @Html.DisplayName(item.Naam)
-            </td>
-            <td>
-                <a asp-controller="Restaurant" asp-action="Detail" asp-route-id="@item.RestaurantID"> Details</a>
-            </td>
+        @foreach (RestaurantDetailViewModel item in Model.restaurantDetailViewModels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayName(item.Naam)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Adres)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Telefoonnummer)
+                </td>
+                <td>
+                    <a asp-controller="Restaurant" asp-action="Detail" asp-route-id="@item.RestaurantID"> Details</a> |
+                    <a asp-controller="Restaurant" asp-action="Delete" asp-route-id="@item.RestaurantID"> Delete</a> |
+                    <a asp-controller="Restaurant" asp-action="Edit" asp-route-id="@item.RestaurantID"> Edit</a>
+                </td>
 
-        </tr>
-}
+            </tr>
+        }
     </tbody>
 </table>

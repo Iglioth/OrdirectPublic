@@ -70,5 +70,10 @@ namespace Ordirect.Core
         {
             return BestellingContext.DeleteBestelling(reserveringId, gerechtID);
         }
+
+        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal)
+        {
+            return BestellingContext.UpdateBestelling(reserveringID, gerechtID, nieuweRonde, aantal);
+        }
     }
 }

@@ -51,5 +51,9 @@ namespace Ordirect.Core
             }
         }
 
+        public bool DeleteAccount(int id)
+        {
+            return Context.DeleteAccount(id);
+        }
     }
 }

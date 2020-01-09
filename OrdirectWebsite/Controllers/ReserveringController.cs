@@ -31,6 +31,10 @@ namespace OrdirectWebsite
         {
             ReserveringViewModel vm = new ReserveringViewModel();
             List<Reservering> reserveringen = ReserveringRepo.GetReserveringenById(Convert.ToInt32(HttpContext.Session.GetInt32("AccountID")));
+            if(reserveringen.Count == 0)
+            {
+                return View("GeenReserveringen");
+            }
             vm.reserveringDetailViewModels = ReserveringConverter.ModelsToViewModel(reserveringen);
             return View(vm);
         }

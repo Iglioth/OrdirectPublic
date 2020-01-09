@@ -154,5 +154,18 @@ namespace Ordirect.Core
 
             return Succes;
         }
+
+        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal)
+        {
+            string sql = "Update GerechtReservering SET Ronde = @ronde Where ReserveringID = @reserveringid and GerechtID = @gerechtid and Aantal = @aantal";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("reserveringID", reserveringID);
+            parameters.Add("gerechtID", gerechtID);
+            parameters.Add("aantal", aantal);
+            parameters.Add("ronde", nieuweRonde);
+
+            bool result = GetBoolSql(sql, parameters);
+            return result;
+        }
     }
 }

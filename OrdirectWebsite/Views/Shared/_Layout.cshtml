@@ -33,19 +33,33 @@
                     </li>
                 }
 
-                @if (Context.Session.GetString("AccountRol") == "Werknemer")
+                @if (Context.Session.GetString("AccountRol") == "Werknemer" || Context.Session.GetString("AccountRol") == "Manager")
                 {
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Reservering" asp-action="IndexVoorRestaurant"> Reserveringen </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" asp-controller="Gerecht" asp-action="Index"> Gerechten </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Bestelling" asp-action="Index"> Bestellingen</a>
+                    </li>
+                }
+                @if (Context.Session.GetString("AccountRol") == "Manager")
+                {
+                    <li class="nav-item">
                         <a class="nav-link" asp-controller="Restaurant" asp-action="Detail"> Mijn Restaurant </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Index"> Accounts </a>
+                    </li>
+
                 }
                 @if (Context.Session.GetString("AccountRol") == "Admin")
                 {
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Account" asp-action="ManagerIndex"> Manager Beheer</a>
+                        <a class="nav-link" asp-controller="Account" asp-action="Index"> Accounts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Restaurant" asp-action="Index"> Restaurants </a>
@@ -71,7 +85,8 @@
             @if (Context.Session.GetString("AccountRol") != null)
             {
               
-                    <text> Welkom @Context.Session.GetString("AccountNaam")      </text>
+                    <text> Welkom @Context.Session.GetString("AccountNaam")           </text><br />
+                    <a asp-controller="Account" asp-action="DetailOwn">Mijn Account</a>
                 
             }
 

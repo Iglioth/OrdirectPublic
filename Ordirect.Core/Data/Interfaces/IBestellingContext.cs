@@ -17,5 +17,6 @@ namespace Ordirect.Core
         bool BumpBestellingUp(int gerechtID, int reserveringId);
         bool BumpbestellingDown(int gerechtid, int reserveringId);
         bool DeleteBestelling(int reserveringId, int gerechtID);
+        bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal);
     }
 }

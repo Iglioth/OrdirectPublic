@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model OrdirectWebsite.AccountViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>AccountIndex</h2>
+@if (Context.Session.GetString("AccountRol") == "Admin" || Context.Session.GetString("AccountRol") == "Manager")
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+}
+@if (Model == null)
+{
+    <p>Geen Accounts gevonden. Bestaan er wel account bij dit restaurant? Zo niet, maak er hierboven een aan!</p>
+}
+else if (Model.AccountDetailViewModels.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-wrap">Email</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                @if (Context.Session.GetString("AccountRol") == "Admin")
+                {
+                    <th>Wachtwoord</th>
+                    <th>Rol</th>
+                    <th>ResturantID</th>
+                    <th>AccountID</th>
+                }
+                <th>Acties</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AccountDetailViewModel item in Model.AccountDetailViewModels)
+            {
+                @if (Context.Session.GetString("AccountRol") == "Manager" && item.Rol == "Manager")
+                {
+
+                }
+                else
+                {
+                    <tr>
+                        <td class="text-wrap">
+                            @Html.DisplayName(item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayName(item.Voornaam)
+                        </td>
+                        <td>
+                            @Html.DisplayName(item.Achternaam)
+                        </td>
+                        @if (Context.Session.GetString("AccountRol") == "Admin")
+                        {
+                            <td>
+                                @Html.DisplayName(item.Wachtwoord)
+                            </td>
+                            <td>
+                                @Html.DisplayName(item.Rol)
+                            </td>
+                            <td>
+                                @Html.DisplayName(item.RestaurantID.ToString())
+                            </td>
+                            <td>
+                                @Html.DisplayName(item.AccountID.ToString())
+                            </td>
+                        }
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.AccountID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.AccountID })
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+}
+

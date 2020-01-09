@@ -55,6 +55,11 @@ namespace OrdirectWebsite
             }
         }
 
+        public bool DeleteAccount(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Account GetAccountByID(int id)
         {
             foreach(Account account in TestAccounts)
@@ -67,6 +72,19 @@ namespace OrdirectWebsite
             return null;
         }
 
-        
+        public List<Account> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Account> GetRestaurantAccounts(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateAccount(string voornaam, string achternaam, string wachtwoord, int accountID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

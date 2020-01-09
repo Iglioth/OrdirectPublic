@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ordirect.Core;
 using System;
@@ -107,5 +107,27 @@ namespace OrdirectWebsite
             return RedirectToAction("Overview");
         }
 
+        
+        public IActionResult Bestellen()
+        {
+            int id = (int)HttpContext.Session.GetInt32("ReserveringId");
+
+            List<Bestelling> Allebestellingen = BestellingRepo.GetBestellingen(id);
+            List<Bestelling> NieuweBestellingen = new List<Bestelling>();
+            List<int> Rondes = BestellingRepo.GetDistinctRondes(id);
+            foreach(Bestelling b in Allebestellingen)
+            {
+                if(b.Ronde == 0)
+                {
+                    NieuweBestellingen.Add(b);
+                }
+            }
+
+            int nieuweRonde = Rondes.Count;
+            {
+                BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, nieuweRonde, b.Aantal);
+            }
+            return RedirectToAction("Overview");
+        }
     }
 }
