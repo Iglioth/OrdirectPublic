@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Ordirect.Core;
+using Microsoft.Extensions.Configuration;
 
 namespace OrdirectWebsite
 {
@@ -19,9 +20,9 @@ namespace OrdirectWebsite
         AccountConverter AccountConverter = new AccountConverter();
 
         //constructor
-        public AccountController()
+        public AccountController(IConfiguration config)
         {
-            accountContext = new AccountMSSQLContext();
+            accountContext = new AccountMSSQLContext(config.GetConnectionString("DefaultConnection"));
             accountRepository = new AccountRepository(accountContext);
         }
 
@@ -57,6 +58,8 @@ namespace OrdirectWebsite
             Account newa = AccountConverter.DetailViewModelToModel(vm);
             Account a = accountContext.GetAccountByID(AccountID);
             bool result = accountContext.UpdateAccount(newa.Voornaam, newa.Achternaam, newa.Wachtwoord, a.AccountID);
+
+            HttpContext.Session.SetString("AccountNaam", newa.Voornaam);
 
             if (result)
                 return View(viewName: "EditSucces");

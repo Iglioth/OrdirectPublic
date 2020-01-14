@@ -9,7 +9,10 @@ namespace Ordirect.Core
 {
     public class AccountMSSQLContext :  BaseMSSQLContext, IAccountContext
     {
+        public AccountMSSQLContext(string connectionString) : base(connectionString)
+        {
 
+        }
 
         public Account GetAccountByID(int id)
         {

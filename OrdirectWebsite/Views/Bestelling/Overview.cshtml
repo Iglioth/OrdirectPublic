@@ -97,12 +97,81 @@
             </div>
         </div>
     </div>
+    <br />
+    <div class="row">
+        <div class="col-6">
+            <div class="table thead-dark">
+                <label> Vorige Rondes</label>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">
+                                Rondes
+                            </th>
+                            <th class="col-md-2">
+                                Acties
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Rondes != null)
+                        {
+                            @foreach (int i in Model.Rondes)
+                            {
+                                <tr>
+                                    <td class="col-md-1">
+                                        @Html.DisplayName(i.ToString())
+                                    </td>
+                                    <td class="col-md-2">
+                                        @Html.ActionLink("Details", "Overview", "Bestelling", new { x = i })
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="table thead-dark">
+                <label>Bestelling</label>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">
+                                Naam
+                            </th>
+                            <th class="col-md-2">
+                                Aantal
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SelectedRonde != null)
+                        {
+                            @foreach (GerechtDetailViewModel item in Model.SelectedRonde)
+                            {
+                                <tr>
+                                    <td class="col-md-1">
+                                        @Html.DisplayName(item.Naam)
+                                    </td>
+                                    <td class="col-md-2">
+                                        @Html.DisplayName(item.Aantal.ToString())
+                                    </td>
+                                </tr>
+
+                            }
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
 </div>
-<br />
-<div class="col-6">
-    <label> Alle Bestellingen</label>
-</div>
-<div class="col-6">
-    <label> Bestelling Details</label>
-</div>
+
 

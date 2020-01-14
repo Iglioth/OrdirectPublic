@@ -23,5 +23,7 @@ namespace Ordirect.Core
         bool SluitReservering(int reserveringId);
         bool AccepteerReservering(int reserveringId);
         bool EindigReservering(int reserveringID);
+        List<Reservering> GetOpenReserveringenByRestaurantId(int id);
+        List<Reservering> GetOpenBestellingenFromReservering(int reserveringID);
     }
 }

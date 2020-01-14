@@ -135,3 +135,8 @@ D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Account\Delete.g.cshtml.cs
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Restaurant\Edit.g.cshtml.cs
 D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Restaurant\Delete.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\GeenReserveringen.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Bestelling\Index.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Reservering\ReserveringList.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Bestelling\Bestellingen.g.cshtml.cs
+D:\Fontys Semester 2\Indiviueel\Git Bestanden\OrdirectPublic\OrdirectWebsite\obj\Debug\netcoreapp2.1\Razor\Views\Bestelling\AfrondenFail.g.cshtml.cs

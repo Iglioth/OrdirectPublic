@@ -9,6 +9,10 @@ namespace Ordirect.Core
 {
     public class RestaurantMSSQLContext : BaseMSSQLContext, IRestaurantContext
     {
+        public RestaurantMSSQLContext(string connectionString) : base(connectionString)
+        {
+
+        }
 
         public List<Restaurant> GetGlobalRestaurants()
         {

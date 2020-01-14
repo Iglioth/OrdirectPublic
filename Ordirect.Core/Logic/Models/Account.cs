@@ -16,5 +16,6 @@ namespace Ordirect.Core
         public string Rol { get; set; }
         public int RestaurantID { get; set; }
         public bool LoggedIn { get; set; }
+        public int OpenBestellingen { get; set; }
     }
 }

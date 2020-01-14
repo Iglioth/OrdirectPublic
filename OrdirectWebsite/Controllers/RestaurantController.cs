@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Ordirect.Core;
 
 namespace OrdirectWebsite
@@ -15,9 +16,9 @@ namespace OrdirectWebsite
 
         RestaurantConverter converter = new RestaurantConverter();
 
-        public RestaurantController()
+        public RestaurantController(IConfiguration config)
         {
-            context = new RestaurantMSSQLContext();
+            context = new RestaurantMSSQLContext(config.GetConnectionString("DefaultConnection"));
             rep = new RestaurantRepository(context);
         }
 

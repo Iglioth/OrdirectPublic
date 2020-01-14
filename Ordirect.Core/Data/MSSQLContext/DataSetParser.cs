@@ -9,7 +9,7 @@ namespace Ordirect.Core
 {
     class DataSetParser
     {
-        public static Account DataSetToAccount(DataSet set, int rowIndex)
+        internal static Account DataSetToAccount(DataSet set, int rowIndex)
         {
             if (string.IsNullOrEmpty(set.Tables[0].Rows[rowIndex][4].ToString()))
             {
@@ -78,11 +78,12 @@ namespace Ordirect.Core
                 ReserveringID = (int)results.Tables[0].Rows[x][0],
                 GerechtID = (int)results.Tables[0].Rows[x][1],
                 Aantal = (int)results.Tables[0].Rows[x][2],
-                Ronde = (int)results.Tables[0].Rows[x][3]
+                Ronde = (int)results.Tables[0].Rows[x][3],
+                Naam = results.Tables[0].Rows[x][4].ToString()
             };
         }
 
-        public static Restaurant DataSetToRestaurant(DataSet set, int rowIndex)
+        internal static Restaurant DataSetToRestaurant(DataSet set, int rowIndex)
         {
             return new Restaurant()
             {
@@ -94,7 +95,7 @@ namespace Ordirect.Core
             };
         }
 
-        public static Reservering DataSetToReservering(DataSet results, int x)
+        internal static Reservering DataSetToReservering(DataSet results, int x)
         {
             return new Reservering()
             {
@@ -107,7 +108,7 @@ namespace Ordirect.Core
             };
         }
 
-        public static Reservering DataSetToRestaurantReservering(DataSet results, int x)
+        internal static Reservering DataSetToRestaurantReservering(DataSet results, int x)
         {
             return new Reservering()
             {
@@ -120,6 +121,13 @@ namespace Ordirect.Core
                 KlantAchterNaam = results.Tables[0].Rows[x][6].ToString()
             };
             
+        }
+        internal static Reservering DataSetToReserveringBestellingen(DataSet results, int x)
+        {
+            return new Reservering()
+            {
+                OpenBestellingen = (int)results.Tables[0].Rows[x][0]
+            };
         }
     }
 }

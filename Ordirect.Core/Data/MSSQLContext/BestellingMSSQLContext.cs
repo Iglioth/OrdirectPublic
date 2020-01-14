@@ -9,6 +9,11 @@ namespace Ordirect.Core
 {
     public class BestellingMSSQLContext : BaseMSSQLContext, IBestellingContext
     {
+        public BestellingMSSQLContext(string connectionString) : base(connectionString)
+        {
+
+        }
+
         public bool InsertBestelling(int reserveringID, int gerechtID, int ronde, int v)
         {
             string sql = "insert into GerechtReservering (ReserveringID, GerechtID, Aantal, Ronde) Values (@reserveringID, @gerechtID, @aantal, @ronde)";
@@ -24,7 +29,7 @@ namespace Ordirect.Core
 
         public List<Bestelling> GetBestellingen(int ReserveringID)
         {
-            string sql = "Select * From GerechtReservering Where ReserveringID = @reserveringID";
+            string sql = "Select GerechtReservering.ReserveringID, GerechtReservering.GerechtID, GerechtReservering.Aantal, GerechtReservering.Ronde, Gerecht.Naam from GerechtReservering inner join Gerecht on GerechtReservering.GerechtID = Gerecht.GerechtID where ReserveringID = @reserveringID";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
             parameters.Add("reserveringID", ReserveringID);
             DataSet results = GetDataSetSql(sql, parameters);
@@ -41,6 +46,28 @@ namespace Ordirect.Core
 
             return Bestellingen;
         }
+
+        public List<Bestelling> GetOpenBestellingen(int ReserveringID)
+        {
+            string sql = "Select GerechtReservering.ReserveringID, GerechtReservering.GerechtID, GerechtReservering.Aantal, GerechtReservering.Ronde, Gerecht.Naam from GerechtReservering inner join Gerecht on GerechtReservering.GerechtID = Gerecht.GerechtID where ReserveringID = @reserveringID and Status = 'Open'";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("reserveringID", ReserveringID);
+            DataSet results = GetDataSetSql(sql, parameters);
+            List<Bestelling> Bestellingen = new List<Bestelling>();
+            if (results != null && results.Tables[0].Rows.Count > 0)
+            {
+                for (int x = 0; x < results.Tables[0].Rows.Count; x++)
+                {
+                    Bestelling b = DataSetParser.DataSetToBestelling(results, x);
+                    Bestellingen.Add(b);
+                }
+            }
+            else return null;
+
+            return Bestellingen;
+        }
+
+
 
         public bool CheckRonde(int ronde, int reserveringID)
         {
@@ -91,9 +118,9 @@ namespace Ordirect.Core
             Parameters.Add("ronde", ronde);
 
             DataSet Results = GetDataSetSql(sql, Parameters);
-            if(Results != null && Results.Tables[0].Rows.Count > 0)
+            if (Results != null && Results.Tables[0].Rows.Count > 0)
             {
-                for(int x = 0; x < Results.Tables[0].Rows.Count; x++)
+                for (int x = 0; x < Results.Tables[0].Rows.Count; x++)
                 {
                     GerechtenUitBestelling.Add(DataSetParser.DataSetToMinimalGerecht(Results, x));
                 }
@@ -155,14 +182,15 @@ namespace Ordirect.Core
             return Succes;
         }
 
-        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal)
+        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal, string Naam, string Status)
         {
-            string sql = "Update GerechtReservering SET Ronde = @ronde Where ReserveringID = @reserveringid and GerechtID = @gerechtid and Aantal = @aantal";
+            string sql = "Update GerechtReservering SET Ronde = @ronde, Status = @Status Where ReserveringID = @reserveringid and GerechtID = @gerechtid and Aantal = @aantal ";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
             parameters.Add("reserveringID", reserveringID);
             parameters.Add("gerechtID", gerechtID);
             parameters.Add("aantal", aantal);
             parameters.Add("ronde", nieuweRonde);
+            parameters.Add("Status", Status);
 
             bool result = GetBoolSql(sql, parameters);
             return result;

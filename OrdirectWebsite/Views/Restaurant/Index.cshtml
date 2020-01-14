@@ -18,7 +18,8 @@
     <thead>
         <tr>
             <th>Naam</th>
-            
+            <th>Adres</th>
+            <th>Telefoonnummer</th>
             <th>Acties</th>
         </tr>
     </thead>
@@ -36,9 +37,15 @@
                     @Html.DisplayName(item.Telefoonnummer)
                 </td>
                 <td>
-                    <a asp-controller="Restaurant" asp-action="Detail" asp-route-id="@item.RestaurantID"> Details</a> |
-                    <a asp-controller="Restaurant" asp-action="Delete" asp-route-id="@item.RestaurantID"> Delete</a> |
+                    <a asp-controller="Restaurant" asp-action="Detail" asp-route-id="@item.RestaurantID"> Details</a>
+                    @if(Context.Session.GetString("AccountRol") == "Admin")
+                    {
+                                            
+                    <a asp-controller="Restaurant" asp-action="Delete" asp-route-id="@item.RestaurantID"> Delete</a>
+
                     <a asp-controller="Restaurant" asp-action="Edit" asp-route-id="@item.RestaurantID"> Edit</a>
+
+                    }
                 </td>
 
             </tr>

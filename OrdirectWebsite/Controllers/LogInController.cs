@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Ordirect.Core;
 using System;
 using System.Collections.Generic;
@@ -18,16 +19,11 @@ namespace OrdirectWebsite
         AccountConverter AccountConverter = new AccountConverter();
 
         //constructor
-        public LogInController()
+        public LogInController(IConfiguration config)
         {
-            accountContext = new AccountMSSQLContext();
+            accountContext = new AccountMSSQLContext(config.GetConnectionString("DefaultConnection"));
             accountRepository = new AccountRepository(accountContext);
         }
-        public IActionResult Logout()
-        {
-            return View();
-        }
-
         
         public IActionResult LogIn()
         {
@@ -64,5 +60,10 @@ namespace OrdirectWebsite
         }
 
         
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return View();
+        }
     }
 }

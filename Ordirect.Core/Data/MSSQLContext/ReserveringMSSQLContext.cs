@@ -9,6 +9,11 @@ namespace Ordirect.Core
 {
     public class ReserveringMSSQLContext : BaseMSSQLContext, IReserveringContext
     {
+        public ReserveringMSSQLContext(string connectionString) : base(connectionString)
+        {
+
+        }
+
         public bool AccepteerReservering(int reserveringId)
         {
             string sql = "Update Reservering Set Status = 'Geaccepteerd' Where ReserveringID = @ReserveringId";
@@ -57,6 +62,52 @@ namespace Ordirect.Core
             parameters.Add("ReserveringId", reserveringID);
             bool result = GetBoolSql(sql, parameters);
             return result;
+        }
+
+        public List<Reservering> GetOpenBestellingenFromReservering(int reserveringID)
+        {
+            string sql = "Select * From GerechtReservering Where ReserveringID = @id and Status = 'Open'";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("id", reserveringID);
+
+            DataSet results = GetDataSetSql(sql, parameters);
+
+            List<Reservering> reserveringen = new List<Reservering>();
+            if (results != null && results.Tables[0].Rows.Count > 0)
+            {
+                for (int x = 0; x < results.Tables[0].Rows.Count; x++)
+                {
+                    Reservering r = DataSetParser.DataSetToReserveringBestellingen(results, x);
+                    reserveringen.Add(r);
+                }
+            }
+
+            return reserveringen;
+        }
+
+        public List<Reservering> GetOpenReserveringenByRestaurantId(int id)
+        {
+            List<Reservering> reserveringen = new List<Reservering>();
+
+            string sql = "Select R.ReserveringID, R.Datum, R.Status, R.RestaurantID, R.AccountID, A.Voornaam, A.Achternaam From Reservering R inner join Account A on R.AccountID = A.AccountID where R.RestaurantID = @id And Status = 'Open'";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("id", id);
+
+            DataSet results = GetDataSetSql(sql, parameters);
+
+            if (results != null && results.Tables[0].Rows.Count > 0)
+            {
+                for (int x = 0; x < results.Tables[0].Rows.Count; x++)
+                {
+                    Reservering r = DataSetParser.DataSetToRestaurantReservering(results, x);
+                    reserveringen.Add(r);
+                }
+            }
+            else
+            {
+                return null;
+            }
+            return reserveringen;
         }
 
         public Reservering GetReserveringByAccountAndRestaurantAndDate(int accountID, int restaurantID, string dtp)

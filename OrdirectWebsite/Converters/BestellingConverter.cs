@@ -15,7 +15,8 @@ namespace OrdirectWebsite
                 Aantal = vm.Aantal,
                 GerechtID = vm.GerechtID,
                 ReserveringID = vm.ReserveringID,
-                Ronde = vm.Ronde
+                Ronde = vm.Ronde,
+                Naam = vm.Naam
             };
         }
 
@@ -36,7 +37,8 @@ namespace OrdirectWebsite
                 Aantal = b.Aantal,
                 GerechtID = b.GerechtID,
                 ReserveringID = b.ReserveringID,
-                Ronde = b.Ronde
+                Ronde = b.Ronde,
+                Naam = b.Naam
             };
         }
 

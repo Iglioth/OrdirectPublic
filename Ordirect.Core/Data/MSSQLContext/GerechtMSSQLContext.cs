@@ -9,6 +9,11 @@ namespace Ordirect.Core
 {
     public class GerechtMSSQLContext : BaseMSSQLContext, IGerechtContext
     {
+        public GerechtMSSQLContext(string connectionString) : base(connectionString)
+        {
+
+        }
+
         public Gerecht GetGerechtById(int id)
         {
             string sql = "select * from Gerecht where GerechtID = @ID";

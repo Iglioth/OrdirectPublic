@@ -12,5 +12,6 @@ namespace OrdirectWebsite
         public List<GerechtDetailViewModel> gerechtDetailViewModels { get; set; }
         public List<GerechtDetailViewModel> HuidigeBestelling { get; set; }
         public int SelectedGerecht { get; set; }
+        public List<GerechtDetailViewModel> SelectedRonde { get; internal set; }
     }
 }

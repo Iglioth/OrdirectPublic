@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Ordirect.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;  
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OrdirectWebsite
@@ -12,18 +13,24 @@ namespace OrdirectWebsite
     {
         BestellingRepository BestellingRepo;
         GerechtRepository GerechtRepo;
+        AccountRepository AccountRepo;
+        IAccountContext AccountContext;
         IGerechtContext GerechtContext;
         IBestellingContext BestellingContext;
 
         readonly BestellingConverter BestellingConverter = new BestellingConverter();
         readonly GerechtConverter GerechtConverter = new GerechtConverter();
+        readonly AccountConverter AccountConverter = new AccountConverter();
 
-        public BestellingController()
+        public BestellingController(IConfiguration config)
         {
-            BestellingContext = new BestellingMSSQLContext();
-            GerechtContext = new GerechtMSSQLContext();
+            BestellingContext = new BestellingMSSQLContext(config.GetConnectionString("DefaultConnection"));
+            GerechtContext = new GerechtMSSQLContext(config.GetConnectionString("DefaultConnection"));
+            AccountContext = new AccountMSSQLContext(config.GetConnectionString("DefaultConnection"));
+            AccountRepo = new AccountRepository(AccountContext);
             BestellingRepo = new BestellingRepository(BestellingContext, GerechtContext);
             GerechtRepo = new GerechtRepository(GerechtContext);
+
         }
 
         [HttpGet]
@@ -34,8 +41,8 @@ namespace OrdirectWebsite
             return RedirectToAction("Overview");
         }
 
-        [HttpGet]
-        public IActionResult Overview()
+        
+        public IActionResult Overview(int x)
         {
             int ReserveringID = Convert.ToInt32(HttpContext.Session.GetInt32("ReserveringId"));
             int RestaurantID = Convert.ToInt32(HttpContext.Session.GetInt32("RestaurantId"));
@@ -46,17 +53,26 @@ namespace OrdirectWebsite
             List<Gerecht> HuidigeBestelling = BestellingRepo.GetGerechtenUitBestelling(ReserveringID, 0);
 
             BestellingViewModel vm = new BestellingViewModel();
+
+
+            if (x > 0)
+            {
+                List<Gerecht> GeselecteerdeBestelling = BestellingRepo.GetGerechtenUitBestelling(ReserveringID, x);
+                vm.SelectedRonde = GerechtConverter.ModelsToViewModel(GeselecteerdeBestelling);
+            }
+
             if (ReserveringBestellingen != null)
             {
                 vm.bestellingDetailViewModels = BestellingConverter.ModelsToViewModel(ReserveringBestellingen);
                 vm.Rondes = Rondes;
             }
-            if(HuidigeBestelling != null)
+            if (HuidigeBestelling != null)
             {
                 vm.HuidigeBestelling = GerechtConverter.ModelsToViewModel(HuidigeBestelling);
             }
+            
             vm.gerechtDetailViewModels = GerechtConverter.ModelsToViewModel(RestaurantGerechten);
-            return View(vm);
+            return View(model: vm, viewName: "Overview");
         }
 
         [HttpGet]
@@ -70,7 +86,7 @@ namespace OrdirectWebsite
             List<Gerecht> HuidigeBestelling = BestellingRepo.GetGerechtenUitBestelling(ReserveringId, 0);
             foreach (Gerecht g in HuidigeBestelling)
             {
-                if(g.GerechtID == gerecht.GerechtID)
+                if (g.GerechtID == gerecht.GerechtID)
                 {
                     BestellingRepo.BumpBestellingUp(g.GerechtID, ReserveringId);
                     NietNieuw = true;
@@ -99,11 +115,11 @@ namespace OrdirectWebsite
                     break;
                 }
 
-                else if(g.GerechtID == gerecht.GerechtID && g.Aantal == 1)
+                else if (g.GerechtID == gerecht.GerechtID && g.Aantal == 1)
                 {
                     BestellingRepo.DeleteBestelling(ReserveringId, g.GerechtID);
                 }
-            } 
+            }
             return RedirectToAction("Overview");
         }
 
@@ -115,19 +131,48 @@ namespace OrdirectWebsite
             List<Bestelling> Allebestellingen = BestellingRepo.GetBestellingen(id);
             List<Bestelling> NieuweBestellingen = new List<Bestelling>();
             List<int> Rondes = BestellingRepo.GetDistinctRondes(id);
-            foreach(Bestelling b in Allebestellingen)
+            foreach (Bestelling b in Allebestellingen)
             {
-                if(b.Ronde == 0)
+                if (b.Ronde == 0)
                 {
                     NieuweBestellingen.Add(b);
                 }
             }
 
             int nieuweRonde = Rondes.Count;
+            foreach (Bestelling b in NieuweBestellingen)
             {
-                BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, nieuweRonde, b.Aantal);
+                BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, nieuweRonde, b.Aantal, b.Naam, "Open");
             }
             return RedirectToAction("Overview");
         }
+
+        
+        public IActionResult Bestellingen(int id)
+        {
+            List<Bestelling> bestellingen = new List<Bestelling>();
+            bestellingen = BestellingRepo.GetOpenBestellingen(id);
+            BestellingViewModel viewModel = new BestellingViewModel();
+            viewModel.bestellingDetailViewModels = BestellingConverter.ModelsToViewModel(bestellingen);
+            return View(model: viewModel, viewName: "Bestellingen");
+        }
+
+        
+        public IActionResult Afronden(BestellingDetailViewModel vm)
+        {
+            Bestelling b = new Bestelling();
+            b = BestellingConverter.DetailViewModelToModel(vm);
+
+            bool succes = BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, b.Ronde, b.Aantal, b.Naam, "Ontvangen");
+            if (succes)
+            {
+                return Bestellingen(b.ReserveringID);
+            }
+            else
+            {
+                return View("AfrondenFail");
+            }
+        }
     }
 }
+

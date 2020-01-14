@@ -17,5 +17,6 @@ namespace OrdirectWebsite
         public string RestaurantNaam { get; set; }
         public string KlantVoorNaam { get; set; }
         public string KlantAchterNaam { get; set; }
+        public int OpenBestellingen { get; set; }
     }
 }

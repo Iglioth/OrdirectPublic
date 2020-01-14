@@ -108,5 +108,15 @@ namespace Ordirect.Core
                 return false;
 
         }
+
+        public List<Reservering> GetOpenReserveringenByRestaurantId(int id)
+        {
+            return Context.GetOpenReserveringenByRestaurantId(id);
+        }
+
+        public int GetOpenBestellingenFromReservering(int reserveringID)
+        {
+            return Context.GetOpenBestellingenFromReservering(reserveringID).Count;
+        }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model OrdirectWebsite.ReserveringViewModel
+
+@{
+    ViewData["Title"] = "AccountList";
+}
+
+<h2>AccountList</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Open Bestellingen</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (ReserveringDetailViewModel item in Model.reserveringDetailViewModels) {
+        <tr>
+            <td>
+                @Html.DisplayName(item.KlantVoorNaam + " " + item.KlantAchterNaam)
+            </td>
+            <td>
+                @Html.DisplayName(item.OpenBestellingen.ToString())
+            </td>
+            <td>
+                @Html.ActionLink("Bestellingen", "Bestellingen", "Bestelling", new { id = item.ReserveringID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,47 @@
+﻿@model OrdirectWebsite.BestellingViewModel
+
+@{
+    ViewData["Title"] = "Bestellingen";
+}
+
+<h2>Bestellingen van Reservering @Html.DisplayName(Model.bestellingDetailViewModels[0].ReserveringID.ToString())</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Naam
+            </th>
+            <th>
+                Aantal
+            </th>
+            <th>
+                Ronde
+            </th>
+            <th>
+                Actie
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (BestellingDetailViewModel item in Model.bestellingDetailViewModels) {
+        <tr>
+            <td>
+                @Html.DisplayName(item.Naam)
+            </td>
+            <td>
+                @Html.DisplayName(item.Aantal.ToString())
+            </td>
+            <td>
+                @Html.DisplayName(item.Ronde.ToString())
+            </td>
+            <td>
+                @Html.ActionLink("Afronden", "Afronden", item) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -12,5 +12,6 @@ namespace Ordirect.Core
         public int GerechtID { get; set; }
         public int Ronde { get; set; }
         public int Aantal { get; set; }
+        public string Naam { get; set; }
     }
 }

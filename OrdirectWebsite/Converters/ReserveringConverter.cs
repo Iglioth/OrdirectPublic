@@ -20,7 +20,8 @@ namespace OrdirectWebsite
                 Status = vm.Status,
                 RestaurantNaam = vm.RestaurantNaam,
                 KlantVoorNaam = vm.KlantVoorNaam,
-                KlantAchterNaam = vm.KlantAchterNaam
+                KlantAchterNaam = vm.KlantAchterNaam,
+                OpenBestellingen = vm.OpenBestellingen
             };
         }
 
@@ -40,7 +41,8 @@ namespace OrdirectWebsite
                         Status = r.Status,
                         RestaurantNaam = r.RestaurantNaam,
                         KlantVoorNaam = r.KlantVoorNaam,
-                        KlantAchterNaam = r.KlantAchterNaam
+                        KlantAchterNaam = r.KlantAchterNaam,
+                        OpenBestellingen = r.OpenBestellingen
                     });
 
             }
@@ -58,7 +60,8 @@ namespace OrdirectWebsite
                 Status = r.Status,
                 RestaurantNaam = r.RestaurantNaam,
                 KlantVoorNaam = r.KlantVoorNaam,
-                KlantAchterNaam = r.KlantAchterNaam
+                KlantAchterNaam = r.KlantAchterNaam,
+                OpenBestellingen = r.OpenBestellingen
             };
         }
 
@@ -80,7 +83,8 @@ namespace OrdirectWebsite
                         Status = vm.Status,
                         RestaurantNaam = vm.RestaurantNaam,
                         KlantVoorNaam = vm.KlantVoorNaam,
-                        KlantAchterNaam = vm.KlantAchterNaam
+                        KlantAchterNaam = vm.KlantAchterNaam,
+                        OpenBestellingen = vm.OpenBestellingen
                     });
             }
 

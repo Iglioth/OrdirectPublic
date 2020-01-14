@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Ordirect.Core;
 
 namespace OrdirectWebsite
@@ -20,9 +21,9 @@ namespace OrdirectWebsite
         RestaurantConverter RestaurantConverter = new RestaurantConverter();
 
         //Constructor
-        public ReserveringController()
+        public ReserveringController(IConfiguration config)
         {
-            context = new ReserveringMSSQLContext();
+            context = new ReserveringMSSQLContext(config.GetConnectionString("DefaultConnection"));
             ReserveringRepo = new ReserveringRepository(context);
         }
 
@@ -30,8 +31,9 @@ namespace OrdirectWebsite
         public IActionResult Index()
         {
             ReserveringViewModel vm = new ReserveringViewModel();
-            List<Reservering> reserveringen = ReserveringRepo.GetReserveringenById(Convert.ToInt32(HttpContext.Session.GetInt32("AccountID")));
-            if(reserveringen.Count == 0)
+            List<Reservering> reserveringen = new List<Reservering>();
+            reserveringen = ReserveringRepo.GetReserveringenById(Convert.ToInt32(HttpContext.Session.GetInt32("AccountID")));
+            if(reserveringen == null)
             {
                 return View("GeenReserveringen");
             }
@@ -42,7 +44,7 @@ namespace OrdirectWebsite
         public IActionResult IndexVoorRestaurant()
         {
             ReserveringViewModel vm = new ReserveringViewModel();
-            List<Reservering> reserveringen = ReserveringRepo.GetReserveringenByRestaurantId(Convert.ToInt32(HttpContext.Session.GetInt32("AccountRestaurantID")));
+            List<Reservering> reserveringen = ReserveringRepo.GetReserveringenByRestaurantId(Convert.ToInt32(HttpContext.Session.GetInt32("RestaurantID")));
             vm.reserveringDetailViewModels = ReserveringConverter.ModelsToViewModel(reserveringen);
             return View(vm);
         }
@@ -86,6 +88,7 @@ namespace OrdirectWebsite
             return View();
         }
 
+        [HttpPost]
         public IActionResult Open(ReserveringDetailViewModel detailViewModel)
         {
             Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
@@ -93,6 +96,7 @@ namespace OrdirectWebsite
             return RedirectToAction("IndexVoorRestaurant");
         }
 
+        [HttpPost]
         public IActionResult Sluit(ReserveringDetailViewModel detailViewModel)
         {
             Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
@@ -100,6 +104,7 @@ namespace OrdirectWebsite
             return RedirectToAction("IndexVoorRestaurant");
         }
 
+        [HttpPost]
         public IActionResult Accepteer(ReserveringDetailViewModel detailViewModel)
         {
             Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
@@ -107,12 +112,29 @@ namespace OrdirectWebsite
             return RedirectToAction("IndexVoorRestaurant");
         }
 
+        [HttpPost]
         public IActionResult Eindig(ReserveringDetailViewModel detailViewModel)
         {
             Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
             ReserveringRepo.EindigReservering(r.ReserveringID);
             return RedirectToAction("IndexVoorRestaurant");
 
+        }
+
+        
+        public IActionResult OpenReserveringList()
+        {
+            int id = (int)HttpContext.Session.GetInt32("RestaurantID");
+            List<Reservering> reserveringen = new List<Reservering>();
+            reserveringen = ReserveringRepo.GetOpenReserveringenByRestaurantId(id);
+            foreach (Reservering r in reserveringen)
+            {
+                 r.OpenBestellingen = ReserveringRepo.GetOpenBestellingenFromReservering(r.ReserveringID);
+            }
+            ReserveringViewModel reserveringViewModel = new ReserveringViewModel();
+            reserveringViewModel.reserveringDetailViewModels = ReserveringConverter.ModelsToViewModel(reserveringen);
+
+            return View(viewName: "ReserveringList", model: reserveringViewModel);
         }
     }
 }

@@ -10,7 +10,12 @@ namespace Ordirect.Core
 {
     public class BaseMSSQLContext
     {
-        public string connectionString = @"Server = mssql.fhict.local; Database = dbi390337_rdirect; User Id = dbi390337_rdirect; Password = mnm626466;";
+        private readonly string connectionString;
+
+        public BaseMSSQLContext(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
 
         public DataSet GetDataSetSql(string sql, Dictionary<object, object> parameters)
         {
