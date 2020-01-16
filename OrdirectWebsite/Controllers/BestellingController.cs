@@ -13,26 +13,22 @@ namespace OrdirectWebsite
     {
         BestellingRepository BestellingRepo;
         GerechtRepository GerechtRepo;
-        AccountRepository AccountRepo;
-        IAccountContext AccountContext;
         IGerechtContext GerechtContext;
         IBestellingContext BestellingContext;
 
         readonly BestellingConverter BestellingConverter = new BestellingConverter();
         readonly GerechtConverter GerechtConverter = new GerechtConverter();
-        readonly AccountConverter AccountConverter = new AccountConverter();
 
         public BestellingController(IConfiguration config)
         {
             BestellingContext = new BestellingMSSQLContext(config.GetConnectionString("DefaultConnection"));
             GerechtContext = new GerechtMSSQLContext(config.GetConnectionString("DefaultConnection"));
-            AccountContext = new AccountMSSQLContext(config.GetConnectionString("DefaultConnection"));
-            AccountRepo = new AccountRepository(AccountContext);
             BestellingRepo = new BestellingRepository(BestellingContext, GerechtContext);
             GerechtRepo = new GerechtRepository(GerechtContext);
 
         }
 
+        //Een set up om te kunnen bestellen
         [HttpGet]
         public IActionResult SetUpBestelling(ReserveringDetailViewModel r)
         {
@@ -41,7 +37,7 @@ namespace OrdirectWebsite
             return RedirectToAction("Overview");
         }
 
-        
+        //Crëert een overview van de order.
         public IActionResult Overview(int x)
         {
             int ReserveringID = Convert.ToInt32(HttpContext.Session.GetInt32("ReserveringId"));
@@ -53,7 +49,6 @@ namespace OrdirectWebsite
             List<Gerecht> HuidigeBestelling = BestellingRepo.GetGerechtenUitBestelling(ReserveringID, 0);
 
             BestellingViewModel vm = new BestellingViewModel();
-
 
             if (x > 0)
             {
@@ -75,6 +70,7 @@ namespace OrdirectWebsite
             return View(model: vm, viewName: "Overview");
         }
 
+        //Voegt iets toe aan de huidige bestelling en refreshed de pagina.
         [HttpGet]
         public IActionResult VoegToeAanHuidigeBestelling(GerechtDetailViewModel gerechtDetailViewModel)
         {
@@ -100,6 +96,7 @@ namespace OrdirectWebsite
             return RedirectToAction("Overview");
         }
 
+        //Verwijdert iets uit de huidige bestelling en refreshed de pagina
         [HttpGet]
         public IActionResult VerwijderVanHuidigeBestelling(GerechtDetailViewModel gerechtDetailViewModel)
         {
@@ -123,7 +120,7 @@ namespace OrdirectWebsite
             return RedirectToAction("Overview");
         }
 
-        
+        //Zet de huidige bestelling in als bestelling.
         public IActionResult Bestellen()
         {
             int id = (int)HttpContext.Session.GetInt32("ReserveringId");
@@ -142,12 +139,13 @@ namespace OrdirectWebsite
             int nieuweRonde = Rondes.Count;
             foreach (Bestelling b in NieuweBestellingen)
             {
-                BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, nieuweRonde, b.Aantal, b.Naam, "Open");
+                BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, nieuweRonde, b.Aantal, b.Naam, "Open", 0);
             }
             return RedirectToAction("Overview");
         }
 
         
+        //Haalt alle bestellingen op voor een medewerker.
         public IActionResult Bestellingen(int id)
         {
             List<Bestelling> bestellingen = new List<Bestelling>();
@@ -158,12 +156,13 @@ namespace OrdirectWebsite
         }
 
         
+        //Verandert de status naar afgerond van een bestelling.
         public IActionResult Afronden(BestellingDetailViewModel vm)
         {
             Bestelling b = new Bestelling();
             b = BestellingConverter.DetailViewModelToModel(vm);
 
-            bool succes = BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, b.Ronde, b.Aantal, b.Naam, "Ontvangen");
+            bool succes = BestellingRepo.UpdateBestelling(b.ReserveringID, b.GerechtID, b.Ronde, b.Aantal, b.Naam, "Ontvangen", b.Ronde);
             if (succes)
             {
                 return Bestellingen(b.ReserveringID);

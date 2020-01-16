@@ -2,12 +2,12 @@
 @model OrdirectWebsite.AccountDetailViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Account";
 }
 
-<h2>Edit</h2>
+<h2>Edit Account</h2>
 
-<h4>AccountDetailViewModel</h4>
+<h4>Account</h4>
 <hr />
 <div class="container-fluid">
     <div class="row">
@@ -33,11 +33,6 @@
                     <label asp-for="Achternaam" class="control-label"></label>
                     <input asp-for="Achternaam" class="form-control" />
                     <span asp-validation-for="Achternaam" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Rol" class="control-label"></label>
-                    <input asp-for="Rol" class="form-control" />
-                    <span asp-validation-for="Rol" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-default" />

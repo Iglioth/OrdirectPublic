@@ -69,22 +69,22 @@ namespace Ordirect.Core
 
 
 
-        public bool CheckRonde(int ronde, int reserveringID)
-        {
-            string sql = "Select Ronde from GerechtReservering where ReserveringID = @ReserveringId and Ronde = @Ronde";
-            Dictionary<object, object> parameters = new Dictionary<object, object>();
-            parameters.Add("ReserveringId", reserveringID);
-            parameters.Add("Ronde", ronde);
-            DataSet results = GetDataSetSql(sql, parameters);
-            if (results.Tables[0].Rows.Count == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        //public bool CheckRonde(int ronde, int reserveringID)
+        //{
+        //    string sql = "Select Ronde from GerechtReservering where ReserveringID = @ReserveringId and Ronde = @Ronde";
+        //    Dictionary<object, object> parameters = new Dictionary<object, object>();
+        //    parameters.Add("ReserveringId", reserveringID);
+        //    parameters.Add("Ronde", ronde);
+        //    DataSet results = GetDataSetSql(sql, parameters);
+        //    if (results.Tables[0].Rows.Count == 0)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
 
         public List<int> GetDistinctRondes(int reserveringID)
         {
@@ -129,23 +129,23 @@ namespace Ordirect.Core
             return GerechtenUitBestelling;
         }
 
-        public List<Gerecht> GetHuidigeBestellingGerechtenMinimaal(int reserveringID)
-        {
-            string sql = "Select GerechtID From GerechtReservering Where Ronde = 0 and ReserveringID = @id";
-            Dictionary<object, object> parameters = new Dictionary<object, object>();
-            parameters.Add("id", reserveringID);
+        //public List<Gerecht> GetHuidigeBestellingGerechtenMinimaal(int reserveringID)
+        //{
+        //    string sql = "Select GerechtID From GerechtReservering Where Ronde = 0 and ReserveringID = @id";
+        //    Dictionary<object, object> parameters = new Dictionary<object, object>();
+        //    parameters.Add("id", reserveringID);
 
-            List<Gerecht> MinGerechten = new List<Gerecht>();
-            DataSet Results = GetDataSetSql(sql, parameters);
-            if (Results != null && Results.Tables[0].Rows.Count > 0)
-            {
-                for (int x = 0; x < Results.Tables[0].Rows.Count; x++)
-                {
-                    MinGerechten.Add(DataSetParser.DataSetToMinimalGerecht(Results, x));
-                }
-            }
-            return MinGerechten;
-        }
+        //    List<Gerecht> MinGerechten = new List<Gerecht>();
+        //    DataSet Results = GetDataSetSql(sql, parameters);
+        //    if (Results != null && Results.Tables[0].Rows.Count > 0)
+        //    {
+        //        for (int x = 0; x < Results.Tables[0].Rows.Count; x++)
+        //        {
+        //            MinGerechten.Add(DataSetParser.DataSetToMinimalGerecht(Results, x));
+        //        }
+        //    }
+        //    return MinGerechten;
+        //}
 
         public bool BumpBestellingUp(int gerechtid, int reserveringId)
         {
@@ -182,15 +182,16 @@ namespace Ordirect.Core
             return Succes;
         }
 
-        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal, string Naam, string Status)
+        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal, string Naam, string Status, int ouderonde)
         {
-            string sql = "Update GerechtReservering SET Ronde = @ronde, Status = @Status Where ReserveringID = @reserveringid and GerechtID = @gerechtid and Aantal = @aantal ";
+            string sql = "Update GerechtReservering SET Ronde = @ronde, Status = @Status Where ReserveringID = @reserveringid and GerechtID = @gerechtid and Aantal = @aantal and Ronde = @ouderonde ";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
             parameters.Add("reserveringID", reserveringID);
             parameters.Add("gerechtID", gerechtID);
             parameters.Add("aantal", aantal);
             parameters.Add("ronde", nieuweRonde);
             parameters.Add("Status", Status);
+            parameters.Add("ouderonde", ouderonde);
 
             bool result = GetBoolSql(sql, parameters);
             return result;

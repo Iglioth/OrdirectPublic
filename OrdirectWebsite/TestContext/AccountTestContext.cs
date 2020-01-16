@@ -82,6 +82,11 @@ namespace OrdirectWebsite
             throw new NotImplementedException();
         }
 
+        public List<Account> GetRestaurantAccounts(int RestaurantID)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool UpdateAccount(string voornaam, string achternaam, string wachtwoord, int accountID)
         {
             throw new NotImplementedException();

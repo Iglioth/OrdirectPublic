@@ -10,6 +10,6 @@ namespace OrdirectWebsite
         public int RestaurantID { get; set; }
         public string Naam { get; set; }
         public string Adres { get; set; }
-        public string Telefoonnummer { get; set; }
+        public string Telefoonnummer { get; set; }  
     }
 }

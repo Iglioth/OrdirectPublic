@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsOrdirect", "FormsOrdirect\FormsOrdirect.csproj", "{C5C8BFCA-D58B-400F-BF97-C0A0B14B9CC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordirect.Forms", "FormsOrdirect\Ordirect.Forms.csproj", "{C5C8BFCA-D58B-400F-BF97-C0A0B14B9CC7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdirectWebsite", "OrdirectWebsite\OrdirectWebsite.csproj", "{8E051EED-05A5-43AF-8B9E-CA24879E5BD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordirect.Website", "OrdirectWebsite\Ordirect.Website.csproj", "{8E051EED-05A5-43AF-8B9E-CA24879E5BD4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdirectTest", "OrdirectTest\OrdirectTest.csproj", "{3CD6C650-9203-4CD4-BF8B-D1F0A1206E21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordirect.Test", "OrdirectTest\Ordirect.Test.csproj", "{3CD6C650-9203-4CD4-BF8B-D1F0A1206E21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordirect.Core", "Ordirect.Core\Ordirect.Core.csproj", "{E1754777-CD60-441C-A475-EBC57FD8C03C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordirect.Core", "Ordirect.Core\Ordirect.Core.csproj", "{E1754777-CD60-441C-A475-EBC57FD8C03C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

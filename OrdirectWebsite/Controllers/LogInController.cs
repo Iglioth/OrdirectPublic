@@ -25,12 +25,15 @@ namespace OrdirectWebsite
             accountRepository = new AccountRepository(accountContext);
         }
         
+        //Brengt de gebruiker naar de login en registratie pagina.
         public IActionResult LogIn()
         {
             AccountDetailViewModel vm = new AccountDetailViewModel();
             return View(vm);
         }
 
+
+        //Logt in op de website en brengt de gebruiker naar een pagina bepalend op de gebruiker's rol.
         [HttpPost]
         public IActionResult LogIn(AccountDetailViewModel vm)
         {
@@ -59,7 +62,7 @@ namespace OrdirectWebsite
             }
         }
 
-        
+        //Cleart de sesssion en brengt de klant naar de logout view.
         public IActionResult LogOut()
         {
             HttpContext.Session.Clear();

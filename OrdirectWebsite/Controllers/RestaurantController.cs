@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Ordirect.Core;
@@ -22,7 +23,7 @@ namespace OrdirectWebsite
             rep = new RestaurantRepository(context);
         }
 
-
+        //Haalt alle Restaurants op.
         [HttpGet]
         public IActionResult Index()
         {
@@ -35,9 +36,15 @@ namespace OrdirectWebsite
             return View(vm);
         }
 
+        //Bekijkt de detail van een restaurant.
         public IActionResult Detail(int id)
         {
             Restaurant r = rep.GetRestaurantByID(id);
+
+            if(r == null)
+            {
+                r = rep.GetRestaurantByID((int)HttpContext.Session.GetInt32("RestaurantID"));
+            }
             ResRevViewModel vm = new ResRevViewModel();
             vm.RestaurantDetailViewModel = converter.ModelToDetailViewModel(r);
             return View(vm);

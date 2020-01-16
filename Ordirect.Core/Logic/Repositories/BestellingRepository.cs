@@ -26,11 +26,6 @@ namespace Ordirect.Core
             return BestellingContext.GetBestellingen(ReserveringID);
         }
 
-        public bool CheckRonde(int ronde, int reserveringID)
-        {
-            return BestellingContext.CheckRonde(ronde, reserveringID);
-        }
-
         public List<int> GetDistinctRondes(int reserveringID)
         {
             return BestellingContext.GetDistinctRondes(reserveringID);
@@ -41,20 +36,20 @@ namespace Ordirect.Core
             return BestellingContext.GetGerechtenUitBestelling(reserveringID, ronde);
         }
 
-        public List<Gerecht> GetHuidigeBestelling(int reserveringID)
-        {
-            List<Gerecht> MinGerechten = BestellingContext.GetHuidigeBestellingGerechtenMinimaal(reserveringID);
-            List<Gerecht> FullGerechten = new List<Gerecht>();
+        //public List<Gerecht> GetHuidigeBestelling(int reserveringID)
+        //{
+        //    List<Gerecht> MinGerechten = BestellingContext.GetHuidigeBestellingGerechtenMinimaal(reserveringID);
+        //    List<Gerecht> FullGerechten = new List<Gerecht>();
 
-            foreach (Gerecht g in MinGerechten)
-            {
-                Gerecht gerecht = new Gerecht();
-                gerecht = GerechtContext.GetGerechtById(g.GerechtID);
-                FullGerechten.Add(gerecht);
-            }
+        //    foreach (Gerecht g in MinGerechten)
+        //    {
+        //        Gerecht gerecht = new Gerecht();
+        //        gerecht = GerechtContext.GetGerechtById(g.GerechtID);
+        //        FullGerechten.Add(gerecht);
+        //    }
 
-            return FullGerechten;
-        }
+        //    return FullGerechten;
+        //}
 
         public bool BumpBestellingUp(int gerechtID, int reserveringId)
         {
@@ -71,9 +66,9 @@ namespace Ordirect.Core
             return BestellingContext.DeleteBestelling(reserveringId, gerechtID);
         }
 
-        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal, string naam, string Status)
+        public bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal, string naam, string Status, int ouderonde)
         {
-            return BestellingContext.UpdateBestelling(reserveringID, gerechtID, nieuweRonde, aantal, naam, Status);
+            return BestellingContext.UpdateBestelling(reserveringID, gerechtID, nieuweRonde, aantal, naam, Status, ouderonde);
         }
 
         public List<Bestelling> GetOpenBestellingen(int reserveringID)

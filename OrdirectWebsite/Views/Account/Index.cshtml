@@ -2,14 +2,14 @@
 @model OrdirectWebsite.AccountViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Account Lijst";
 }
 
-<h2>AccountIndex</h2>
+<h2>Lijst Van Accounts</h2>
 @if (Context.Session.GetString("AccountRol") == "Admin" || Context.Session.GetString("AccountRol") == "Manager")
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">Maak nieuw account</a>
     </p>
 
 }
@@ -45,7 +45,7 @@ else if (Model.AccountDetailViewModels.Count > 0)
                 else
                 {
                     <tr>
-                        <td class="text-wrap">
+                        <td>
                             @Html.DisplayName(item.Email)
                         </td>
                         <td>
@@ -70,7 +70,6 @@ else if (Model.AccountDetailViewModels.Count > 0)
                             </td>
                         }
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.AccountID }) |
                             @Html.ActionLink("Delete", "Delete", new { id = item.AccountID })
                         </td>
                     </tr>

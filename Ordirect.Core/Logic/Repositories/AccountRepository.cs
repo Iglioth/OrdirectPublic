@@ -55,5 +55,20 @@ namespace Ordirect.Core
         {
             return Context.DeleteAccount(id);
         }
+
+        public List<Account> GetRestaurantAccounts(int RestaurantID)
+        {
+            return Context.GetRestaurantAccounts(RestaurantID);
+        }
+
+        public List<Account> GetAll()
+        {
+            return Context.GetAll();
+        }
+
+        public bool UpdateAccount(string voornaam, string achternaam, string wachtwoord, int accountID)
+        {
+            return Context.UpdateAccount(voornaam, achternaam, wachtwoord, accountID);
+        }
     }
 }

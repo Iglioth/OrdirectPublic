@@ -2659,7 +2659,7 @@
           "bin/placeholder/Ordirect.Core.dll": {}
         }
       },
-      "OrdirectWebsite/1.0.0": {
+      "Ordirect.Website/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
@@ -2668,10 +2668,10 @@
           "Ordirect.Core": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/OrdirectWebsite.dll": {}
+          "bin/placeholder/Ordirect.Website.dll": {}
         },
         "runtime": {
-          "bin/placeholder/OrdirectWebsite.dll": {}
+          "bin/placeholder/Ordirect.Website.dll": {}
         }
       }
     }
@@ -8636,10 +8636,10 @@
       "path": "../Ordirect.Core/Ordirect.Core.csproj",
       "msbuildProject": "../Ordirect.Core/Ordirect.Core.csproj"
     },
-    "OrdirectWebsite/1.0.0": {
+    "Ordirect.Website/1.0.0": {
       "type": "project",
-      "path": "../OrdirectWebsite/OrdirectWebsite.csproj",
-      "msbuildProject": "../OrdirectWebsite/OrdirectWebsite.csproj"
+      "path": "../OrdirectWebsite/Ordirect.Website.csproj",
+      "msbuildProject": "../OrdirectWebsite/Ordirect.Website.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8649,7 +8649,7 @@
       "Microsoft.NET.Test.Sdk >= 15.9.0",
       "Microsoft.NETCore.App >= 2.1.0",
       "Ordirect.Core >= 1.0.0",
-      "OrdirectWebsite >= 1.0.0"
+      "Ordirect.Website >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8659,9 +8659,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectTest\\OrdirectTest.csproj",
-      "projectName": "OrdirectTest",
-      "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectTest\\OrdirectTest.csproj",
+      "projectUniqueName": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectTest\\Ordirect.Test.csproj",
+      "projectName": "Ordirect.Test",
+      "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectTest\\Ordirect.Test.csproj",
       "packagesPath": "C:\\Users\\lars\\.nuget\\packages\\",
       "outputPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectTest\\obj\\",
       "projectStyle": "PackageReference",
@@ -8685,8 +8685,8 @@
             "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\Ordirect.Core\\Ordirect.Core.csproj": {
               "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\Ordirect.Core\\Ordirect.Core.csproj"
             },
-            "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\OrdirectWebsite.csproj": {
-              "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\OrdirectWebsite.csproj"
+            "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\Ordirect.Website.csproj": {
+              "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\Ordirect.Website.csproj"
             }
           }
         }

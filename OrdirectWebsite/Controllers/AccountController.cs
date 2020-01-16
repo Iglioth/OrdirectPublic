@@ -44,20 +44,21 @@ namespace OrdirectWebsite
         {
             int AccountID = (int)HttpContext.Session.GetInt32("AccountID");
 
-            Account a = accountContext.GetAccountByID(AccountID);
+            Account a = accountRepository.GetByID(AccountID);
 
             AccountDetailViewModel viewModel = AccountConverter.ModelToDetailViewModel(a);
 
             return View(viewModel);
         }
 
+        //Edits your own account name and password
         [HttpPost]
         public IActionResult EditOwn(AccountDetailViewModel vm)
         {
             int AccountID = (int)HttpContext.Session.GetInt32("AccountID");
             Account newa = AccountConverter.DetailViewModelToModel(vm);
-            Account a = accountContext.GetAccountByID(AccountID);
-            bool result = accountContext.UpdateAccount(newa.Voornaam, newa.Achternaam, newa.Wachtwoord, a.AccountID);
+            Account a = accountRepository.GetByID(AccountID);
+            bool result = accountRepository.UpdateAccount(newa.Voornaam, newa.Achternaam, newa.Wachtwoord, a.AccountID);
 
             HttpContext.Session.SetString("AccountNaam", newa.Voornaam);
 
@@ -67,18 +68,21 @@ namespace OrdirectWebsite
                 return View(viewName: "EditFail");
         }
 
+        
         [HttpGet]
         public IActionResult CreateOwn()
         {
             return View();
         }
 
+
+        //Create your own account.
         [HttpPost]
         public IActionResult CreateOwn(AccountDetailViewModel vm)
         {
             Account a = AccountConverter.DetailViewModelToModel(vm);
 
-            bool Succes = accountContext.CreateAccount(a.Voornaam, a.Achternaam, a.Email, a.Wachtwoord, 0, "Klant");
+            bool Succes = accountRepository.CreateAccount(a.Voornaam, a.Achternaam, a.Email, a.Wachtwoord, 0, "Klant");
 
             if (Succes)
                 return View("CreateSucces");
@@ -88,6 +92,38 @@ namespace OrdirectWebsite
         }
 
         [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //Maak een account aan voor een werknemer of manager.
+        [HttpPost]
+        public IActionResult Create(AccountDetailViewModel vm)
+        {
+            Account a = AccountConverter.DetailViewModelToModel(vm);
+
+            if (HttpContext.Session.GetString("AccountRol") == "Admin")
+            {
+                bool succes = accountContext.CreateAccount(a.Voornaam, a.Achternaam, a.Email, a.Wachtwoord, a.RestaurantID, a.Rol);
+                if (succes)
+                {
+                    return View(viewName: "CreateSucces");
+                }
+            }
+            else if (HttpContext.Session.GetString("AccountRol") == "Manager")
+            {
+                bool succes = accountContext.CreateAccount(a.Voornaam, a.Achternaam, a.Email, a.Wachtwoord, (int)HttpContext.Session.GetInt32("RestaurantID"), "Werknemer");
+                if (succes)
+                {
+                    return View(viewName: "CreateSucces");
+                }
+            }
+            return View(viewName: "CreateFail");
+        }
+
+        //Get a list of all or select accounts differing whether the user is an admin or manager.
+        [HttpGet]
         public IActionResult Index()
         {
             AccountViewModel vm = new AccountViewModel();
@@ -95,11 +131,11 @@ namespace OrdirectWebsite
 
             if (HttpContext.Session.GetString("AccountRol") == "Admin")
             {
-                accounts = accountContext.GetAll();
+                accounts = accountRepository.GetAll();
             }
             else if(HttpContext.Session.GetString("AccountRol") == "Manager")
             {
-                accounts = accountContext.GetRestaurantAccounts(HttpContext.Session.GetString("RestaurantID"));
+                accounts = accountRepository.GetRestaurantAccounts((int)HttpContext.Session.GetInt32("RestaurantID"));
             }
             if(accounts == null)
             {
@@ -113,7 +149,8 @@ namespace OrdirectWebsite
             }
         }
 
-        [HttpPost]
+        //Deletes an account.
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             bool succes = accountRepository.DeleteAccount(id);

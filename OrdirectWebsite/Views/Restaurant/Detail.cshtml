@@ -1,4 +1,5 @@
 ﻿@model OrdirectWebsite.ResRevViewModel
+@using Microsoft.AspNetCore.Http;
 
 @{
     ViewData["Title"] = "Detail";
@@ -39,8 +40,11 @@
                 @Html.DisplayFor(model => model.RestaurantDetailViewModel.Telefoonnummer)
             </dd>
         </dl>
-            <input asp-for="ReserveringDetailViewModel.datetime" />
+		@if(Context.Session.GetString("AccountRol") == "Klant")
+		{
+		    <input asp-for="ReserveringDetailViewModel.datetime" />
             <button type="submit"> Reserveer </button>
+		}
     </form>
     </div>
 <div>

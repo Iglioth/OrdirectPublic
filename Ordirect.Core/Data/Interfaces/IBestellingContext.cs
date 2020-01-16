@@ -10,14 +10,13 @@ namespace Ordirect.Core
     {
         bool InsertBestelling(int ReserveringID, int GerechtID, int Ronde, int Aanatal);
         List<Bestelling> GetBestellingen(int ReserveringID);
-        bool CheckRonde(int ronde, int reserveringID);
         List<int> GetDistinctRondes(int reserveringID);
         List<Gerecht> GetGerechtenUitBestelling(int reserveringID, int ronde);
-        List<Gerecht> GetHuidigeBestellingGerechtenMinimaal(int reserveringID);
+        //List<Gerecht> GetHuidigeBestellingGerechtenMinimaal(int reserveringID);
         bool BumpBestellingUp(int gerechtID, int reserveringId);
         bool BumpbestellingDown(int gerechtid, int reserveringId);
         bool DeleteBestelling(int reserveringId, int gerechtID);
-        bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal, string Naam, string status);
+        bool UpdateBestelling(int reserveringID, int gerechtID, int nieuweRonde, int aantal, string Naam, string status, int ouderonde);
         List<Bestelling> GetOpenBestellingen(int reserveringID);
     }
 }

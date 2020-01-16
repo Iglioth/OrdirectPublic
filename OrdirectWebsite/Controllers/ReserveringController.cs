@@ -27,6 +27,7 @@ namespace OrdirectWebsite
             ReserveringRepo = new ReserveringRepository(context);
         }
 
+        //Haalt alle reserveringen op van een account.
         [HttpGet]
         public IActionResult Index()
         {
@@ -41,6 +42,7 @@ namespace OrdirectWebsite
             return View(vm);
         }
 
+        //Haalt alle reserveringen op bij een restaurant.
         public IActionResult IndexVoorRestaurant()
         {
             ReserveringViewModel vm = new ReserveringViewModel();
@@ -49,6 +51,7 @@ namespace OrdirectWebsite
             return View(vm);
         }
 
+        //Maakt een reservering aan.
         [HttpPost]
         public IActionResult Aanmaken(ResRevViewModel vm)
         {
@@ -58,6 +61,7 @@ namespace OrdirectWebsite
             return RedirectToAction("Index", controllerName: "Restaurant");
         }
 
+        //Gaat naar de details van een reservering
         public IActionResult Detail(ReserveringDetailViewModel vm)
         {
             return View(vm);
@@ -69,6 +73,7 @@ namespace OrdirectWebsite
             return RedirectToAction(controllerName: "Bestelling", actionName: "Overview", routeValues: reservering);
         }*/
 
+        //Verwijdert een reservering.
         public IActionResult Delete(ReserveringDetailViewModel detailViewModel)
         {
             Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);
@@ -83,11 +88,13 @@ namespace OrdirectWebsite
             }
         }
 
+        //foutafhandeling van de verwijdering van een reservering.
         public IActionResult DeleteFailed()
         {
             return View();
         }
 
+        //Opent de reservering voor de klant om te bestellen.
         [HttpPost]
         public IActionResult Open(ReserveringDetailViewModel detailViewModel)
         {
@@ -96,6 +103,7 @@ namespace OrdirectWebsite
             return RedirectToAction("IndexVoorRestaurant");
         }
 
+        //Sluit de reservering zodat de klant niet meer kan bestellen.
         [HttpPost]
         public IActionResult Sluit(ReserveringDetailViewModel detailViewModel)
         {
@@ -104,6 +112,7 @@ namespace OrdirectWebsite
             return RedirectToAction("IndexVoorRestaurant");
         }
 
+        //Accepteerd de reservering zodat de klant weet dat ze naar de reservering kunnen.
         [HttpPost]
         public IActionResult Accepteer(ReserveringDetailViewModel detailViewModel)
         {
@@ -112,6 +121,7 @@ namespace OrdirectWebsite
             return RedirectToAction("IndexVoorRestaurant");
         }
 
+        //Eindigt de reservering zodat hij niet meer opnieuw geopend kan worden. Dit wordt na betalen gedaan.
         [HttpPost]
         public IActionResult Eindig(ReserveringDetailViewModel detailViewModel)
         {
@@ -121,7 +131,7 @@ namespace OrdirectWebsite
 
         }
 
-        
+        //Haalt alle reserveringen op die open zijn bij een restaurant.
         public IActionResult OpenReserveringList()
         {
             int id = (int)HttpContext.Session.GetInt32("RestaurantID");

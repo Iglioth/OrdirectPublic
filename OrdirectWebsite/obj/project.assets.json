@@ -12582,9 +12582,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\OrdirectWebsite.csproj",
-      "projectName": "OrdirectWebsite",
-      "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\OrdirectWebsite.csproj",
+      "projectUniqueName": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\Ordirect.Website.csproj",
+      "projectName": "Ordirect.Website",
+      "projectPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\Ordirect.Website.csproj",
       "packagesPath": "C:\\Users\\lars\\.nuget\\packages\\",
       "outputPath": "D:\\Fontys Semester 2\\Indiviueel\\Git Bestanden\\OrdirectPublic\\OrdirectWebsite\\obj\\",
       "projectStyle": "PackageReference",

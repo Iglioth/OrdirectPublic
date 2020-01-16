@@ -55,13 +55,14 @@ namespace Ordirect.Core
 
         public bool CreateAccount(string Voornaam, string Achternaam, string Email, string Wachtwoord, int RestaurantID, string Rol)
         {
-            string sql = "Insert Into Account(Voornaam, Achternaam, Email, Wachtwoord, Rol) Values (@voornaam, @achternaam, @email, @wachtwoord, @Rol)";
+            string sql = "Insert Into Account(Voornaam, Achternaam, Email, Wachtwoord, Rol, RestaurantID) Values (@voornaam, @achternaam, @email, @wachtwoord, @Rol, @RestaurantID)";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
             parameters.Add("voornaam", Voornaam);
             parameters.Add("achternaam", Achternaam);
             parameters.Add("email", Email);
             parameters.Add("wachtwoord", Wachtwoord);
             parameters.Add("Rol", Rol);
+            parameters.Add("RestaurantID", RestaurantID);
 
 
             bool result = GetBoolSql(sql, parameters);
@@ -102,11 +103,11 @@ namespace Ordirect.Core
 
         }
 
-        public List<Account> GetRestaurantAccounts(string v)
+        public List<Account> GetRestaurantAccounts(int RestaurantID)
         {
-            string sql = "Get * From Account Where RestaurantID = @restaurantid";
+            string sql = "Select * From Account Where RestaurantID = @restaurantid";
             Dictionary<object, object> parameters = new Dictionary<object, object>();
-            parameters.Add("restaurantid", v);
+            parameters.Add("restaurantid", RestaurantID);
 
             DataSet results = GetDataSetSql(sql, parameters);
             List<Account> Accounts = new List<Account>();
@@ -125,7 +126,13 @@ namespace Ordirect.Core
 
         public bool DeleteAccount(int id)
         {
-            throw new NotImplementedException();
+            string sql = "Delete From Account Where AccountID = @id";
+            Dictionary<object, object> parameters = new Dictionary<object, object>();
+            parameters.Add("id", id);
+
+            bool results = GetBoolSql(sql, parameters);
+
+            return results;
         }
     }
 }
