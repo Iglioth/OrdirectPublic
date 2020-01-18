@@ -9,4 +9,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAaxfBeNOTj0aOGPMM91mCWQAAAAACAAAAAAAQZgAAAAEAACAAAACX+w0faTbOt0IBFMSL/oS60Tp0CH5h6B2l6+aH4gOQJgAAAAAOgAAAAAIAACAAAADCmWF65RGkVDM988Qxhg5LCdW7ljrdSHYAsDmMUFPCISAAAADGbgx1b81bmPP4QJKutvsRzWI6AQL+ANfdfZwJMGOPtkAAAACuZZFFTJaiZosian4cWS/3R22fsAyle4gy8da7LSy+pbrTmg3frMSwXkRmhQf/qqLMs3hoffSwvyMOE2q24Yh4</EncryptedPassword>
     <_PublishTargetUrl>D:\Fontys Semester 2\Indiviueel\Deploy</_PublishTargetUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server = mssql.fhict.local%3b Database = dbi390337_rdirect%3b User Id = dbi390337_rdirect%3b Password = mnm626466%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>

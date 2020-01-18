@@ -104,7 +104,6 @@ namespace OrdirectWebsite
         }
 
         //Sluit de reservering zodat de klant niet meer kan bestellen.
-        [HttpPost]
         public IActionResult Sluit(ReserveringDetailViewModel detailViewModel)
         {
             Reservering r = ReserveringConverter.DetailViewModelToModel(detailViewModel);

@@ -245,7 +245,7 @@ using OrdirectWebsite.Models;
             WriteLiteral("                    </tbody>\r\n                </table>\r\n                ");
             EndContext();
             BeginContext(4058, 68, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "239c8f96a9044d8a88c3d4eadcfd4c2f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "810e4a1559ea47ebb32dca40671ecc50", async() => {
                 BeginContext(4112, 10, true);
                 WriteLiteral(" Bestellen");
                 EndContext();
@@ -269,7 +269,7 @@ using OrdirectWebsite.Models;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(4144, 87, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "72ea6a04cb354e8db7f3c4003abc2db1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "36f642a2173b4204946e9e3db563ca18", async() => {
                 BeginContext(4203, 19, true);
                 WriteLiteral("Bestelling Plaatsen");
                 EndContext();
